@@ -35,9 +35,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Celula.o \
 	${OBJECTDIR}/Consola.o \
 	${OBJECTDIR}/Escuna.o \
 	${OBJECTDIR}/Galeao.o \
+	${OBJECTDIR}/Jogo.o \
 	${OBJECTDIR}/Navio.o \
 	${OBJECTDIR}/Veleiro.o \
 	${OBJECTDIR}/main.o
@@ -61,11 +63,16 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tppoo.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/expedicoesmaritimas.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tppoo.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/expedicoesmaritimas.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tppoo ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/expedicoesmaritimas ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Celula.o: Celula.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Celula.o Celula.cpp
 
 ${OBJECTDIR}/Consola.o: Consola.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -81,6 +88,11 @@ ${OBJECTDIR}/Galeao.o: Galeao.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Galeao.o Galeao.cpp
+
+${OBJECTDIR}/Jogo.o: Jogo.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Jogo.o Jogo.cpp
 
 ${OBJECTDIR}/Navio.o: Navio.cpp
 	${MKDIR} -p ${OBJECTDIR}
