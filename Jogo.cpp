@@ -17,7 +17,24 @@ Jogo::Jogo() {
    
 }
 
+void Jogo::constroiMapa(int lin, int col){
+    for(int i = 0; i <lin ; i++){
+            
+        vector<Celula> temp;
+        {
+            for( int j = 0; j<col; j++){
+                temp.push_back(Celula());
+            }
+            mapa.push_back(temp);
+        }
+    }
+}
+
 Jogo::Jogo(const Jogo& orig) {
+}
+
+vector<vector<Celula>> Jogo::getMapa(){
+    return mapa;
 }
 
 Jogo::~Jogo() {

@@ -14,15 +14,20 @@
 #ifndef JOGO_H
 #define JOGO_H
 
-#inlcude "Celula.h"
+#include <vector>
+#include "Celula.h"
+
+using namespace std;
 
 class Jogo {
 
 private:
-    vector<vector<Celula>>;
+    vector<vector<Celula>> mapa;
     
 public:
     Jogo();
+    void constroiMapa(int lin, int col);
+    vector<vector<Celula>> getMapa();
     Jogo(const Jogo& orig);
     virtual ~Jogo();
 

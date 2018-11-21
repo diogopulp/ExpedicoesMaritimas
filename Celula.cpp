@@ -14,6 +14,9 @@
 #include "Celula.h"
 
 Celula::Celula() {
+    
+    car = "x";
+    
 }
 
 Celula::Celula(const Celula& orig) {
@@ -21,4 +24,14 @@ Celula::Celula(const Celula& orig) {
 
 Celula::~Celula() {
 }
+
+string Celula::getCarater(){
+    return car;
+}
+
+ostream& operator<<(ostream& os, const Celula& cel)  
+{  
+    os << cel.car;  
+    return os; 
+}  
 

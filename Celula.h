@@ -14,11 +14,20 @@
 #ifndef CELULA_H
 #define CELULA_H
 
+#include <string>
+
+using namespace std;
+
 class Celula {
+    
+    string car;
+    
 public:
     Celula();
     Celula(const Celula& orig);
     virtual ~Celula();
+    string getCarater();
+    friend ostream& operator<<(ostream& os, const Celula& cel);  
 private:
 
 };

@@ -12,6 +12,10 @@
  */
 
 #include <cstdlib>
+#include <iostream>
+#include <string>
+
+#include "Jogo.h"
 
 using namespace std;
 
@@ -20,6 +24,16 @@ using namespace std;
  */
 int main(int argc, char** argv) {
 
+    Jogo jogo;
+    
+    jogo.constroiMapa(10,10);
+    
+    for(int i =0; i<10; i++){
+        cout << endl;
+        for(int j=0; j<10; j++){
+            cout << jogo.getMapa()[i][j];
+        }
+    }   
     return 0;
 }
 
