@@ -30,3 +30,5 @@
 *.exe
 *.out
 *.app
+/POO_EMaritimas/build/
+/POO_EMaritimas/dist/
