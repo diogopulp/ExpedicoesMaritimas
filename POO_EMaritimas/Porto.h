@@ -14,11 +14,21 @@
 #ifndef PORTO_H
 #define PORTO_H
 
+#include <vector>
+#include <iostream>
+#include <string>
+
+#include "Navio.h"
+
+using namespace std;
+
 class Porto {
 public:
     Porto();
     Porto(const Porto& orig);
     virtual ~Porto();
+    
+    vector<Navio> navios;
 private:
 
 };

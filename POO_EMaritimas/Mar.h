@@ -14,7 +14,9 @@
 #ifndef MAR_H
 #define MAR_H
 
-class Mar {
+#include "Celula.h"
+
+class Mar: public Celula {
 public:
     Mar();
     Mar(const Mar& orig);

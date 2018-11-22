@@ -14,7 +14,9 @@
 #ifndef TERRA_H
 #define TERRA_H
 
-class Terra {
+#include "Celula.h"
+
+class Terra: public Celula {
 public:
     Terra();
     Terra(const Terra& orig);

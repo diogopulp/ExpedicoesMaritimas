@@ -13,26 +13,28 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Celulas" projectFiles="true">
-        <logicalFolder name="f1" displayName="Navios" projectFiles="true">
-          <itemPath>Escuna.cpp</itemPath>
-          <itemPath>Escuna.h</itemPath>
-          <itemPath>Fragata.cpp</itemPath>
-          <itemPath>Fragata.h</itemPath>
-          <itemPath>Galeao.cpp</itemPath>
-          <itemPath>Galeao.h</itemPath>
-          <itemPath>Navio.cpp</itemPath>
-          <itemPath>Navio.h</itemPath>
-          <itemPath>Veleiro.cpp</itemPath>
-          <itemPath>Veleiro.h</itemPath>
-        </logicalFolder>
         <itemPath>Celula.cpp</itemPath>
         <itemPath>Celula.h</itemPath>
         <itemPath>Mar.cpp</itemPath>
         <itemPath>Mar.h</itemPath>
-        <itemPath>Porto.cpp</itemPath>
-        <itemPath>Porto.h</itemPath>
         <itemPath>Terra.cpp</itemPath>
         <itemPath>Terra.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Navios" projectFiles="true">
+        <itemPath>Escuna.cpp</itemPath>
+        <itemPath>Escuna.h</itemPath>
+        <itemPath>Fragata.cpp</itemPath>
+        <itemPath>Fragata.h</itemPath>
+        <itemPath>Galeao.cpp</itemPath>
+        <itemPath>Galeao.h</itemPath>
+        <itemPath>Navio.cpp</itemPath>
+        <itemPath>Navio.h</itemPath>
+        <itemPath>Veleiro.cpp</itemPath>
+        <itemPath>Veleiro.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="Porto" projectFiles="true">
+        <itemPath>Porto.cpp</itemPath>
+        <itemPath>Porto.h</itemPath>
       </logicalFolder>
       <itemPath>Jogo.cpp</itemPath>
       <itemPath>Jogo.h</itemPath>

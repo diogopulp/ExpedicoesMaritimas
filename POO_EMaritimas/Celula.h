@@ -23,10 +23,10 @@ class Celula {
     string car;
     
 public:
-    Celula();
-    Celula(const Celula& orig);
+    explicit Celula();
+    explicit Celula(const Celula& orig);
     virtual ~Celula();
-    string getCarater();
+    virtual string getCarater() const;
     //friend 
 private:
 

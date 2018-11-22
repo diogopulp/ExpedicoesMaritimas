@@ -25,7 +25,7 @@ Celula::Celula(const Celula& orig) {
 Celula::~Celula() {
 }
 
-string Celula::getCarater(){
+string Celula::getCarater() const{
     return car;
 }
 
