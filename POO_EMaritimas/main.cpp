@@ -19,19 +19,17 @@
 
 using namespace std;
 
-/*
- * 
- */
 int main(int argc, char** argv) {
 
     Jogo jogo;
     jogo = Jogo();
     jogo.constroiMapa(10,10);
     
-    for(int i =0; i<10; i++){
+    
+    for(int i =0; i<jogo.getMapa().size(); i++){
         cout << endl;
-        for(int j=0; j<10; j++){
-            //cout << jogo.getMapa()[i][j];
+        for(int j=0; j<jogo.getMapa()[i].size(); j++){
+            cout << jogo.getMapa()[i][j]->getCarater();
         }
     }   
     return 0;

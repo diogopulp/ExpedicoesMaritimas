@@ -16,18 +16,19 @@
 
 #include <vector>
 #include "Celula.h"
+#include <iostream>
 
 using namespace std;
 
 class Jogo {
 
 private:
-    vector<vector<Celula> > mapa;
+    vector<vector<Celula*> > mapa;
     
 public:
     Jogo();
     void constroiMapa(int lin, int col);
-    vector<vector<Celula> > getMapa();
+    vector<vector<Celula*> > getMapa();
     Jogo(const Jogo& orig);
     virtual ~Jogo();
 
