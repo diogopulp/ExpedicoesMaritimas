@@ -14,6 +14,7 @@
 #include "Terra.h"
 
 Terra::Terra() {
+    this->car = '.';
 }
 
 Terra::Terra(const Terra& orig) {

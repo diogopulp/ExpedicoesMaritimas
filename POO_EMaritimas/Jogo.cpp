@@ -12,6 +12,7 @@
  */
 
 #include "Jogo.h"
+#include "Terra.h"
 
 Jogo::Jogo() {
    
@@ -25,13 +26,20 @@ void Jogo::constroiMapa(int lin, int col){
         
             for( int j = 0; j<col; j++){
               
-                temp.push_back(new Mar());
-               
+                int num = rand() % 101;
+                
+                    if(num<90){
+                        temp.push_back(new Mar());
+                    }else{
+                        temp.push_back(new Terra());
+                    }
+                }
+  
+                mapa.push_back(temp);
             }
     
-            mapa.push_back(temp);
+            
     }
-}
 
 void Jogo::imprimeMapa(){
     for(int i =0; i<mapa.size(); i++){

@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
 
     Jogo jogo;
     jogo = Jogo();
-    jogo.constroiMapa(20,20);
+    jogo.constroiMapa(10,20);
     jogo.imprimeMapa();
     
     return 0;
