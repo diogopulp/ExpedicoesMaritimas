@@ -16,6 +16,7 @@
 
 #include <vector>
 #include "Celula.h"
+#include "Mar.h"
 #include <iostream>
 
 using namespace std;
@@ -31,6 +32,7 @@ public:
     vector<vector<Celula*> > getMapa();
     Jogo(const Jogo& orig);
     virtual ~Jogo();
+    void imprimeMapa();
 
 
 };

@@ -19,7 +19,7 @@
 using namespace std;
 
 class Celula {
-    
+protected:
     string car;
     
 public:

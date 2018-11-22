@@ -15,8 +15,6 @@
 
 Celula::Celula() {
     
-    car = "x";
-    
 }
 
 Celula::Celula(const Celula& orig) {

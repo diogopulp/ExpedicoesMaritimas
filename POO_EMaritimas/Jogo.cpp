@@ -25,12 +25,21 @@ void Jogo::constroiMapa(int lin, int col){
         
             for( int j = 0; j<col; j++){
               
-                temp.push_back(new Celula());
+                temp.push_back(new Mar());
                
             }
     
             mapa.push_back(temp);
     }
+}
+
+void Jogo::imprimeMapa(){
+    for(int i =0; i<mapa.size(); i++){
+        cout << endl;
+        for(int j=0; j<mapa[i].size(); j++){
+            cout << mapa[i][j]->getCarater();
+        }
+    }   
 }
 
 Jogo::Jogo(const Jogo& orig) {
