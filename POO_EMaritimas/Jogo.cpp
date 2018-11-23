@@ -45,7 +45,14 @@ void Jogo::imprimeMapa(){
     for(int i =0; i<mapa.size(); i++){
         cout << endl;
         for(int j=0; j<mapa[i].size(); j++){
-            cout << mapa[i][j]->getCarater();
+            cout << mapa[i][j]->getCarater()[0];
+            cout << mapa[i][j]->getCarater()[1];
+            
+        }
+        cout << endl;
+        for(int j=0; j<mapa[i].size(); j++){
+            cout << mapa[i][j]->getCarater()[2];
+            cout << mapa[i][j]->getCarater()[3];
         }
     }   
 }
