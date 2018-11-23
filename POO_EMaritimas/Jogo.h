@@ -22,6 +22,8 @@
 #include <time.h>
 #include <iostream>
 
+#include <ncurses.h>
+
 using namespace std;
 
 class Jogo {
@@ -36,6 +38,8 @@ public:
     Jogo(const Jogo& orig);
     virtual ~Jogo();
     void imprimeMapa();
+    
+    void print_game(WINDOW *game_win, int highlightx, int highlighty);
 
 
 };
