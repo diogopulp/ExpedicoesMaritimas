@@ -34,6 +34,7 @@ enum valoresFicheiro {
     COLUNAS,
     MOEDAS,
     PROB_PIRATA,
+    PRECO_NAVIO,
     PRECO_SOLDADO,
     PRECO_VENDA_PEIXE,
     PRECO_COMPRA_MERCADO,
@@ -85,6 +86,7 @@ private:
     int probabilidadeMotim;
     int probabilidadeVento;
     int probabilidadeTempestade;
+    int precoNavio;
     int precoSoldado;
     int precoVendePeixe;
     int precoCompraMercadoria;
@@ -106,6 +108,7 @@ public:
     void setProbabilidadeMotim(int prob);
     void setProbabilidadeVento(int prob);
     void setProbabilidadeTempestade(int prob);
+    void setPrecoNavio(int preco);
     void setPrecoSoldado(int preco);
     void setPrecoVendePeixe(int preco);
     void setPrecoCompraMercadoria(int preco);
@@ -139,6 +142,7 @@ public:
     int getPrecoCompraMercadoria();
     int getPrecoVendeMercadoria();
     int getSoldadosPorto();
+    int getPrecoNavio();
     
     void compraNavio(char tipoNavio);
     void listaInfo();

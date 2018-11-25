@@ -226,6 +226,14 @@ int Jogo::getSoldadosPorto(){
     return soldadosPorto;
 }
 
+void Jogo::setPrecoNavio(int preco){
+    precoNavio = preco;
+}
+
+int Jogo::getPrecoNavio(){
+    return precoNavio;
+}
+
 
 
 
@@ -386,6 +394,45 @@ int Jogo::converteValoresFicheiro(string chave) {
     else if (chave == "colunas") {
         return COLUNAS;
     }
+    else if (chave == "moedas") {
+        return MOEDAS;
+    }
+    else if(chave == "probpirata"){
+        return PROB_PIRATA;
+    }
+    else if(chave == "preconavio"){
+        return PRECO_NAVIO;
+    }
+    else if(chave == "precosoldado"){
+        return PRECO_SOLDADO;
+    }
+    else if(chave == "precovendapeixe"){
+        return PRECO_VENDA_PEIXE;
+    }
+    else if(chave == "precocompramercado"){
+        return PRECO_COMPRA_MERCADO;
+    }
+    else if(chave == "precovendamercado"){
+        return PRECO_VENDA_MERCADO;
+    }
+    else if(chave == "soldadosporto"){
+        return SOLDADOS_PORTO;
+    }
+    else if(chave == "probvento"){
+        return PROB_VENTO;
+    }
+    else if(chave == "probtempestade"){
+        return PROB_TEMPESTADE;
+    }
+    else if(chave == "probsereias"){
+        return PROB_SEREIAS;
+    }
+    else if(chave == "probcalmaria"){
+        return PROB_CALMARIA;
+    }
+    else if(chave == "probmotim"){
+        return PROB_MOTIM;
+    }
     
     return 0;
 }
@@ -398,6 +445,7 @@ int Jogo::valorNaLinhaDoFicheiro(string linha) {
     dadosDoFicheiro.push_back("colunas");
     dadosDoFicheiro.push_back("moedas");
     dadosDoFicheiro.push_back("probpirata");
+    dadosDoFicheiro.push_back("preconavio");
     dadosDoFicheiro.push_back("precosoldado");
     dadosDoFicheiro.push_back("precovendapeixe");
     dadosDoFicheiro.push_back("precocompramercado");
@@ -477,6 +525,9 @@ void Jogo::readFile(){
                         break;
                     case SOLDADOS_PORTO:
                         setSoldadosPorto(valor);
+                        break;
+                    case PRECO_NAVIO:
+                        setPrecoNavio(valor);
                         break;
                     default:
                         break;
@@ -580,6 +631,18 @@ void Jogo::startGameFromFile() {
     
     cout << "\n\nmodeas do jogador: " << getNumMoedas() << endl;
     cout << "navios do jogador: " << getNumNavios() << endl;
+    cout << "probabilidade Pirata: " << getProbabilidadePirata() << endl;
+    cout << "preco Navio: " << getPrecoNavio() << endl;
+    cout << "preco Soldado: " << getPrecoSoldado() << endl;
+    cout << "preco Venda Peixe: " << getPrecoVendePeixe() << endl;
+    cout << "preco Venda Mercado: " << getPrecoVendeMercadoria() << endl;
+    cout << "preco Compra Mercado: " << getPrecoCompraMercadoria() << endl;
+    cout << "probabilidade Vento: " << getProbabilidadeVento() << endl;
+    cout << "probabilidade Tempestade: " << getProbabilidadeTempestade() << endl;
+    cout << "probabilidade Sereias: " << getProbabilidadeSereias() << endl;
+    cout << "probabiliddade Calmaria: " << getProbabilidadeCalmaria() << endl;
+    cout << "probabilidade Motim: " << getProbabilidadeMotim() << endl;
+
 }
 
 void Jogo::menuGame(){
