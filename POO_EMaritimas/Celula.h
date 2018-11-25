@@ -26,7 +26,7 @@ public:
     explicit Celula();
     explicit Celula(const Celula& orig);
     virtual ~Celula();
-    void setCaractere(char caractere);
+    void setCarater(char carater);
     virtual char getCarater() const;
     //friend 
 private:
