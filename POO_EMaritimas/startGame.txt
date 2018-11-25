@@ -1,0 +1,25 @@
+linhas 10
+colunas 20
+~~~~~~~~~~~~~~~~~~~~
+...~~~~~~~~~~..~~~~~
+.~~~~~~~~~~~~~~~~~~~
+.~~~~~~~~~~~~~~~~~..
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~...~~~~~..~~~~~
+~~~~~~..~~~~~...~~~~
+~~~~~~~~~~~~~~.~~~~~
+~~~~~~~~~~~~~~~~~~~.
+moedas 1000
+probpirata 20
+preconavio 100
+precosoldado 1
+precovendapeixe 1
+precocompramercado 2
+precovendamercado 3
+soldadosporto 100
+probvento 30
+probtempestade 30
+probsereias 30
+probcalmaria 20
+probmotim 20

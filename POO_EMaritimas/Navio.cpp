@@ -14,11 +14,40 @@
 #include "Navio.h"
 
 Navio::Navio() {
+    this->idNavio = this->identificador++;
 }
 
 Navio::Navio(const Navio& orig) {
 }
 
 Navio::~Navio() {
+}
+
+void Navio::setPosicaoAtualX(int x){
+    posicaoAtualX = x;
+}
+
+void Navio::setPosicaoAtualY(int y){
+    posicaoAtualY = y;
+}
+
+void Navio::setTipoNavio(char tipo) {
+    this->tipo = tipo;
+}
+
+int Navio::getPosicaoAtualX(){
+    return posicaoAtualX;
+}
+
+int Navio::getPosicaoAtualY(){
+    return posicaoAtualY;
+}
+
+int Navio::getIdentificadorNavio() {
+    return idNavio;
+}
+
+char Navio::getTipoNavio() {
+    return tipo;
 }
 

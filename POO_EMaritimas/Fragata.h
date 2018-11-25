@@ -13,8 +13,9 @@
 
 #ifndef FRAGATA_H
 #define FRAGATA_H
+#include "Navio.h"
 
-class Fragata {
+class Fragata : public Navio {
 public:
     Fragata();
     Fragata(const Fragata& orig);

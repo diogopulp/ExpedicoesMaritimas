@@ -19,12 +19,14 @@
 
 using namespace std;
 
+
 int main(int argc, char** argv) {
 
     Jogo jogo;
     jogo = Jogo();
-    jogo.constroiMapa(10,20);
-    jogo.imprimeMapa();
+    //jogo.constroiMapa(10,20);
+    //jogo.imprimeMapa();
+    jogo.menuGame();
     
     return 0;
 }

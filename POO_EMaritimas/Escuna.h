@@ -13,14 +13,15 @@
 
 #ifndef ESCUNA_H
 #define ESCUNA_H
+#include "Navio.h"
 
-class Escuna {
+class Escuna: public Navio{
 public:
     Escuna();
     Escuna(const Escuna& orig);
     virtual ~Escuna();
 private:
-
+    
 };
 
 #endif /* ESCUNA_H */

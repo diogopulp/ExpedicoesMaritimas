@@ -13,8 +13,9 @@
 
 #ifndef GALEAO_H
 #define GALEAO_H
+#include "Navio.h"
 
-class Galeao {
+class Galeao: public Navio{
 public:
     Galeao();
     Galeao(const Galeao& orig);

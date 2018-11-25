@@ -13,8 +13,9 @@
 
 #ifndef VELEIRO_H
 #define VELEIRO_H
+#include "Navio.h"
 
-class Veleiro {
+class Veleiro: public Navio {
 public:
     Veleiro();
     Veleiro(const Veleiro& orig);

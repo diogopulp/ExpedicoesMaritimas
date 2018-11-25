@@ -19,7 +19,17 @@ public:
     Navio();
     Navio(const Navio& orig);
     virtual ~Navio();
+    void setPosicaoAtualX(int x);
+    void setPosicaoAtualY(int y);
+    void setTipoNavio(char tipo);
+    int getPosicaoAtualX();
+    int getPosicaoAtualY();
+    int getIdentificadorNavio();
+    char getTipoNavio();
 private:
+    char tipo;
+    int posicaoAtualX, posicaoAtualY, idNavio;
+    static int identificador;
 
 };
 
