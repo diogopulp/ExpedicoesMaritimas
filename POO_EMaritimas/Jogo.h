@@ -26,6 +26,8 @@
 #include <string>
 
 
+#include <ncurses.h>
+
 using namespace std;
 
 
@@ -115,6 +117,7 @@ public:
     void setPrecoVendeMercadoria(int preco);
     void setSoldadosPorto(int num);
     void imprimeMapa();
+<<<<<<< HEAD
     void menuGame();
     void getOptions()const;
     void startNewGame();
@@ -148,6 +151,12 @@ public:
     void listaInfo();
     void colocarNavioEmPosicao(Navio *navio, char caractereNavio);
     void moverNavioAutomaticamente(int numeroNavio);
+=======
+    
+    void print_game(WINDOW *game_win, int highlightx, int highlighty);
+
+
+>>>>>>> origin/feature/map_creation
 };
 
 #endif /* JOGO_H */
