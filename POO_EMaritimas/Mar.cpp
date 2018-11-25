@@ -14,7 +14,7 @@
 #include "Mar.h"
 
 Mar::Mar() {
-    this->car = "~^^~";
+    this->car = "~~~~";
 }
 
 Mar::Mar(const Mar& orig) {

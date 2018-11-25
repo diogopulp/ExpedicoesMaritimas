@@ -66,12 +66,12 @@ void Jogo::constroiMapa(int lin, int col){
 }
 
 void Jogo::imprimeMapa(){
+    
     for(int i =0; i<mapa.size(); i++){
         cout << endl;
         for(int j=0; j<mapa[i].size(); j++){
-<<<<<<< HEAD
-            cout << " " << mapa[i][j]->getCarater() << " ";
-=======
+            //cout << " " << mapa[i][j]->getCarater() << " ";
+
             cout << mapa[i][j]->getCarater()[0];
             cout << mapa[i][j]->getCarater()[1] << " ";
            
@@ -81,7 +81,7 @@ void Jogo::imprimeMapa(){
         for(int j=0; j<mapa[i].size(); j++){
             cout << mapa[i][j]->getCarater()[2];
             cout << mapa[i][j]->getCarater()[3] << " ";
->>>>>>> origin/feature/map_creation
+
         }
     }   
 }
@@ -395,17 +395,17 @@ void Jogo::moverNavioAutomaticamente(int identificador){
                 break;
         }
         
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater() != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
     
-    mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()]->setCaractere('~');
-    mapa[novaLinha][novaColuna]->setCaractere(navio->getTipoNavio());
+    mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()]->setCarater('~');
+    mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
     
     imprimeMapa();
 }
 
-void Jogo::colocarNavioEmPosicao(Navio *navio, char caractereNavio) {
+void Jogo::colocarNavioEmPosicao(Navio *navio, char caraterNavio) {
     int novaLinha = 0, novaColuna = 0;
     
     do{
@@ -413,9 +413,9 @@ void Jogo::colocarNavioEmPosicao(Navio *navio, char caractereNavio) {
         novaLinha = rand() % getLinhas();
         novaColuna = rand() % getColunas();
 
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater() != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
     
-    mapa[novaLinha][novaColuna]->setCaractere(caractereNavio);
+    mapa[novaLinha][novaColuna]->setCarater(caraterNavio);
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
 }

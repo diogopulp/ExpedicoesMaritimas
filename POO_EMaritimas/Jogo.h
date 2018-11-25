@@ -117,7 +117,6 @@ public:
     void setPrecoVendeMercadoria(int preco);
     void setSoldadosPorto(int num);
     void imprimeMapa();
-<<<<<<< HEAD
     void menuGame();
     void getOptions()const;
     void startNewGame();
@@ -149,14 +148,13 @@ public:
     
     void compraNavio(char tipoNavio);
     void listaInfo();
-    void colocarNavioEmPosicao(Navio *navio, char caractereNavio);
+    void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
     void moverNavioAutomaticamente(int numeroNavio);
-=======
     
     void print_game(WINDOW *game_win, int highlightx, int highlighty);
 
 
->>>>>>> origin/feature/map_creation
+
 };
 
 #endif /* JOGO_H */

@@ -20,14 +20,14 @@ using namespace std;
 
 class Celula {
 protected:
-    char car;
+    string car;
     
 public:
     explicit Celula();
     explicit Celula(const Celula& orig);
     virtual ~Celula();
     void setCarater(char carater);
-    virtual char getCarater() const;
+    virtual string getCarater() const;
     //friend 
 private:
 
