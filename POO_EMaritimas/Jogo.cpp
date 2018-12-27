@@ -45,24 +45,26 @@ int Jogo::getColunas() {
 
 void Jogo::constroiMapa(int lin, int col){
     
-    for(int i = 0; i <lin ; i++){
-            
-        vector<Celula*> temp;
-        
-            for( int j = 0; j<col; j++){
-              
-                int num = rand() % 101;
-                
-                if(num<90){
-                    temp.push_back(new Mar());
+    if(lin > 0 && col > 0){
+        for(int i = 0; i <lin ; i++){
+
+            vector<Celula*> temp;
+
+                for( int j = 0; j<col; j++){
+
+                    int num = rand() % 101;
+
+                    if(num<90){
+                        temp.push_back(new Mar());
+                    }
+                    else{
+                        temp.push_back(new Terra());
+                    }
                 }
-                else{
-                    temp.push_back(new Terra());
-                }
-            }
-        
-        mapa.push_back(temp);
-    }            
+
+            mapa.push_back(temp);
+        } 
+    }           
 }
 
 void Jogo::imprimeMapa(){

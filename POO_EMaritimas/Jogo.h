@@ -26,7 +26,7 @@
 #include <string>
 
 
-#include <ncurses.h>
+//#include <ncurses.h>
 
 using namespace std;
 
