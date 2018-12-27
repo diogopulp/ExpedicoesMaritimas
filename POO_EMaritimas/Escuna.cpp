@@ -12,8 +12,7 @@
  */
 
 #include "Escuna.h"
-
-Escuna::Escuna() {
+Escuna::Escuna() : Navio() {
 }
 
 Escuna::Escuna(const Escuna& orig) {
@@ -21,4 +20,5 @@ Escuna::Escuna(const Escuna& orig) {
 
 Escuna::~Escuna() {
 }
+
 

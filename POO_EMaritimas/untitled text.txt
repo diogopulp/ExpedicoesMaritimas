@@ -1,0 +1,17 @@
+#include <conio.h>
+#include <stdio.h>
+
+void main() {
+
+	int a, b, c;
+	
+	clrscr();
+	while(1) {
+		c = getch();
+		printf("%c = %d",c,c);
+		if(c==27) { //valor de ascii da tecla esq
+			break;
+			}
+	}
+		getch();
+}

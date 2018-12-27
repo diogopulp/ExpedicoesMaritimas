@@ -20,7 +20,9 @@ public:
     Fragata();
     Fragata(const Fragata& orig);
     virtual ~Fragata();
-private:
+    //void navegar(int posx, int posy);
+    //Navio * duplica()const override;
+    void protegeGaleao();
 
 };
 

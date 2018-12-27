@@ -13,7 +13,7 @@
 
 #include "Veleiro.h"
 
-Veleiro::Veleiro() {
+Veleiro::Veleiro() : Navio() {
 }
 
 Veleiro::Veleiro(const Veleiro& orig) {
@@ -21,4 +21,3 @@ Veleiro::Veleiro(const Veleiro& orig) {
 
 Veleiro::~Veleiro() {
 }
-

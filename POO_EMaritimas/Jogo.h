@@ -15,19 +15,14 @@
 #define JOGO_H
 
 #include <vector>
-#include "Celula.h"
-#include "Mar.h"
-#include "Terra.h"
-#include "Navio.h"
 #include <math.h>
 //#include <time.h>
 #include <iostream>
 #include <sstream>
 #include <string>
 
-
-#include <ncurses.h>
-
+class Navio;
+class Celula;
 using namespace std;
 
 
@@ -148,13 +143,8 @@ public:
     
     void compraNavio(char tipoNavio);
     void listaInfo();
-    void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
+    void colocarNavioEmPosicao(Navio *navio, char caractereNavio);
     void moverNavioAutomaticamente(int numeroNavio);
-    
-    void print_game(WINDOW *game_win, int highlightx, int highlighty);
-
-
-
 };
 
 #endif /* JOGO_H */

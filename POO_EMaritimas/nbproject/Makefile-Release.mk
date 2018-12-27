@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Escuna.o \
 	${OBJECTDIR}/Fragata.o \
 	${OBJECTDIR}/Galeao.o \
+	${OBJECTDIR}/Jogador.o \
 	${OBJECTDIR}/Jogo.o \
 	${OBJECTDIR}/Mar.o \
 	${OBJECTDIR}/Navio.o \
@@ -91,6 +92,11 @@ ${OBJECTDIR}/Galeao.o: Galeao.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Galeao.o Galeao.cpp
+
+${OBJECTDIR}/Jogador.o: Jogador.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Jogador.o Jogador.cpp
 
 ${OBJECTDIR}/Jogo.o: Jogo.cpp
 	${MKDIR} -p ${OBJECTDIR}

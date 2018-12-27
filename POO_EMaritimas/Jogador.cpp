@@ -5,19 +5,20 @@
  */
 
 /* 
- * File:   Fragata.cpp
- * Author: diogosantos
+ * File:   Jogador.cpp
+ * Author: danielmoita
  * 
- * Created on November 22, 2018, 8:56 PM
+ * Created on 25 December 2018, 17:07
  */
 
-#include "Fragata.h"
+#include "Jogador.h"
 
-Fragata::Fragata() : Navio() {
+Jogador::Jogador() {
 }
 
-Fragata::Fragata(const Fragata& orig) {
+Jogador::Jogador(const Jogador& orig) {
 }
 
-Fragata::~Fragata() {
+Jogador::~Jogador() {
 }
+

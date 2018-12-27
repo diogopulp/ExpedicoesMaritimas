@@ -15,10 +15,9 @@
 #include "Jogo.h"
 #include "Terra.h"
 #include "Navio.h"
-#include "Galeao.h"
-#include "Veleiro.h"
-#include "Fragata.h"
-#include "Escuna.h"
+#include "Mar.h"
+#include "Celula.h"
+
 
 
 int Navio::identificador = 1;
@@ -66,46 +65,12 @@ void Jogo::constroiMapa(int lin, int col){
 }
 
 void Jogo::imprimeMapa(){
-    
     for(int i =0; i<mapa.size(); i++){
         cout << endl;
         for(int j=0; j<mapa[i].size(); j++){
-            //cout << " " << mapa[i][j]->getCarater() << " ";
-
-            cout << mapa[i][j]->getCarater()[0];
-            cout << mapa[i][j]->getCarater()[1] << " ";
-           
-            
-        }
-        cout << endl;
-        for(int j=0; j<mapa[i].size(); j++){
-            cout << mapa[i][j]->getCarater()[2];
-            cout << mapa[i][j]->getCarater()[3] << " ";
-
+            cout << " " << mapa[i][j]->getCarater() << " ";
         }
     }   
-}
-
-void Jogo::print_game(WINDOW* game_win, int highlightx, int highlighty){
-    
-    /*box(game_win, 0, 0);
-    
-    for(int i =0; i<mapa.size(); i++){       
-        
-        for(int j=0; j<mapa[i].size(); j++){          
-            wattron(game_win,COLOR_PAIR(2));
-            mvwprintw(game_win, i, j, "%c", mapa[i][j]->getCarater()[0]);
-            mvwprintw(game_win, i, j, "%c", mapa[i][j]->getCarater()[1]);     
-            wattroff(game_win,COLOR_PAIR(2));   
-        }
-    
-        for(int j=0; j<mapa[i].size(); j++){
-            wattron(game_win,COLOR_PAIR(2));
-            mvwprintw(game_win, i, j, "%c", mapa[i][j]->getCarater()[2]);
-            mvwprintw(game_win, i, j, "%c", mapa[i][j]->getCarater()[3]);
-            wattroff(game_win,COLOR_PAIR(2));      
-        }
-    }  */ 
 }
 
 Jogo::Jogo(const Jogo& orig) {
@@ -167,11 +132,11 @@ void Jogo::setNumMoedasIniciais(int numMoedas){
 int Jogo::getNumMoedas() { 
     return  numeroMoedas; 
 }
-
+/*
 int Jogo::getNumNavios() {
     return navios.size();
 }
-
+*/
 void Jogo::setProbabilidadePirata(int prob) {
     probabilidadePirata = prob;
 }
@@ -271,13 +236,13 @@ int Jogo::getPrecoNavio(){
 
 
 
-
+/*
 void Jogo::listaInfo() {
     cout << "Num moedas: "<< getNumMoedas() << endl;
     cout << "Num navios: "<< getNumNavios() << endl;
 }
-
-
+*/
+/*
 void Jogo::compraNavio(char tipoNavio) {
 
     if(numeroMoedas<100){ 
@@ -395,7 +360,7 @@ void Jogo::moverNavioAutomaticamente(int identificador){
                 break;
         }
         
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater() != '~');
     
     mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()]->setCarater('~');
     mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
@@ -405,7 +370,7 @@ void Jogo::moverNavioAutomaticamente(int identificador){
     imprimeMapa();
 }
 
-void Jogo::colocarNavioEmPosicao(Navio *navio, char caraterNavio) {
+void Jogo::colocarNavioEmPosicao(Navio *navio, char caractereNavio) {
     int novaLinha = 0, novaColuna = 0;
     
     do{
@@ -413,9 +378,9 @@ void Jogo::colocarNavioEmPosicao(Navio *navio, char caraterNavio) {
         novaLinha = rand() % getLinhas();
         novaColuna = rand() % getColunas();
 
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater() != '~');
     
-    mapa[novaLinha][novaColuna]->setCarater(caraterNavio);
+    mapa[novaLinha][novaColuna]->setCarater(caractereNavio);
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
 }
@@ -708,3 +673,4 @@ void Jogo::menuGame(){
         }
     }
 }
+*/

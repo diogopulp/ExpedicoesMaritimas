@@ -13,7 +13,7 @@
 
 #include "Galeao.h"
 
-Galeao::Galeao() {
+Galeao::Galeao() : Navio() {
 }
 
 Galeao::Galeao(const Galeao& orig) {
@@ -21,4 +21,3 @@ Galeao::Galeao(const Galeao& orig) {
 
 Galeao::~Galeao() {
 }
-
