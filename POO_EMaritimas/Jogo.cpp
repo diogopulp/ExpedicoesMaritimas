@@ -27,12 +27,24 @@ Jogo::Jogo() {
    
 }
 
-void Jogo::setLinhas(int linhas) {
-    this->linhas = linhas;
+bool Jogo::setLinhas(int linhas) {
+    
+    // O número de linhas deve ser superior a 10
+    if(linhas > 10){
+        this->linhas = linhas;
+        return true;
+    }
+    return false;
 }
 
-void Jogo::setColunas(int colunas) {
-    this->colunas = colunas;
+bool Jogo::setColunas(int colunas) {
+    
+    // O número de colunas deve ser superior a 10
+    if(colunas > 10){
+        this->colunas = colunas;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getLinhas() {
@@ -72,7 +84,6 @@ void Jogo::imprimeMapa(){
     for(int i =0; i<mapa.size(); i++){
         cout << endl;
         for(int j=0; j<mapa[i].size(); j++){
-            //cout << " " << mapa[i][j]->getCarater() << " ";
 
             cout << mapa[i][j]->getCarater()[0];
             cout << mapa[i][j]->getCarater()[1] << " ";
@@ -86,28 +97,6 @@ void Jogo::imprimeMapa(){
 
         }
     }   
-}
-
-void Jogo::print_game(WINDOW* game_win, int highlightx, int highlighty){
-    
-    /*box(game_win, 0, 0);
-    
-    for(int i =0; i<mapa.size(); i++){       
-        
-        for(int j=0; j<mapa[i].size(); j++){          
-            wattron(game_win,COLOR_PAIR(2));
-            mvwprintw(game_win, i, j, "%c", mapa[i][j]->getCarater()[0]);
-            mvwprintw(game_win, i, j, "%c", mapa[i][j]->getCarater()[1]);     
-            wattroff(game_win,COLOR_PAIR(2));   
-        }
-    
-        for(int j=0; j<mapa[i].size(); j++){
-            wattron(game_win,COLOR_PAIR(2));
-            mvwprintw(game_win, i, j, "%c", mapa[i][j]->getCarater()[2]);
-            mvwprintw(game_win, i, j, "%c", mapa[i][j]->getCarater()[3]);
-            wattroff(game_win,COLOR_PAIR(2));      
-        }
-    }  */ 
 }
 
 Jogo::Jogo(const Jogo& orig) {
@@ -162,8 +151,14 @@ void Jogo::infoComandos(){
             "sair \n";
 }
 
-void Jogo::setNumMoedasIniciais(int numMoedas){
-    numeroMoedas = numMoedas;
+bool Jogo::setNumMoedasIniciais(int numMoedas){
+    
+    // O número de moedas inserido deve ser positivo
+    if(numMoedas > 0){
+        numeroMoedas = numMoedas;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getNumMoedas() { 
@@ -174,96 +169,169 @@ int Jogo::getNumNavios() {
     return navios.size();
 }
 
-void Jogo::setProbabilidadePirata(int prob) {
-    probabilidadePirata = prob;
+bool Jogo::setProbabilidadePirata(int prob) {
+    
+    // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadePirata = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadePirata() {
     return probabilidadePirata;
 }
 
-void Jogo::setProbabilidadeCalmaria(int prob){
-    probabilidadeCalmaria = prob;
+bool Jogo::setProbabilidadeCalmaria(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeCalmaria = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadeCalmaria() {
     return probabilidadeCalmaria;
 }
 
-void Jogo::setProbabilidadeSereias(int prob){
-    probabilidadeSereias = prob;
+bool Jogo::setProbabilidadeSereias(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeSereias = prob;
+        return true;
+    }
+    return false;
+          
 }
 
 int Jogo::getProbabilidadeSereias(){
     return probabilidadeSereias;
 }
 
-void Jogo::setProbabilidadeMotim(int prob){
-    probabilidadeMotim = prob;
+bool Jogo::setProbabilidadeMotim(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeMotim = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadeMotim(){
     return probabilidadeMotim;
 }
 
-void Jogo::setProbabilidadeVento(int prob){
-    probabilidadeVento = prob;
+bool Jogo::setProbabilidadeVento(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeVento = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadeVento(){
     return probabilidadeVento;
 }
 
-void Jogo::setProbabilidadeTempestade(int prob){
-    probabilidadeTempestade = prob;
+bool Jogo::setProbabilidadeTempestade(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeTempestade = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadeTempestade(){
     return probabilidadeTempestade;
 }
 
-void Jogo::setPrecoSoldado(int preco) {
-    precoSoldado = preco;
+bool Jogo::setPrecoSoldado(int preco) {
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoSoldado = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoSoldado(){
     return precoSoldado;
 }
 
-void Jogo::setPrecoVendePeixe(int preco){
-    precoVendePeixe = preco;
+bool Jogo::setPrecoVendePeixe(int preco){
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoVendePeixe = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoVendePeixe(){
     return precoVendePeixe;
 }
 
-void Jogo::setPrecoCompraMercadoria(int preco){
-    precoCompraMercadoria = preco;
+bool Jogo::setPrecoCompraMercadoria(int preco){
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoCompraMercadoria = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoCompraMercadoria(){
     return precoCompraMercadoria;
 }
 
-void Jogo::setPrecoVendeMercadoria(int preco){
-    precoVendeMercadoria = preco;
+bool Jogo::setPrecoVendeMercadoria(int preco){
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoVendeMercadoria = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoVendeMercadoria(){
     return precoVendeMercadoria;
 }
 
-void Jogo::setSoldadosPorto(int num){
-    soldadosPorto = num;
+bool Jogo::setSoldadosPorto(int num){
+    
+    // O número de soldados deve ser positivo
+    if(num > 0){
+        soldadosPorto = num;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getSoldadosPorto(){
     return soldadosPorto;
 }
 
-void Jogo::setPrecoNavio(int preco){
-    precoNavio = preco;
+bool Jogo::setPrecoNavio(int preco){
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoNavio = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoNavio(){
