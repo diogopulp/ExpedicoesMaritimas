@@ -18,8 +18,10 @@
 class Fragata : public Navio {
 public:
     Fragata();
-    void navegar(int posx, int posy) override;
-    Navio * duplica()const override;
+    Fragata(const Fragata& orig);
+    virtual ~Fragata();
+    //void navegar(int posx, int posy);
+    //Navio * duplica()const override;
     void protegeGaleao();
 
 };

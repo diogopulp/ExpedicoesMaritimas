@@ -10,28 +10,36 @@
  * 
  * Created on November 22, 2018, 8:53 PM
  */
-
 #include "Navio.h"
-#include "Escuna.h"
 #include "Fragata.h"
 #include "Galeao.h"
 #include "Veleiro.h"
-#include <sstream>
+#include "Escuna.h"
 
 using namespace std;
-
-Navio::Navio(char t):
-    tipo(t), idNavio(identificador++){
+/*
+Navio::Navio(char t, int posX, int posY, int id, bool alianca,
+        int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias,
+        int quantTotal):tipo(t), posicaoAtualX(posX), posicaoAtualY(posY),
+        idNavio(id = identificador++), aliado(alianca), 
+        numeroDeSoldados(numSoldados), litosDeAgua(quantAgua),
+        toneladasDePeixe(quantPeixe), toneladasDeMercadoria(quantMercadorias),
+        cargaTotal(quantTotal){
 }
-
+*/
 //construtor por copia
+/*
 Navio::Navio(const Navio& orig):
     tipo(orig.tipo), numeroDeSoldados(orig.numeroDeSoldados),
             idNavio(identificador++), 
             posicaoAtualX(orig.posicaoAtualX), 
             posicaoAtualY(orig.posicaoAtualY){
 }
+*/
 
+Navio::Navio() {
+    this->idNavio = this->identificador++;
+}
 Navio::~Navio() {
 }
 
@@ -55,16 +63,16 @@ int Navio::getPosicaoAtualY(){
     return posicaoAtualY;
 }
 
-int Navio::getIdentificadorNavio()const{
+int Navio::getIdentificadorNavio(){
     return idNavio;
 }
 
-char Navio::getTipoNavio()const{
+char Navio::getTipoNavio(){
     return tipo;
 }
 
 //barco do jogador
-bool Navio::barcoAmigo()const{
+bool Navio::getAliancaDoNavio(){
     return aliado;
 }
 

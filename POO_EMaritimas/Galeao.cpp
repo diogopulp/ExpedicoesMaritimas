@@ -13,9 +13,11 @@
 
 #include "Galeao.h"
 
-Galeao::Galeao() : Navio('g') {
+Galeao::Galeao() : Navio() {
 }
 
-Navio * Galeao::duplica() const{
-    return new Galeao(*this);
+Galeao::Galeao(const Galeao& orig) {
+}
+
+Galeao::~Galeao() {
 }

@@ -15,10 +15,9 @@
 #include "Jogo.h"
 #include "Terra.h"
 #include "Navio.h"
-#include "Galeao.h"
-#include "Veleiro.h"
-#include "Fragata.h"
-#include "Escuna.h"
+#include "Mar.h"
+#include "Celula.h"
+
 
 
 int Navio::identificador = 1;
@@ -133,11 +132,11 @@ void Jogo::setNumMoedasIniciais(int numMoedas){
 int Jogo::getNumMoedas() { 
     return  numeroMoedas; 
 }
-
+/*
 int Jogo::getNumNavios() {
     return navios.size();
 }
-
+*/
 void Jogo::setProbabilidadePirata(int prob) {
     probabilidadePirata = prob;
 }
@@ -237,12 +236,12 @@ int Jogo::getPrecoNavio(){
 
 
 
-
+/*
 void Jogo::listaInfo() {
     cout << "Num moedas: "<< getNumMoedas() << endl;
     cout << "Num navios: "<< getNumNavios() << endl;
 }
-
+*/
 /*
 void Jogo::compraNavio(char tipoNavio) {
 
@@ -277,7 +276,7 @@ void Jogo::compraNavio(char tipoNavio) {
     
     imprimeMapa();
 }
-*/
+
 void Jogo::moverNavioAutomaticamente(int identificador){
     
     if (getNumNavios() <= 0) {
@@ -674,3 +673,4 @@ void Jogo::menuGame(){
         }
     }
 }
+*/

@@ -13,7 +13,9 @@
 
 #ifndef ESCUNA_H
 #define ESCUNA_H
+
 #include <stdio.h>
+
 #include "Navio.h"
 
 using namespace std;
@@ -24,9 +26,19 @@ class Escuna : public Navio{
 
 public:
     Escuna();
-    void navegar(int posx, int posy) override;
-    Navio * duplica()const override;
+    Escuna(const Escuna& orig);
+    virtual ~Escuna();
+    //Navio * duplica()const override;
     void pescar();
+    
+    //void abastecerNavioComAgua();
+    //int moverNavio(int direcao);
+    //void navegar(int px, int py);
+    //void alimentaSoldados();
+    
+
+
+
     
 };
 

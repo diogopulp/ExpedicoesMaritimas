@@ -15,9 +15,6 @@
 #define JOGO_H
 
 #include <vector>
-#include "Celula.h"
-#include "Mar.h"
-#include "Terra.h"
 #include <math.h>
 //#include <time.h>
 #include <iostream>
@@ -25,7 +22,7 @@
 #include <string>
 
 class Navio;
-
+class Celula;
 using namespace std;
 
 
