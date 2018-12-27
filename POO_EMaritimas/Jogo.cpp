@@ -30,7 +30,7 @@ Jogo::Jogo() {
 bool Jogo::setLinhas(int linhas) {
     
     // O número de linhas deve ser superior a 10
-    if(linhas > 10){
+    if(linhas >= 10){
         this->linhas = linhas;
         return true;
     }
@@ -40,7 +40,7 @@ bool Jogo::setLinhas(int linhas) {
 bool Jogo::setColunas(int colunas) {
     
     // O número de colunas deve ser superior a 10
-    if(colunas > 10){
+    if(colunas >= 10){
         this->colunas = colunas;
         return true;
     }

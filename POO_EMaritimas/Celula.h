@@ -20,6 +20,8 @@ using namespace std;
 
 class Celula {
 protected:
+    
+    // A célula é composta por uma string pois visualmente é representada por vários carateres
     string car;
     
 public:

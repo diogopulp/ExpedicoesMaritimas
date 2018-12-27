@@ -76,6 +76,7 @@ class Jogo {
 
 private:
     vector<vector<Celula*> > mapa;
+    
     int numeroMoedas;
     int numeroPortos;
     
@@ -97,11 +98,13 @@ private:
     
 public:
     Jogo();
+    virtual ~Jogo();
+    
     void constroiMapa(int lin, int col);
     vector<vector<Celula*> > getMapa();
     vector<Navio *> navios;
     Jogo(const Jogo& orig);
-    virtual ~Jogo();
+    
     
     bool setLinhas(int linhas);
     bool setColunas(int colunas);
