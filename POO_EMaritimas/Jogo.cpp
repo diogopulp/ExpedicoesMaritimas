@@ -15,9 +15,10 @@
 #include "Jogo.h"
 #include "Terra.h"
 #include "Navio.h"
-#include "Mar.h"
-#include "Celula.h"
-
+#include "Galeao.h"
+#include "Veleiro.h"
+#include "Fragata.h"
+#include "Escuna.h"
 
 
 int Navio::identificador = 1;
@@ -26,12 +27,24 @@ Jogo::Jogo() {
    
 }
 
-void Jogo::setLinhas(int linhas) {
-    this->linhas = linhas;
+bool Jogo::setLinhas(int linhas) {
+    
+    // O número de linhas deve ser superior a 10
+    if(linhas >= 10){
+        this->linhas = linhas;
+        return true;
+    }
+    return false;
 }
 
-void Jogo::setColunas(int colunas) {
-    this->colunas = colunas;
+bool Jogo::setColunas(int colunas) {
+    
+    // O número de colunas deve ser superior a 10
+    if(colunas >= 10){
+        this->colunas = colunas;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getLinhas() {
@@ -44,31 +57,44 @@ int Jogo::getColunas() {
 
 void Jogo::constroiMapa(int lin, int col){
     
-    for(int i = 0; i <lin ; i++){
-            
-        vector<Celula*> temp;
-        
-            for( int j = 0; j<col; j++){
-              
-                int num = rand() % 101;
-                
-                if(num<90){
-                    temp.push_back(new Mar());
+    if(lin > 0 && col > 0){
+        for(int i = 0; i <lin ; i++){
+
+            vector<Celula*> temp;
+
+                for( int j = 0; j<col; j++){
+
+                    int num = rand() % 101;
+
+                    if(num<90){
+                        temp.push_back(new Mar());
+                    }
+                    else{
+                        temp.push_back(new Terra());
+                    }
                 }
-                else{
-                    temp.push_back(new Terra());
-                }
-            }
-        
-        mapa.push_back(temp);
-    }            
+
+            mapa.push_back(temp);
+        } 
+    }           
 }
 
 void Jogo::imprimeMapa(){
+    
     for(int i =0; i<mapa.size(); i++){
         cout << endl;
         for(int j=0; j<mapa[i].size(); j++){
-            cout << " " << mapa[i][j]->getCarater() << " ";
+
+            cout << mapa[i][j]->getCarater()[0];
+            cout << mapa[i][j]->getCarater()[1] << " ";
+           
+            
+        }
+        cout << endl;
+        for(int j=0; j<mapa[i].size(); j++){
+            cout << mapa[i][j]->getCarater()[2];
+            cout << mapa[i][j]->getCarater()[3] << " ";
+
         }
     }   
 }
@@ -125,108 +151,187 @@ void Jogo::infoComandos(){
             "sair \n";
 }
 
-void Jogo::setNumMoedasIniciais(int numMoedas){
-    numeroMoedas = numMoedas;
+bool Jogo::setNumMoedasIniciais(int numMoedas){
+    
+    // O número de moedas inserido deve ser positivo
+    if(numMoedas > 0){
+        numeroMoedas = numMoedas;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getNumMoedas() { 
     return  numeroMoedas; 
 }
-/*
+
 int Jogo::getNumNavios() {
     return navios.size();
 }
-*/
-void Jogo::setProbabilidadePirata(int prob) {
-    probabilidadePirata = prob;
+
+bool Jogo::setProbabilidadePirata(int prob) {
+    
+    // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadePirata = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadePirata() {
     return probabilidadePirata;
 }
 
-void Jogo::setProbabilidadeCalmaria(int prob){
-    probabilidadeCalmaria = prob;
+bool Jogo::setProbabilidadeCalmaria(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeCalmaria = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadeCalmaria() {
     return probabilidadeCalmaria;
 }
 
-void Jogo::setProbabilidadeSereias(int prob){
-    probabilidadeSereias = prob;
+bool Jogo::setProbabilidadeSereias(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeSereias = prob;
+        return true;
+    }
+    return false;
+          
 }
 
 int Jogo::getProbabilidadeSereias(){
     return probabilidadeSereias;
 }
 
-void Jogo::setProbabilidadeMotim(int prob){
-    probabilidadeMotim = prob;
+bool Jogo::setProbabilidadeMotim(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeMotim = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadeMotim(){
     return probabilidadeMotim;
 }
 
-void Jogo::setProbabilidadeVento(int prob){
-    probabilidadeVento = prob;
+bool Jogo::setProbabilidadeVento(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeVento = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadeVento(){
     return probabilidadeVento;
 }
 
-void Jogo::setProbabilidadeTempestade(int prob){
-    probabilidadeTempestade = prob;
+bool Jogo::setProbabilidadeTempestade(int prob){
+    
+     // A probabilidade deve ser um número positivo
+    if(prob > 0){
+        probabilidadeTempestade = prob;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getProbabilidadeTempestade(){
     return probabilidadeTempestade;
 }
 
-void Jogo::setPrecoSoldado(int preco) {
-    precoSoldado = preco;
+bool Jogo::setPrecoSoldado(int preco) {
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoSoldado = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoSoldado(){
     return precoSoldado;
 }
 
-void Jogo::setPrecoVendePeixe(int preco){
-    precoVendePeixe = preco;
+bool Jogo::setPrecoVendePeixe(int preco){
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoVendePeixe = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoVendePeixe(){
     return precoVendePeixe;
 }
 
-void Jogo::setPrecoCompraMercadoria(int preco){
-    precoCompraMercadoria = preco;
+bool Jogo::setPrecoCompraMercadoria(int preco){
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoCompraMercadoria = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoCompraMercadoria(){
     return precoCompraMercadoria;
 }
 
-void Jogo::setPrecoVendeMercadoria(int preco){
-    precoVendeMercadoria = preco;
+bool Jogo::setPrecoVendeMercadoria(int preco){
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoVendeMercadoria = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoVendeMercadoria(){
     return precoVendeMercadoria;
 }
 
-void Jogo::setSoldadosPorto(int num){
-    soldadosPorto = num;
+bool Jogo::setSoldadosPorto(int num){
+    
+    // O número de soldados deve ser positivo
+    if(num > 0){
+        soldadosPorto = num;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getSoldadosPorto(){
     return soldadosPorto;
 }
 
-void Jogo::setPrecoNavio(int preco){
-    precoNavio = preco;
+bool Jogo::setPrecoNavio(int preco){
+    
+    // O preco deve ser um número positivo
+    if(preco > 0){
+        precoNavio = preco;
+        return true;
+    }
+    return false;
 }
 
 int Jogo::getPrecoNavio(){
@@ -236,13 +341,13 @@ int Jogo::getPrecoNavio(){
 
 
 
-/*
+
 void Jogo::listaInfo() {
     cout << "Num moedas: "<< getNumMoedas() << endl;
     cout << "Num navios: "<< getNumNavios() << endl;
 }
-*/
-/*
+
+
 void Jogo::compraNavio(char tipoNavio) {
 
     if(numeroMoedas<100){ 
@@ -360,17 +465,17 @@ void Jogo::moverNavioAutomaticamente(int identificador){
                 break;
         }
         
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater() != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
     
-    mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()]->setCarater('~');
-    mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
+    //mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()]->setCarater('~');
+    //mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
     
     imprimeMapa();
 }
 
-void Jogo::colocarNavioEmPosicao(Navio *navio, char caractereNavio) {
+void Jogo::colocarNavioEmPosicao(Navio *navio, char caraterNavio) {
     int novaLinha = 0, novaColuna = 0;
     
     do{
@@ -378,9 +483,9 @@ void Jogo::colocarNavioEmPosicao(Navio *navio, char caractereNavio) {
         novaLinha = rand() % getLinhas();
         novaColuna = rand() % getColunas();
 
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater() != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
     
-    mapa[novaLinha][novaColuna]->setCarater(caractereNavio);
+    //mapa[novaLinha][novaColuna]->setCarater(caraterNavio);
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
 }
@@ -673,4 +778,3 @@ void Jogo::menuGame(){
         }
     }
 }
-*/

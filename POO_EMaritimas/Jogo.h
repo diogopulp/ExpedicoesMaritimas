@@ -15,14 +15,19 @@
 #define JOGO_H
 
 #include <vector>
+#include "Celula.h"
+#include "Mar.h"
+#include "Terra.h"
+#include "Navio.h"
 #include <math.h>
 //#include <time.h>
 #include <iostream>
 #include <sstream>
 #include <string>
 
-class Navio;
-class Celula;
+
+//#include <ncurses.h>
+
 using namespace std;
 
 
@@ -71,6 +76,7 @@ class Jogo {
 
 private:
     vector<vector<Celula*> > mapa;
+    
     int numeroMoedas;
     int numeroPortos;
     
@@ -92,34 +98,38 @@ private:
     
 public:
     Jogo();
+    virtual ~Jogo();
+    
     void constroiMapa(int lin, int col);
     vector<vector<Celula*> > getMapa();
     vector<Navio *> navios;
     Jogo(const Jogo& orig);
-    virtual ~Jogo();
-    void setLinhas(int linhas);
-    void setColunas(int colunas);
-    void setProbabilidadePirata(int prob);
-    void setProbabilidadeSereias(int prob);
-    void setProbabilidadeCalmaria(int prob);
-    void setProbabilidadeMotim(int prob);
-    void setProbabilidadeVento(int prob);
-    void setProbabilidadeTempestade(int prob);
-    void setPrecoNavio(int preco);
-    void setPrecoSoldado(int preco);
-    void setPrecoVendePeixe(int preco);
-    void setPrecoCompraMercadoria(int preco);
-    void setPrecoVendeMercadoria(int preco);
-    void setSoldadosPorto(int num);
+    
+    
+    bool setLinhas(int linhas);
+    bool setColunas(int colunas);
+    bool setProbabilidadePirata(int prob);
+    bool setProbabilidadeSereias(int prob);
+    bool setProbabilidadeCalmaria(int prob);
+    bool setProbabilidadeMotim(int prob);
+    bool setProbabilidadeVento(int prob);
+    bool setProbabilidadeTempestade(int prob);
+    bool setPrecoNavio(int preco);
+    bool setPrecoSoldado(int preco);
+    bool setPrecoVendePeixe(int preco);
+    bool setPrecoCompraMercadoria(int preco);
+    bool setPrecoVendeMercadoria(int preco);
+    bool setSoldadosPorto(int num);
+    bool setNumMoedasIniciais(int nummoedas);
+    bool setNumPortosIniciais(int numPortos);
+    bool setPortoPrincipal();
+    
     void imprimeMapa();
     void menuGame();
     void getOptions()const;
     void startNewGame();
     void startGameFromFile();
     void infoComandos();
-    void setNumMoedasIniciais(int nummoedas);
-    void setNumPortosIniciais(int numPortos);
-    void setPortoPrincipal();
     int getLinhas();
     int getColunas();
     int getNumMoedas();
@@ -143,8 +153,12 @@ public:
     
     void compraNavio(char tipoNavio);
     void listaInfo();
-    void colocarNavioEmPosicao(Navio *navio, char caractereNavio);
+    void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
     void moverNavioAutomaticamente(int numeroNavio);
+   
+
+
+
 };
 
 #endif /* JOGO_H */
