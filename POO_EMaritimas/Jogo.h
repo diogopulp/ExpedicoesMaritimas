@@ -18,13 +18,13 @@
 #include "Celula.h"
 #include "Mar.h"
 #include "Terra.h"
-#include "Navio.h"
 #include <math.h>
 //#include <time.h>
 #include <iostream>
 #include <sstream>
 #include <string>
 
+class Navio;
 
 using namespace std;
 

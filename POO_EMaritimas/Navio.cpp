@@ -12,12 +12,24 @@
  */
 
 #include "Navio.h"
+#include "Escuna.h"
+#include "Fragata.h"
+#include "Galeao.h"
+#include "Veleiro.h"
+#include <sstream>
 
-Navio::Navio() {
-    this->idNavio = this->identificador++;
+using namespace std;
+
+Navio::Navio(char t):
+    tipo(t), idNavio(identificador++){
 }
 
-Navio::Navio(const Navio& orig) {
+//construtor por copia
+Navio::Navio(const Navio& orig):
+    tipo(orig.tipo), numeroDeSoldados(orig.numeroDeSoldados),
+            idNavio(identificador++), 
+            posicaoAtualX(orig.posicaoAtualX), 
+            posicaoAtualY(orig.posicaoAtualY){
 }
 
 Navio::~Navio() {
@@ -43,11 +55,38 @@ int Navio::getPosicaoAtualY(){
     return posicaoAtualY;
 }
 
-int Navio::getIdentificadorNavio() {
+int Navio::getIdentificadorNavio()const{
     return idNavio;
 }
 
-char Navio::getTipoNavio() {
+char Navio::getTipoNavio()const{
     return tipo;
 }
 
+//barco do jogador
+bool Navio::barcoAmigo()const{
+    return aliado;
+}
+
+//barco pertence ao jogador
+void Navio::setBarcoAmigo(bool a){
+    aliado = a;
+}
+
+
+//fabrica de objectos
+Navio * Navio::fabrica(char tipo){
+    if(tipo == 'v'){
+        return new Veleiro();
+    }
+    else if(tipo == 'g'){
+        return new Galeao();
+    }
+    else if(tipo == 'f'){
+        return new Fragata();
+    }
+    else if(tipo == 'e'){
+        return new Escuna();
+    }
+    return nullptr;
+}

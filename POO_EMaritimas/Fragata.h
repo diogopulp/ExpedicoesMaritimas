@@ -18,9 +18,9 @@
 class Fragata : public Navio {
 public:
     Fragata();
-    Fragata(const Fragata& orig);
-    virtual ~Fragata();
-private:
+    void navegar(int posx, int posy) override;
+    Navio * duplica()const override;
+    void protegeGaleao();
 
 };
 

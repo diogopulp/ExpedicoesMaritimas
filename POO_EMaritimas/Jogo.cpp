@@ -243,7 +243,7 @@ void Jogo::listaInfo() {
     cout << "Num navios: "<< getNumNavios() << endl;
 }
 
-
+/*
 void Jogo::compraNavio(char tipoNavio) {
 
     if(numeroMoedas<100){ 
@@ -277,7 +277,7 @@ void Jogo::compraNavio(char tipoNavio) {
     
     imprimeMapa();
 }
-
+*/
 void Jogo::moverNavioAutomaticamente(int identificador){
     
     if (getNumNavios() <= 0) {
@@ -363,8 +363,8 @@ void Jogo::moverNavioAutomaticamente(int identificador){
         
     }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater() != '~');
     
-    mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()]->setCaractere('~');
-    mapa[novaLinha][novaColuna]->setCaractere(navio->getTipoNavio());
+    mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()]->setCarater('~');
+    mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
     
@@ -381,7 +381,7 @@ void Jogo::colocarNavioEmPosicao(Navio *navio, char caractereNavio) {
 
     }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater() != '~');
     
-    mapa[novaLinha][novaColuna]->setCaractere(caractereNavio);
+    mapa[novaLinha][novaColuna]->setCarater(caractereNavio);
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
 }

@@ -13,12 +13,13 @@
 
 #include "Fragata.h"
 
-Fragata::Fragata() {
+Fragata::Fragata() : Navio('f') {
 }
-
+/*
 Fragata::Fragata(const Fragata& orig) {
 }
+*/
 
-Fragata::~Fragata() {
+Navio * Fragata::duplica()const{
+    return new Fragata(*this);
 }
-

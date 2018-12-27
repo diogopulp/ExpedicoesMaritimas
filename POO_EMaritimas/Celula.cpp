@@ -23,7 +23,7 @@ Celula::Celula(const Celula& orig) {
 Celula::~Celula() {
 }
 
-void Celula::setCaractere(char caractere) {
+void Celula::setCarater(char caractere) {
     car = caractere;
 }
 

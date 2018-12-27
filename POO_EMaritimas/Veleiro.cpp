@@ -13,12 +13,13 @@
 
 #include "Veleiro.h"
 
-Veleiro::Veleiro() {
+Veleiro::Veleiro(): Navio('v') {
 }
 
-Veleiro::Veleiro(const Veleiro& orig) {
+void Veleiro::navegar(int posx, int posy){
+    
 }
 
-Veleiro::~Veleiro() {
+Navio * Veleiro::duplica() const{
+    return new Veleiro(*this);
 }
-

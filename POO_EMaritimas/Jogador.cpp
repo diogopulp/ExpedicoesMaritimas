@@ -5,17 +5,20 @@
  */
 
 /* 
- * File:   Galeao.cpp
- * Author: diogosantos
+ * File:   Jogador.cpp
+ * Author: danielmoita
  * 
- * Created on November 22, 2018, 8:56 PM
+ * Created on 25 December 2018, 17:07
  */
 
-#include "Galeao.h"
+#include "Jogador.h"
 
-Galeao::Galeao() : Navio('g') {
+Jogador::Jogador() {
 }
 
-Navio * Galeao::duplica() const{
-    return new Galeao(*this);
+Jogador::Jogador(const Jogador& orig) {
 }
+
+Jogador::~Jogador() {
+}
+
