@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
     jogo = Jogo();
     jogo.constroiMapa(10,20);
     jogo.imprimeMapa();
-    //jogo.menuGame();
+    jogo.menuGame();
     
     return 0;
 }
