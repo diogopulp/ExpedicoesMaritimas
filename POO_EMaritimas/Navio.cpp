@@ -36,10 +36,13 @@ Navio::Navio(const Navio& orig):
             posicaoAtualY(orig.posicaoAtualY){
 }
 */
+int Navio::identificador = 0;
 
 Navio::Navio() {
     this->idNavio = this->identificador++;
 }
+
+
 Navio::~Navio() {
 }
 
@@ -63,7 +66,7 @@ int Navio::getPosicaoAtualY(){
     return posicaoAtualY;
 }
 
-int Navio::getIdentificadorNavio(){
+int Navio::getIdNavio()const{
     return idNavio;
 }
 

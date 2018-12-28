@@ -107,9 +107,6 @@ vector<vector<Celula*> > Jogo::getMapa(){
     return mapa;
 }
 
-Jogo::~Jogo() {
-}
-
 
 void Jogo::getOptions()const{
    
@@ -377,12 +374,12 @@ void Jogo::compraNavio(char tipoNavio) {
     
     numeroMoedas-=100;
     
-    cout << "Novo navio construido com ID:" << novoNavio->getIdentificadorNavio() << ", Tipo:" << novoNavio->getTipoNavio() << ", Posicao: (" << novoNavio->getPosicaoAtualX() << "," << novoNavio->getPosicaoAtualY() << ")" << endl;
+    cout << "Novo navio construido com ID:" << novoNavio->getIdNavio() << ", Tipo:" << novoNavio->getTipoNavio() << ", Posicao: (" << novoNavio->getPosicaoAtualX() << "," << novoNavio->getPosicaoAtualY() << ")" << endl;
     
     imprimeMapa();
 }
 
-void Jogo::moverNavioAutomaticamente(int identificador){
+void Jogo::moverNavioAutomaticamente(int id){
     
     if (getNumNavios() <= 0) {
         cout << "Não tem nenhum navio" << endl;
@@ -394,7 +391,7 @@ void Jogo::moverNavioAutomaticamente(int identificador){
     
     for (int i = 0; i < getNumNavios(); i++) {
         
-        if (navios[i]->getIdentificadorNavio() == identificador) {
+        if (navios[i]->getIdNavio() == id) {
             navio = navios[i];
             navioEncontrado = true;
             break;
@@ -402,7 +399,7 @@ void Jogo::moverNavioAutomaticamente(int identificador){
     }
     
     if (!navioEncontrado) {
-        cout << "Não foi encontrado um navio com o identificador: " << identificador << endl;
+        cout << "Não foi encontrado um navio com o identificador: " << id << endl;
         return;
     }
     
@@ -776,5 +773,47 @@ void Jogo::menuGame(){
             exit(0);
             break;  
         }
+    }
+}
+//criacao dos diferentes navios metodo a chamar quando se compra um navio
+bool Jogo::adicionaNavio(char tipo){
+    Navio * n = Navio::fabrica(tipo);
+    if(n == nullptr){
+        return false;
+    }
+    navios.push_back(n);
+    return true;
+}
+
+int Jogo::procuraNavio(int id)const{
+    for(int i = 0; i<navios.size(); i++){
+        if(navios[i]->getIdNavio() == id){
+            return i; // posicao do vector
+        }
+    }
+    return -1; 
+    /*posicao impossivel*/
+}
+
+/*remove navio do jogo
+//destroi o navio alvo
+//liberta memoria dinamica
+//retirar do vector o ponteiro que aponta para a memoria que ja foi livertada anteriormente
+ */
+bool Jogo::destroiNavio(int id){
+    int alvo = procuraNavio(id);
+    if(alvo == -1){
+        return false;
+    }
+    delete navios[alvo];
+    
+    navios.erase(navios.begin() + alvo);
+    return true;
+}
+
+/*eliminar os ponteiros do tipo navio do vector navios*/
+Jogo::~Jogo(){
+    for(Navio * n: navios){
+        delete n;
     }
 }

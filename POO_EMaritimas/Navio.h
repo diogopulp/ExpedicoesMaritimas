@@ -51,7 +51,7 @@ public:
     
     int getPosicaoAtualX();
     int getPosicaoAtualY();
-    int getIdentificadorNavio();
+    int getIdNavio()const;
     int getNumeroDeSoldados();
     int getQuantidadeDeAgua();
     int getCargaTotal();
@@ -59,7 +59,8 @@ public:
     int getQuantidadeDeMercadorias();
     char getTipoNavio();
     bool getAliancaDoNavio();
-    static Navio * fabrica(char tipo);
+    //funcao que e chamada para criar os diferentes tipos de navios dentro do jogo
+    static Navio * fabrica(char t);
     /*
     int moverNavio(int direcao);
     void navegar(int posx, int posy);

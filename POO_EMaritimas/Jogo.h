@@ -18,7 +18,7 @@
 #include "Celula.h"
 #include "Mar.h"
 #include "Terra.h"
-#include "Navio.h"
+//#include "Navio.h"
 #include <math.h>
 //#include <time.h>
 #include <iostream>
@@ -71,12 +71,12 @@ enum cmdsEnum {
             delg,        //<nome>
             sair
 };
-
+class Navio;
 class Jogo {
 
 private:
     vector<vector<Celula*> > mapa;
-    
+    vector<Navio *> navios;
     int numeroMoedas;
     int numeroPortos;
     
@@ -102,7 +102,7 @@ public:
     
     void constroiMapa(int lin, int col);
     vector<vector<Celula*> > getMapa();
-    vector<Navio *> navios;
+    
     Jogo(const Jogo& orig);
     
     
@@ -123,7 +123,9 @@ public:
     bool setNumMoedasIniciais(int nummoedas);
     bool setNumPortosIniciais(int numPortos);
     bool setPortoPrincipal();
-    
+    bool adicionaNavio(char tipo);
+    bool destroiNavio(int id);
+    int procuraNavio(int id)const;
     void imprimeMapa();
     void menuGame();
     void getOptions()const;
