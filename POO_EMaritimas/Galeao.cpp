@@ -12,7 +12,6 @@
  */
 
 #include "Galeao.h"
-#include "Jogo.h"
 
 Galeao::Galeao(): Navio('g') {
 }

@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Navio.o \
 	${OBJECTDIR}/Porto.o \
 	${OBJECTDIR}/Terra.o \
+	${OBJECTDIR}/UI.o \
 	${OBJECTDIR}/Veleiro.o \
 	${OBJECTDIR}/main.o
 
@@ -122,6 +123,11 @@ ${OBJECTDIR}/Terra.o: Terra.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Terra.o Terra.cpp
+
+${OBJECTDIR}/UI.o: UI.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/UI.o UI.cpp
 
 ${OBJECTDIR}/Veleiro.o: Veleiro.cpp
 	${MKDIR} -p ${OBJECTDIR}

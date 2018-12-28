@@ -12,7 +12,6 @@
  */
 
 #include "Fragata.h"
-#include "Jogo.h"
 
 Fragata::Fragata():Navio('f') {
 

@@ -19,6 +19,10 @@
 #include "Mar.h"
 #include "Terra.h"
 //#include "Navio.h"
+
+//#include "Navio.h"
+#include "UI.h"
+
 #include <math.h>
 //#include <time.h>
 #include <iostream>
@@ -29,56 +33,21 @@
 //#include <ncurses.h>
 
 using namespace std;
-
-
-enum valoresFicheiro {
-    LINHAS = 1,
-    COLUNAS,
-    MOEDAS,
-    PROB_PIRATA,
-    PRECO_NAVIO,
-    PRECO_SOLDADO,
-    PRECO_VENDA_PEIXE,
-    PRECO_COMPRA_MERCADO,
-    PRECO_VENDA_MERCADO,
-    SOLDADOS_PORTO,
-    PROB_VENTO,
-    PROB_TEMPESTADE,
-    PROB_SEREIAS,
-    PROB_CALMARIA,
-    PROB_MOTIM
-};
-
-enum cmdsEnum {
-            moedas = 1,       //<N>
-            exec,         //<nomeFicheiro>
-            prox,
-            compranav,    //<T>
-            vendeN,       //<N>
-            lista,
-            compra,       //<N><M>
-            vende,        //<N>
-            move,         //<N><X>
-            autoMov,     //<N>
-            stop,        //<N>
-            pirata,      //<x><y><t>
-            evpos,       //<E> <x><y>
-            evnav,       //<E><N>
-            vaipara,     //<N> <x><y>
-            comprasold,  //<N><S>
-            saveg,       //<nome>
-            loadg,       //<nome>
-            delg,        //<nome>
-            sair
-};
 class Navio;
+
 
 class Jogo {
 
 private:
+    
+    static const int CUSTONAVIO = 100;
+    
     vector<vector<Celula*> > mapa;
     vector<Navio *> navios;
     int procuraNavio(int id)const;
+    
+    UI textUI;
+    
     int numeroMoedas;
     int numeroPortos;
     
@@ -99,7 +68,7 @@ private:
     int soldadosPorto;
     
 public:
-    Jogo()=default;
+    //Jogo()=default;
     virtual ~Jogo();
     
     void constroiMapa(int lin, int col);
@@ -107,6 +76,7 @@ public:
     
     Jogo(const Jogo& orig);
     
+    Jogo();
     
     bool setLinhas(int linhas);
     bool setColunas(int colunas);
@@ -125,10 +95,14 @@ public:
     bool setNumMoedasIniciais(int nummoedas);
     bool setNumPortosIniciais(int numPortos);
     bool setPortoPrincipal();
+
     bool adicionaNavio(char tipo);
     bool destroiNavio(int id);
-    void imprimeMapa();
     void menuGame();
+
+    void setDimensoesMapa(int lin, int col);
+    
+    void menuJogo();
     void getOptions()const;
     void startNewGame();
     void startGameFromFile();
@@ -138,7 +112,7 @@ public:
     int getNumMoedas();
     int getNumNavios();
     int getNumPortos();
-    void readFile();
+    void lerFicheiro();
     int valorNaLinhaDoFicheiro(string linha);
     int converteValoresFicheiro(string chave);
     int getProbabilidadePirata();
@@ -160,8 +134,9 @@ public:
     void moverNavioAutomaticamente(int id);
     Jogo & operator=(const Jogo& orig);
 
-
-
+    //void moverNavioAutomaticamente(int numeroNavio);
+    void getOptions();
+   
 };
 
 #endif /* JOGO_H */

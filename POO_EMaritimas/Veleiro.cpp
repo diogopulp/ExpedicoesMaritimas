@@ -12,7 +12,6 @@
  */
 
 #include "Veleiro.h"
-#include "Jogo.h"
 
 Veleiro::Veleiro() : Navio('v'){
 }
