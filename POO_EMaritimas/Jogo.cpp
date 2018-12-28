@@ -22,7 +22,6 @@
 #include "Escuna.h"
 */
 
-int Navio::identificador = 1;
 
 
 Jogo & Jogo::operator=(const Jogo& orig){
@@ -805,6 +804,7 @@ bool Jogo::adicionaNavio(char tipo){
     navios.push_back(n);
     return true;
 }
+
 int Jogo::procuraNavio(int id)const{
     for(int i = 0; i<navios.size(); i++){
         if(navios[i]->getIdNavio() == id){
