@@ -72,11 +72,13 @@ enum cmdsEnum {
             sair
 };
 class Navio;
+
 class Jogo {
 
 private:
     vector<vector<Celula*> > mapa;
     vector<Navio *> navios;
+    int procuraNavio(int id)const;
     int numeroMoedas;
     int numeroPortos;
     
@@ -97,7 +99,7 @@ private:
     int soldadosPorto;
     
 public:
-    Jogo();
+    Jogo()=default;
     virtual ~Jogo();
     
     void constroiMapa(int lin, int col);
@@ -125,7 +127,6 @@ public:
     bool setPortoPrincipal();
     bool adicionaNavio(char tipo);
     bool destroiNavio(int id);
-    int procuraNavio(int id)const;
     void imprimeMapa();
     void menuGame();
     void getOptions()const;
@@ -156,8 +157,8 @@ public:
     void compraNavio(char tipoNavio);
     void listaInfo();
     void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
-    void moverNavioAutomaticamente(int numeroNavio);
-   
+    void moverNavioAutomaticamente(int id);
+    Jogo & operator=(const Jogo& orig);
 
 
 

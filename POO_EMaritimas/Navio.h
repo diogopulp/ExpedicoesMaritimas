@@ -33,12 +33,12 @@ private:
     
 public:
     
-    Navio(char t, int posX, int posY, int id, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
-    /*
+    Navio(char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
+    
     Navio(const Navio& orig);
-     */
+     
     Navio();
-    virtual ~Navio();
+    virtual ~Navio(){}
     
     void setPosicaoAtualX(int x);
     void setPosicaoAtualY(int y);
@@ -61,6 +61,7 @@ public:
     bool getAliancaDoNavio();
     //funcao que e chamada para criar os diferentes tipos de navios dentro do jogo
     static Navio * fabrica(char t);
+    virtual Navio * duplica()const = 0;
     /*
     int moverNavio(int direcao);
     void navegar(int posx, int posy);
@@ -68,7 +69,6 @@ public:
     void alimentaSoldados();
     void venderMercadorias();
     void vendePeixe();
-    virtual Navio * duplica()const = 0;
     */
 };
 

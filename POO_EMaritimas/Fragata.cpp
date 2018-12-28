@@ -12,12 +12,8 @@
  */
 
 #include "Fragata.h"
+#include "Jogo.h"
 
-Fragata::Fragata() : Navio() {
-}
-
-Fragata::Fragata(const Fragata& orig) {
-}
-
-Fragata::~Fragata() {
+Navio * Fragata::duplica() const{
+    return new Fragata(*this);
 }

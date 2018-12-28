@@ -20,15 +20,13 @@
 
 using namespace std;
 
-class Jogo;
 
 class Escuna : public Navio{
 
 public:
     Escuna();
-    Escuna(const Escuna& orig);
     virtual ~Escuna();
-    //Navio * duplica()const override;
+    Navio * duplica()const override;
     void pescar();
     
     //void abastecerNavioComAgua();

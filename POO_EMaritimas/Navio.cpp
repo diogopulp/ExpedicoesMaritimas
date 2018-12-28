@@ -17,34 +17,28 @@
 #include "Escuna.h"
 
 using namespace std;
-/*
-Navio::Navio(char t, int posX, int posY, int id, bool alianca,
-        int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias,
-        int quantTotal):tipo(t), posicaoAtualX(posX), posicaoAtualY(posY),
-        idNavio(id = identificador++), aliado(alianca), 
-        numeroDeSoldados(numSoldados), litosDeAgua(quantAgua),
-        toneladasDePeixe(quantPeixe), toneladasDeMercadoria(quantMercadorias),
-        cargaTotal(quantTotal){
-}
-*/
+
+Navio::Navio(char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal):
+tipo(t),posicaoAtualX(posX),posicaoAtualY(posY), idNavio(identificador++), aliado(alianca),
+        numeroDeSoldados(numSoldados), litosDeAgua(quantAgua), toneladasDePeixe(quantPeixe), 
+        toneladasDeMercadoria(quantMercadorias), cargaTotal(quantTotal)
+{}
+
 //construtor por copia
-/*
+
 Navio::Navio(const Navio& orig):
     tipo(orig.tipo), numeroDeSoldados(orig.numeroDeSoldados),
             idNavio(identificador++), 
             posicaoAtualX(orig.posicaoAtualX), 
             posicaoAtualY(orig.posicaoAtualY){
 }
-*/
 int Navio::identificador = 0;
-
+/*
 Navio::Navio() {
     this->idNavio = this->identificador++;
 }
+*/
 
-
-Navio::~Navio() {
-}
 
 void Navio::setPosicaoAtualX(int x){
     posicaoAtualX = x;
@@ -86,17 +80,17 @@ void Navio::setBarcoAmigo(bool a){
 
 
 //fabrica de objectos
-Navio * Navio::fabrica(char tipo){
-    if(tipo == 'v'){
+Navio * Navio::fabrica(char t){
+    if(t == 'v'){
         return new Veleiro();
     }
-    else if(tipo == 'g'){
+    else if(t == 'g'){
         return new Galeao();
     }
-    else if(tipo == 'f'){
+    else if(t == 'f'){
         return new Fragata();
     }
-    else if(tipo == 'e'){
+    else if(t == 'e'){
         return new Escuna();
     }
     return nullptr;

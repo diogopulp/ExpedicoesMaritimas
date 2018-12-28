@@ -23,8 +23,27 @@
 
 int Navio::identificador = 1;
 
-Jogo::Jogo() {
-   
+
+Jogo & Jogo::operator=(const Jogo& orig){
+    if(this == &orig){
+        return *this;
+    }
+    for(int i = 0; i<navios.size(); i++){
+        delete navios[i];
+    }
+    navios.clear();
+    for(int i = 0; i <orig.navios.size(); i++){
+        Navio * n = orig.navios[i]->duplica();
+        navios.push_back(n);
+    }
+    return *this;
+}
+
+/*eliminar os ponteiros do tipo navio do vector navios*/
+Jogo::~Jogo(){
+    for(Navio * n: navios){
+        delete n;
+    }
 }
 
 bool Jogo::setLinhas(int linhas) {
@@ -100,7 +119,7 @@ void Jogo::imprimeMapa(){
 }
 
 Jogo::Jogo(const Jogo& orig) {
-    
+    *this = orig;
 }
 
 vector<vector<Celula*> > Jogo::getMapa(){
@@ -344,7 +363,7 @@ void Jogo::listaInfo() {
     cout << "Num navios: "<< getNumNavios() << endl;
 }
 
-
+/*
 void Jogo::compraNavio(char tipoNavio) {
 
     if(numeroMoedas<100){ 
@@ -378,7 +397,7 @@ void Jogo::compraNavio(char tipoNavio) {
     
     imprimeMapa();
 }
-
+*/
 void Jogo::moverNavioAutomaticamente(int id){
     
     if (getNumNavios() <= 0) {
@@ -660,7 +679,7 @@ cmdsEnum convertCommandToEnum(string const &command) {
     
     return enumCommand;
 }
-
+/*
 void Jogo::startNewGame(){
     int moedas;
     string cmd;
@@ -683,7 +702,7 @@ void Jogo::startNewGame(){
     
     string accao;
     char tipo;
-    int identificador;
+    int id;
     
     while(cmd!="sair"){
         
@@ -711,8 +730,8 @@ void Jogo::startNewGame(){
                     break;
                 case autoMov:
                 {
-                    buffer >> identificador;
-                    moverNavioAutomaticamente(identificador);
+                    buffer >> id;
+                    moverNavioAutomaticamente(id);
                 }
                 default:
                     break;
@@ -720,7 +739,7 @@ void Jogo::startNewGame(){
         }
     }
 }
-
+*/
 void Jogo::startGameFromFile() {
     
     readFile();
@@ -745,7 +764,7 @@ void Jogo::startGameFromFile() {
     cout << "probabilidade Motim: " << getProbabilidadeMotim() << endl;
 
 }
-
+/*
 void Jogo::menuGame(){
     int escolha;
     while(escolha>3 || escolha <1){
@@ -775,6 +794,7 @@ void Jogo::menuGame(){
         }
     }
 }
+*/
 //criacao dos diferentes navios metodo a chamar quando se compra um navio
 bool Jogo::adicionaNavio(char tipo){
     Navio * n = Navio::fabrica(tipo);
@@ -811,9 +831,3 @@ bool Jogo::destroiNavio(int id){
     return true;
 }
 
-/*eliminar os ponteiros do tipo navio do vector navios*/
-Jogo::~Jogo(){
-    for(Navio * n: navios){
-        delete n;
-    }
-}

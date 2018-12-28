@@ -19,10 +19,9 @@ class Galeao: public Navio{
 public:
     Galeao();
     void navegar(int posx, int posy);
-    //Navio * duplica()const override;
+    Navio * duplica()const override;
     void recolhePeixeDeEscuna();
     virtual ~Galeao();
-    Galeao(const Galeao& orig);
 };
 
 #endif /* GALEAO_H */

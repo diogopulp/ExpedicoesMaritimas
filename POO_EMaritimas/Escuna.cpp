@@ -12,13 +12,16 @@
  */
 
 #include "Escuna.h"
-Escuna::Escuna() : Navio() {
+#include "Jogo.h"
+
+Escuna::Escuna():Navio() {
+
 }
 
-Escuna::Escuna(const Escuna& orig) {
+
+Navio * Escuna::duplica() const{
+    return new Escuna(*this);
 }
 
-Escuna::~Escuna() {
-}
 
 

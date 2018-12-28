@@ -20,7 +20,7 @@ class Veleiro : public Navio {
     public:
         Veleiro();
         void navegar(int posx, int posy);
-        //Navio * duplica()const override;
+        Navio * duplica()const override;
         void transferePeixe();
         Veleiro(const Veleiro& orig);
         virtual ~Veleiro();
