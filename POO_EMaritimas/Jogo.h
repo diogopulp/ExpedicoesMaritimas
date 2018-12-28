@@ -18,9 +18,6 @@
 #include "Celula.h"
 #include "Mar.h"
 #include "Terra.h"
-//#include "Navio.h"
-
-//#include "Navio.h"
 #include "UI.h"
 
 #include <math.h>
@@ -98,7 +95,6 @@ public:
 
     bool adicionaNavio(char tipo);
     bool destroiNavio(int id);
-    void menuGame();
 
     void setDimensoesMapa(int lin, int col);
     
