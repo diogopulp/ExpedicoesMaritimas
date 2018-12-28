@@ -18,12 +18,12 @@
 
 using namespace std;
 
-class Jogo;
+//class Jogo;
 
 class Navio {
     
 private:
-    Jogo *jogo;
+    //Jogo *jogo;
     char tipo;
     int posicaoAtualX, posicaoAtualY, idNavio;
     static int identificador;
