@@ -37,7 +37,6 @@ Jogo::~Jogo(){
     }
 }
 
-int Navio::identificador = 1;
 
 Jogo::Jogo() {
     //constroiMapa(10,20);
