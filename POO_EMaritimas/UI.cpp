@@ -74,41 +74,22 @@ void UI::listaInfo(int nMoedas, int nNavios) {
     cout << "Num navios: "<< nNavios << endl;
 }
 
-int UI::menuGame(int escolha){
-  
-    while(escolha>3 || escolha <1){
-    cout << "\nBem-Vindo ao Espedicoes Maritimas"<<endl;
-    cout << "1 - Começar Jogo\n"
-            "2 - Carregar Jogo\n"
-            "3 - Opcoes\n"
-            "4 - Sair do Jogo\n\n"
+void UI::imprimirMenu(){
+    
+    cout << endl <<
+            "Bem-Vindo ao Espedicoes Maritimas" << endl <<
+            "1 - Começar Jogo" << endl <<
+            "2 - Carregar Jogo" << endl <<
+            "3 - Opcoes" << endl << 
+            "4 - Sair do Jogo" << endl << endl <<
             ">> ";
+}
+
+int UI::escutaMenu(){
     
+    int escolha;
     cin >> escolha;
-    
-    switch (escolha){
-        
-        case 1: 
-            //startNewGame();
-            return 1;
-        case 2: 
-            //startGameFromFile();
-            return 2;
-        case 3: 
-            cout << "Abriu opcoes de Jogo:\n\n";
-            //getOptions();
-            return 3;
-        case 4: 
-            cout << "Sair do jogo";
-            //exit(0);
-            return 4; 
-        default:
-            return 0;
-        }
-    }
-    
-    return 0;
-   
+    return escolha;  
 }
 
 int UI::moedasIniciais(){

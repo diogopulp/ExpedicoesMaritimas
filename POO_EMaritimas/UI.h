@@ -77,12 +77,15 @@ public:
     void imprimeMapa(vector<vector<Celula*> > mapa);
     void infoComandos();
     void listaInfo(int nMoedas, int nNavios);
-    int menuGame(int escolha);
     int moedasIniciais();
     void imprimeNumMoedasJogador(int nMoedas);
     void imprimeNumNaviosJogador(int nNavios);
     void imprimeSegundaFase();
+    void imprimirMenu();
+    
     int escutaComandos();
+    int escutaMenu();
+    
     int compraEscolherTipodeNavio(char tipo);
     char leCaraterInserido();
     int leInteiroInserido();

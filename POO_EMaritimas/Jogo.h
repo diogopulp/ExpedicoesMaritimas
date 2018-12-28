@@ -90,7 +90,7 @@ public:
     bool setPortoPrincipal();
     void setDimensoesMapa(int lin, int col);
     
-    void menuGame();
+    void menuJogo();
     void getOptions()const;
     void startNewGame();
     void startGameFromFile();

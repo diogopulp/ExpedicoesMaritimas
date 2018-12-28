@@ -23,7 +23,7 @@
 int Navio::identificador = 1;
 
 Jogo::Jogo() {
-   
+    //constroiMapa(10,20);
 }
 
 Jogo::Jogo(const Jogo& orig) {
@@ -99,7 +99,6 @@ void Jogo::compraNavio(char tipoNavio) {
             novoNavio->getPosicaoAtualY()
     );
     
-    textUI.imprimeMapa(mapa);
 }
 
 void Jogo::moverNavioAutomaticamente(int identificador){
@@ -192,7 +191,6 @@ void Jogo::moverNavioAutomaticamente(int identificador){
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
     
-    textUI.imprimeMapa(mapa);
 }
 
 void Jogo::colocarNavioEmPosicao(Navio *navio, char caraterNavio) {
@@ -441,6 +439,33 @@ void Jogo::getOptions(){
     textUI.imprimeOpcoes();
     
 }
+
+void Jogo::menuJogo(){
+    
+    
+    
+    textUI.imprimirMenu();
+    
+    switch (textUI.escutaMenu()){
+        
+        case 1: 
+            startNewGame();
+            break;
+        case 2: 
+            startGameFromFile();
+            break;
+        case 3: 
+            getOptions();
+            break;
+        case 4: 
+            exit(0);
+            break;
+        default:
+            textUI.imprimirMenu();
+    }
+ 
+}
+
 
 // Gets e Setters
 // Os Gets e Setters devem ser colocados no fim do código pois são funções de auxílio e
