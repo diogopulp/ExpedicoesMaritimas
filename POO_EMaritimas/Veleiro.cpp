@@ -14,6 +14,9 @@
 #include "Veleiro.h"
 #include "Jogo.h"
 
+Veleiro::Veleiro() : Navio('v'){
+}
+
 Navio * Veleiro::duplica()const{
     return new Veleiro(*this);
 }

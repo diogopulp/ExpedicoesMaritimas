@@ -15,11 +15,12 @@
 #include "Jogo.h"
 #include "Terra.h"
 #include "Navio.h"
+/*
 #include "Galeao.h"
 #include "Veleiro.h"
 #include "Fragata.h"
 #include "Escuna.h"
-
+*/
 
 int Navio::identificador = 1;
 
@@ -804,7 +805,6 @@ bool Jogo::adicionaNavio(char tipo){
     navios.push_back(n);
     return true;
 }
-
 int Jogo::procuraNavio(int id)const{
     for(int i = 0; i<navios.size(); i++){
         if(navios[i]->getIdNavio() == id){

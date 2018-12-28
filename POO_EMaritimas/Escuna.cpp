@@ -14,10 +14,9 @@
 #include "Escuna.h"
 #include "Jogo.h"
 
-Escuna::Escuna():Navio() {
-
+Escuna::Escuna() : Navio('E'){
+    
 }
-
 
 Navio * Escuna::duplica() const{
     return new Escuna(*this);

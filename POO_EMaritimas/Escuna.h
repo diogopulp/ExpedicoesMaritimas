@@ -20,12 +20,12 @@
 
 using namespace std;
 
+class Jogo;
 
 class Escuna : public Navio{
 
 public:
     Escuna();
-    virtual ~Escuna();
     Navio * duplica()const override;
     void pescar();
     
@@ -33,11 +33,7 @@ public:
     //int moverNavio(int direcao);
     //void navegar(int px, int py);
     //void alimentaSoldados();
-    
-
-
-
-    
+   
 };
 
 #endif /* ESCUNA_H */

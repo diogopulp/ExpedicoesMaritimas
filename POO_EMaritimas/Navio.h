@@ -23,6 +23,7 @@ class Jogo;
 class Navio {
     
 private:
+    Jogo *jogo;
     char tipo;
     int posicaoAtualX, posicaoAtualY, idNavio;
     static int identificador;
@@ -32,12 +33,11 @@ private:
     int toneladasDePeixe, toneladasDeMercadoria, cargaTotal;
     
 public:
+    Navio(char t);
+    //Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
     
-    Navio(char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
-    
-    Navio(const Navio& orig);
-     
-    Navio();
+    Navio(const Navio & orig);
+
     virtual ~Navio(){}
     
     void setPosicaoAtualX(int x);

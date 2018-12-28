@@ -14,6 +14,10 @@
 #include "Fragata.h"
 #include "Jogo.h"
 
+Fragata::Fragata():Navio('f') {
+
+}
+
 Navio * Fragata::duplica() const{
     return new Fragata(*this);
 }

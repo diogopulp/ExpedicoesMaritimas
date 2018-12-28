@@ -15,10 +15,11 @@
 #define FRAGATA_H
 #include "Navio.h"
 
+class Jogo;
+
 class Fragata : public Navio {
 public:
     Fragata();
-    virtual ~Fragata();
     //void navegar(int posx, int posy);
     Navio * duplica()const override;
     void protegeGaleao();

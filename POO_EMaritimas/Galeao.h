@@ -15,13 +15,14 @@
 #define GALEAO_H
 #include "Navio.h"
 
+class Jogo;
+
 class Galeao: public Navio{
 public:
     Galeao();
     void navegar(int posx, int posy);
     Navio * duplica()const override;
     void recolhePeixeDeEscuna();
-    virtual ~Galeao();
 };
 
 #endif /* GALEAO_H */

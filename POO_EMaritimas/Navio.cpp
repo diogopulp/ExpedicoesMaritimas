@@ -10,6 +10,7 @@
  * 
  * Created on November 22, 2018, 8:53 PM
  */
+#include <sstream>
 #include "Navio.h"
 #include "Fragata.h"
 #include "Galeao.h"
@@ -17,13 +18,28 @@
 #include "Escuna.h"
 
 using namespace std;
-
+/*
 Navio::Navio(char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal):
 tipo(t),posicaoAtualX(posX),posicaoAtualY(posY), idNavio(identificador++), aliado(alianca),
         numeroDeSoldados(numSoldados), litosDeAgua(quantAgua), toneladasDePeixe(quantPeixe), 
         toneladasDeMercadoria(quantMercadorias), cargaTotal(quantTotal)
 {}
+*/
 
+/*
+Navio::Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal){
+    this->jogo = jogo;
+    this->tipo = t;
+    this->posicaoAtualX = posX;
+    this->posicaoAtualY = posY;
+    this->aliado = alianca;
+    this->numeroDeSoldados = numSoldados;
+    this->litosDeAgua = quantAgua;
+    this->toneladasDePeixe = quantPeixe;
+    this->toneladasDeMercadoria = quantMercadorias;
+    this->cargaTotal = quantTotal;
+}
+*/
 //construtor por copia
 
 Navio::Navio(const Navio& orig):
@@ -32,12 +48,13 @@ Navio::Navio(const Navio& orig):
             posicaoAtualX(orig.posicaoAtualX), 
             posicaoAtualY(orig.posicaoAtualY){
 }
+
 int Navio::identificador = 0;
-/*
-Navio::Navio() {
-    this->idNavio = this->identificador++;
+
+Navio::Navio(char t):tipo(t){
+    
 }
-*/
+
 
 
 void Navio::setPosicaoAtualX(int x){

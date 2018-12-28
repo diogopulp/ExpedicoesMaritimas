@@ -14,6 +14,10 @@
 #include "Galeao.h"
 #include "Jogo.h"
 
+Galeao::Galeao(): Navio('g') {
+}
+
+
 Navio * Galeao::duplica() const{
     return new Galeao(*this);
 }

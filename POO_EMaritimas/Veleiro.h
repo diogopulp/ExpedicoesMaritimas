@@ -15,6 +15,8 @@
 #define VELEIRO_H
 #include "Navio.h"
 
+class Jogo;
+
 class Veleiro : public Navio {
         
     public:
@@ -22,8 +24,6 @@ class Veleiro : public Navio {
         void navegar(int posx, int posy);
         Navio * duplica()const override;
         void transferePeixe();
-        Veleiro(const Veleiro& orig);
-        virtual ~Veleiro();
         
 
 };
