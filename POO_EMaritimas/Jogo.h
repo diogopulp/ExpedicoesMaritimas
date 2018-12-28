@@ -19,6 +19,8 @@
 #include "Mar.h"
 #include "Terra.h"
 #include "Navio.h"
+#include "UI.h"
+
 #include <math.h>
 //#include <time.h>
 #include <iostream>
@@ -30,52 +32,15 @@
 
 using namespace std;
 
-
-enum valoresFicheiro {
-    LINHAS = 1,
-    COLUNAS,
-    MOEDAS,
-    PROB_PIRATA,
-    PRECO_NAVIO,
-    PRECO_SOLDADO,
-    PRECO_VENDA_PEIXE,
-    PRECO_COMPRA_MERCADO,
-    PRECO_VENDA_MERCADO,
-    SOLDADOS_PORTO,
-    PROB_VENTO,
-    PROB_TEMPESTADE,
-    PROB_SEREIAS,
-    PROB_CALMARIA,
-    PROB_MOTIM
-};
-
-enum cmdsEnum {
-            moedas = 1,       //<N>
-            exec,         //<nomeFicheiro>
-            prox,
-            compranav,    //<T>
-            vendeN,       //<N>
-            lista,
-            compra,       //<N><M>
-            vende,        //<N>
-            move,         //<N><X>
-            autoMov,     //<N>
-            stop,        //<N>
-            pirata,      //<x><y><t>
-            evpos,       //<E> <x><y>
-            evnav,       //<E><N>
-            vaipara,     //<N> <x><y>
-            comprasold,  //<N><S>
-            saveg,       //<nome>
-            loadg,       //<nome>
-            delg,        //<nome>
-            sair
-};
-
 class Jogo {
 
 private:
+    
+    static const int CUSTONAVIO = 100;
+    
     vector<vector<Celula*> > mapa;
+    
+    UI interfaceTexto;
     
     int numeroMoedas;
     int numeroPortos;
@@ -123,8 +88,8 @@ public:
     bool setNumMoedasIniciais(int nummoedas);
     bool setNumPortosIniciais(int numPortos);
     bool setPortoPrincipal();
+    void setDimensoesMapa(int lin, int col);
     
-    void imprimeMapa();
     void menuGame();
     void getOptions()const;
     void startNewGame();
@@ -156,9 +121,6 @@ public:
     void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
     void moverNavioAutomaticamente(int numeroNavio);
    
-
-
-
 };
 
 #endif /* JOGO_H */
