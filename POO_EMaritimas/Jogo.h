@@ -40,7 +40,7 @@ private:
     
     vector<vector<Celula*> > mapa;
     
-    UI interfaceTexto;
+    UI textUI;
     
     int numeroMoedas;
     int numeroPortos;
@@ -100,7 +100,7 @@ public:
     int getNumMoedas();
     int getNumNavios();
     int getNumPortos();
-    void readFile();
+    void lerFicheiro();
     int valorNaLinhaDoFicheiro(string linha);
     int converteValoresFicheiro(string chave);
     int getProbabilidadePirata();
@@ -120,6 +120,7 @@ public:
     void listaInfo();
     void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
     void moverNavioAutomaticamente(int numeroNavio);
+    void getOptions();
    
 };
 

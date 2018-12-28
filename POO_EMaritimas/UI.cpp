@@ -240,3 +240,68 @@ cmdsEnum UI::convertCommandToEnum(string const &command) {
     
     return enumCommand;
 }
+
+void UI::imprimeOpcoes(){
+    
+    cout << "Opcoes do jogo:\n"
+            "O jogo tem duas fases. Na primeira fase precisa de inicializar o jogo e defenir os elementos iniciais do jogo abrindo "
+            "o ficheiro.\nPara esta funcionalidade tem que usar o comando config <nomeFicheiro>\n"
+            "Na segunda fase vai ser o desenrolar do jogo e vai ter que escolher os seus commandos para interagir com o jogo";
+    
+}
+
+void UI::mensagemErroFicheiro(){
+    cout << "Erro ao carregar ficheiro. Fechar programa.";
+}
+
+void UI::mensagemAvisoNavio(){
+    cout << "Não tem nenhum navio" << endl;
+}
+
+void UI::novoNavioConstruido(int navioID, int tipo, int posX, int posY){
+    
+    cout << "Novo navio construido com ID:" << navioID 
+    << ", Tipo:" << tipo
+    << ", Posicao: (" << posX << "," << posY << ")" << endl;
+    
+}
+
+void UI::mensagemAvisoNavio(int id){
+    cout << "Não foi encontrado um navio com o identificador: " << id << endl;
+}
+
+void UI::imprimeLinhasColunas(int lin, int col){
+    
+    cout << "Linhas: " << lin << ", Colunas: " << col << endl;
+}
+
+void UI::resumoFicheiroCarregado(
+    int nMoedas,
+    int nNavios,
+    int probPirata,
+    int precoNavio,
+    int precoSoldado,
+    int precoVPeixe,
+    int precoVMercadoria,
+    int precoCMercadoria,
+    int probVento,
+    int probTempestade,
+    int probSereias,
+    int probCalmaria,
+    int probMotim
+){
+    
+    cout << "\n\nmodeas do jogador: " << nMoedas << endl;
+    cout << "navios do jogador: " << nNavios << endl;
+    cout << "probabilidade Pirata: " << probPirata << endl;
+    cout << "preco Navio: " << precoNavio << endl;
+    cout << "preco Soldado: " << precoSoldado << endl;
+    cout << "preco Venda Peixe: " << precoVPeixe << endl;
+    cout << "preco Venda Mercado: " << precoVMercadoria << endl;
+    cout << "preco Compra Mercado: " << precoCMercadoria << endl;
+    cout << "probabilidade Vento: " << probVento << endl;
+    cout << "probabilidade Tempestade: " << probTempestade << endl;
+    cout << "probabilidade Sereias: " << probSereias << endl;
+    cout << "probabiliddade Calmaria: " << probCalmaria << endl;
+    cout << "probabilidade Motim: " << probMotim << endl;
+}

@@ -65,7 +65,7 @@ void Jogo::compraNavio(char tipoNavio) {
     
     Navio *novoNavio;\
 
-    switch(interfaceTexto.compraEscolherTipodeNavio(tipoNavio)){
+    switch(textUI.compraEscolherTipodeNavio(tipoNavio)){
         case 1:
             novoNavio = new Galeao();
             break;
@@ -92,15 +92,20 @@ void Jogo::compraNavio(char tipoNavio) {
     
     numeroMoedas -= CUSTONAVIO;
     
-    cout << "Novo navio construido com ID:" << novoNavio->getIdentificadorNavio() << ", Tipo:" << novoNavio->getTipoNavio() << ", Posicao: (" << novoNavio->getPosicaoAtualX() << "," << novoNavio->getPosicaoAtualY() << ")" << endl;
+    textUI.novoNavioConstruido(
+            novoNavio->getIdentificadorNavio(),
+            novoNavio->getTipoNavio(),
+            novoNavio->getPosicaoAtualX(),
+            novoNavio->getPosicaoAtualY()
+    );
     
-    interfaceTexto.imprimeMapa(mapa);
+    textUI.imprimeMapa(mapa);
 }
 
 void Jogo::moverNavioAutomaticamente(int identificador){
     
     if (getNumNavios() <= 0) {
-        cout << "Não tem nenhum navio" << endl;
+        textUI.mensagemAvisoNavio();
         return;
     }
     
@@ -117,7 +122,7 @@ void Jogo::moverNavioAutomaticamente(int identificador){
     }
     
     if (!navioEncontrado) {
-        cout << "Não foi encontrado um navio com o identificador: " << identificador << endl;
+        textUI.mensagemAvisoNavio(identificador);
         return;
     }
     
@@ -187,7 +192,7 @@ void Jogo::moverNavioAutomaticamente(int identificador){
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
     
-    interfaceTexto.imprimeMapa(mapa);
+    textUI.imprimeMapa(mapa);
 }
 
 void Jogo::colocarNavioEmPosicao(Navio *navio, char caraterNavio) {
@@ -285,14 +290,14 @@ int Jogo::valorNaLinhaDoFicheiro(string linha) {
     return 0;
 }
 
-void Jogo::readFile(){
+void Jogo::lerFicheiro(){
 
     fstream ficheiro("startGame.txt");
     string linha;
     int valor;
     
     if (!ficheiro.is_open()) {
-        cout << "Erro ao carregar ficheiro. Fechar programa.";
+        textUI.mensagemErroFicheiro();
     }
     else {
         
@@ -362,24 +367,24 @@ void Jogo::startNewGame(){
     
     
     // A interface é responsável por receber os comandos inseridos pelo utilizador
-    setNumMoedasIniciais(interfaceTexto.moedasIniciais());
+    setNumMoedasIniciais(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
-    interfaceTexto.imprimeMapa(mapa);
+    textUI.imprimeMapa(mapa);
     
-    interfaceTexto.imprimeNumMoedasJogador(getNumMoedas());
-    interfaceTexto.imprimeNumNaviosJogador(getNumNavios());
-    interfaceTexto.imprimeSegundaFase();
+    textUI.imprimeNumMoedasJogador(getNumMoedas());
+    textUI.imprimeNumNaviosJogador(getNumNavios());
+    textUI.imprimeSegundaFase();
 
     
     while(1){
         
-        switch(interfaceTexto.escutaComandos()){
+        switch(textUI.escutaComandos()){
             case 1:
                 // Escolher o tipo de navio
-                interfaceTexto.compraEscolherTipodeNavio(
+                textUI.compraEscolherTipodeNavio(
                     // Lê carater inserido
-                    interfaceTexto.leCaraterInserido()
+                    textUI.leCaraterInserido()
                 );
                 break;
             case 2:
@@ -387,13 +392,13 @@ void Jogo::startNewGame(){
                 exit(0);
                 break;
             case 3:
-                interfaceTexto.listaInfo(getNumMoedas(), getNumNavios());
+                textUI.listaInfo(getNumMoedas(), getNumNavios());
                 break;
             case 4:
                 // Escolher o navio
                 moverNavioAutomaticamente(
                     // Lê inteiro inserido
-                    interfaceTexto.leInteiroInserido()
+                    textUI.leInteiroInserido()
                 );
                 break;
             default:
@@ -409,27 +414,32 @@ void Jogo::startNewGame(){
 
 void Jogo::startGameFromFile() {
     
-    readFile();
-    
-    cout << "Linhas: " << getLinhas() << ", Colunas: " << getColunas() << endl;
-    
+    lerFicheiro();
+    textUI.imprimeLinhasColunas(getLinhas(),getColunas());
     constroiMapa(getLinhas(), getColunas());
-    interfaceTexto.imprimeMapa(mapa);
-    
-    cout << "\n\nmodeas do jogador: " << getNumMoedas() << endl;
-    cout << "navios do jogador: " << getNumNavios() << endl;
-    cout << "probabilidade Pirata: " << getProbabilidadePirata() << endl;
-    cout << "preco Navio: " << getPrecoNavio() << endl;
-    cout << "preco Soldado: " << getPrecoSoldado() << endl;
-    cout << "preco Venda Peixe: " << getPrecoVendePeixe() << endl;
-    cout << "preco Venda Mercado: " << getPrecoVendeMercadoria() << endl;
-    cout << "preco Compra Mercado: " << getPrecoCompraMercadoria() << endl;
-    cout << "probabilidade Vento: " << getProbabilidadeVento() << endl;
-    cout << "probabilidade Tempestade: " << getProbabilidadeTempestade() << endl;
-    cout << "probabilidade Sereias: " << getProbabilidadeSereias() << endl;
-    cout << "probabiliddade Calmaria: " << getProbabilidadeCalmaria() << endl;
-    cout << "probabilidade Motim: " << getProbabilidadeMotim() << endl;
+    textUI.imprimeMapa(mapa);
+    textUI.resumoFicheiroCarregado(
+            getNumMoedas(),
+            getNumNavios(),
+            getProbabilidadePirata(),
+            getPrecoNavio(),
+            getPrecoSoldado(),
+            getPrecoVendePeixe(),
+            getPrecoVendeMercadoria(),
+            getPrecoCompraMercadoria(),
+            getProbabilidadeVento(),
+            getProbabilidadeTempestade(),
+            getProbabilidadeSereias(),
+            getProbabilidadeCalmaria(),
+            getProbabilidadeMotim()
+    );
 
+}
+
+void Jogo::getOptions(){
+   
+    textUI.imprimeOpcoes();
+    
 }
 
 // Gets e Setters
@@ -649,14 +659,6 @@ bool Jogo::setPrecoNavio(int preco){
 
 int Jogo::getPrecoNavio(){
     return precoNavio;
-}
-
-void Jogo::getOptions()const{
-   
-    cout << "Opcoes do jogo:\n"
-            "O jogo tem duas fases. Na primeira fase precisa de inicializar o jogo e defenir os elementos iniciais do jogo abrindo "
-            "o ficheiro.\nPara esta funcionalidade tem que usar o comando config <nomeFicheiro>\n"
-            "Na segunda fase vai ser o desenrolar do jogo e vai ter que escolher os seus commandos para interagir com o jogo";
 }
 
 vector<vector<Celula*> > Jogo::getMapa(){

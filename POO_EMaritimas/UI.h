@@ -87,6 +87,29 @@ public:
     char leCaraterInserido();
     int leInteiroInserido();
     cmdsEnum convertCommandToEnum(string const &command);
+    void imprimeOpcoes();
+    void mensagemErroFicheiro();
+    void mensagemAvisoNavio();
+    void novoNavioConstruido(int navioID, int tipo, int posX, int posY);
+    void mensagemAvisoNavio(int id);
+    void imprimeLinhasColunas(int lin, int col);  
+    void resumoFicheiroCarregado(
+        int nMoedas,
+        int nNavios,
+        int probPirata,
+        int precoNavio,
+        int precoSoldado,
+        int precoVPeixe,
+        int precoVMercadoria,
+        int precoCMercadoria,
+        int probVento,
+        int probTempestade,
+        int probSereias,
+        int probCalmaria,
+        int probMotim
+    );
+    
+   
 };
 
 #endif /* UI_H */
