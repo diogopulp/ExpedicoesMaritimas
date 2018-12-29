@@ -20,3 +20,78 @@ Galeao::Galeao(): Navio('g') {
 Navio * Galeao::duplica() const{
     return new Galeao(*this);
 }
+//cada turno que passa chamar esta funcao para todos os navios os navios no porto nao chamam a funcao porque os soldados no porto nao bebem agua
+void Galeao::soldadosComsomemAgua(){
+    if(this->getQuantidadeDeAgua()>= this->getNumeroDeSoldados()){
+        this->setQuantidadeDeAgua(this->getQuantidadeDeAgua() - getNumeroDeSoldados());
+    }
+    else{
+         int soldadosVivos = this->getNumeroDeSoldados() - this->getQuantidadeDeAgua();
+        this->setQuantidadeDeSoldados(soldadosVivos);
+        this->setQuantidadeDeAgua(0);
+    }
+}
+
+//lembrar de fazer verificacao de adjacencia
+void Galeao::transferePeixe(){
+    Navio *navioAlvo = verificaNavioAdjacente(getPosicaoAtualX(), getPosicaoAtualY());
+    
+    if(navioAlvo->getTipoNavio() != 'e'){
+        return;
+    }
+    
+    if(this->getCargaTotal() >= this->getQuantidadeDePeixe() + this->getQuantidadeDeMercadorias() + navioAlvo->getQuantidadeDePeixe()){
+        this->setQuantidadeDePeixe(this->getQuantidadeDePeixe() + navioAlvo->getQuantidadeDePeixe());
+        navioAlvo->setQuantidadeDePeixe(0);
+    }
+    else{
+        int peixeTotal = this->getQuantidadeDePeixe() + navioAlvo->getQuantidadeDePeixe();
+        int peixeEscunaFinal = peixeTotal - this->getCargaTotal();
+        this->setQuantidadeDePeixe(navioAlvo->getQuantidadeDePeixe() - peixeEscunaFinal);
+        navioAlvo->setQuantidadeDePeixe(peixeEscunaFinal);
+    }
+}
+
+void Galeao::reabastecerAguaDoNavio(){
+    this->litosDeAgua = 400;
+}
+
+void Galeao::setQuantidadeDeAgua(int agua){
+    this->litosDeAgua = agua;
+}
+
+void Galeao::setQuantidadeDeSoldados(int soldados){
+    this->numeroDeSoldados = soldados;
+}
+
+int Galeao::getQuantidadeDeAgua() const {
+    return litosDeAgua;
+}
+
+int Galeao::getNumeroDeSoldados() const {
+    return numeroDeSoldados;
+}
+
+int Galeao::getCargaTotal()const{
+    return cargaTotal;
+}
+
+int Galeao::getQuantidadeDePeixe()const{
+    return toneladasDePeixe;
+}
+
+int Galeao::getQuantidadeDeMercadorias()const{
+    return toneladasDeMercadoria;
+}
+
+void Galeao::setQuantidadeDePeixe(int peixes){
+    this->toneladasDePeixe = peixes;
+}
+
+void Galeao::setQuantidadeDeMercadorias(int mercadoria){
+    this->toneladasDeMercadoria = mercadoria;
+}
+
+void Galeao::setQuantidadeTotalDeCarga(int total){
+    this->cargaTotal = total;
+}

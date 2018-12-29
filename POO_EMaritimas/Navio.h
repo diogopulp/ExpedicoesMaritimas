@@ -18,7 +18,7 @@
 
 using namespace std;
 
-//class Jogo;
+class Jogo;
 
 class Navio {
     
@@ -28,13 +28,17 @@ private:
     int posicaoAtualX, posicaoAtualY, idNavio;
     static int identificador;
     bool aliado = true;
+    
+    
+protected:
+    Jogo *jogo;
     int numeroDeSoldados;
     int litosDeAgua;
     int toneladasDePeixe, toneladasDeMercadoria, cargaTotal;
     
 public:
     Navio(char t);
-    //Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
+    Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
     
     Navio(const Navio & orig);
 
@@ -44,24 +48,31 @@ public:
     void setPosicaoAtualY(int y);
     void setTipoNavio(char tipo);
     void setBarcoAmigo(bool a);
-    void setQuantidadeDePeixe(int quantPeixes);
-    void setQuantidadeDeMercadorias(int quantMercadorias);
-    void setQuantidadeTotalDeCarga(int quantCarga);
+    virtual void setQuantidadeDePeixe(int quantPeixes) = 0;
+    virtual void setQuantidadeDeMercadorias(int quantMercadorias) = 0;
+    virtual void setQuantidadeTotalDeCarga(int quantCarga) = 0;
+    virtual void reabastecerAguaDoNavio() = 0;
     void setAliancaDoNavio(bool alianca);
-    
+    virtual void setQuantidadeDeAgua(int agua) = 0;
+    virtual void setQuantidadeDeSoldados(int soldados) = 0;
+    Navio * verificaNavioAdjacente(int x, int y);
     int getPosicaoAtualX();
     int getPosicaoAtualY();
     int getIdNavio()const;
-    int getNumeroDeSoldados();
-    int getQuantidadeDeAgua();
-    int getCargaTotal();
-    int getQuantidadeDePeixe();
-    int getQuantidadeDeMercadorias();
+    virtual int getNumeroDeSoldados()const = 0;
+    virtual int getQuantidadeDeAgua()const  = 0;
+    virtual int getCargaTotal()const = 0;
+    virtual int getQuantidadeDePeixe()const = 0;
+    virtual int getQuantidadeDeMercadorias()const = 0;
     char getTipoNavio();
     bool getAliancaDoNavio();
     //funcao que e chamada para criar os diferentes tipos de navios dentro do jogo
     static Navio * fabrica(char t);
     virtual Navio * duplica()const = 0;
+    //virtual void abasteceNavioComAgua(int agua) = 0;
+    //virtual void soldadosPerdidos(int soldados) = 0;
+    virtual void soldadosComsomemAgua() = 0;
+    
     /*
     int moverNavio(int direcao);
     void navegar(int posx, int posy);
