@@ -452,17 +452,8 @@ void Jogo::getOptions(){
 }
 
 void Jogo::menuJogo(){
-    
-    constroiMapa(getLinhas(), getColunas());
-    //imprimeMapa();
-    
-
-}
-
-void Jogo::menuGame(){
     int escolha;
     
-    cin >> escolha;
     textUI.imprimirMenu();
     
     switch (textUI.escutaMenu()){
