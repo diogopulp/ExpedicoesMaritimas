@@ -18,6 +18,7 @@ UI::~UI() {
 
 void UI::imprimeMapa(vector<vector<Celula*> > mapa){
     
+    
     // Gera representação do mapa com células 2x2
     for(int i = 0; i<mapa.size(); i++){
         cout << endl;
@@ -70,14 +71,14 @@ void UI::infoComandos(){
 }
 
 void UI::listaInfo(int nMoedas, int nNavios) {
-    cout << "Num moedas: "<< nMoedas << endl;
-    cout << "Num navios: "<< nNavios << endl;
+    cout << endl << "Numero de moedas: "<< nMoedas << endl;
+    cout << "Numero de navios: "<< nNavios << endl;
 }
 
 void UI::imprimirMenu(){
     
     cout << endl <<
-            "Bem-Vindo ao Espedicoes Maritimas" << endl <<
+            "Bem-Vindo ao Espedicoes Maritimas" << endl << endl <<
             "1 - Começar Jogo" << endl <<
             "2 - Carregar Jogo" << endl <<
             "3 - Opcoes" << endl << 
@@ -116,42 +117,21 @@ void UI::imprimeSegundaFase(){
     cout << "Segunda fase:" << endl;
 }
 
-int UI::escutaComandos(){
+string UI::escutaComandos(){
     
-    string cmd, accao;
-       
+    string cmd;
+      
     cout << endl << ">> ";
     getline(cin, cmd);
-        
-    istringstream buffer(cmd);
 
-    if (buffer >> accao) {
+    return cmd;
 
-        cmdsEnum command = convertCommandToEnum(accao);
-
-        switch(command) {
-            case compranav:
-               
-                //compraNavio(tipo);
-                return 1;
-            case sair:
-                //exit(0);
-                return 2;
-            case lista:
-                //listaInfo();
-                return 3;
-            case autoMov:
-               
-                //moverNavioAutomaticamente(identificador);
-                return 4;
-            default:
-                return 0;
-        }
-    }
-    return 0;
 }
 
-int UI::compraEscolherTipodeNavio(char tipo){
+/*int UI::compraEscolherTipodeNavio(char tipo){
+    
+    cout << "Cheguei aqui!" << endl;
+    cout << "tipo = " << tipo << endl;
     
     switch(tipo){
         case 'g':
@@ -173,7 +153,7 @@ int UI::compraEscolherTipodeNavio(char tipo){
         default:
             return 0;
     }
-}
+}*/
 
 char UI::leCaraterInserido(){
     
@@ -200,26 +180,6 @@ int UI::leInteiroInserido(){
     buffer >> identificador;
     return identificador;
     
-}
-
-cmdsEnum UI::convertCommandToEnum(string const &command) {
-    
-    cmdsEnum enumCommand;
-    
-    if (command == "lista") {
-        enumCommand = lista;
-    }
-    else if (command == "compranav") {
-        enumCommand = compranav;
-    }
-    else if(command == "sair"){
-        enumCommand = sair;
-    }
-    else if (command == "autoMov") {
-        enumCommand = autoMov;
-    }
-    
-    return enumCommand;
 }
 
 void UI::imprimeOpcoes(){

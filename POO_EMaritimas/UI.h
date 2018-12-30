@@ -39,29 +39,6 @@ enum valoresFicheiro {
     PROB_MOTIM
 };
 
-enum cmdsEnum {
-            moedas = 1,  //<N>
-            exec,        //<nomeFicheiro>
-            prox,
-            compranav,   //<T>
-            vendeN,      //<N>
-            lista,
-            compra,      //<N><M>
-            vende,       //<N>
-            move,        //<N><X>
-            autoMov,     //<N>
-            stop,        //<N>
-            pirata,      //<x><y><t>
-            evpos,       //<E> <x><y>
-            evnav,       //<E><N>
-            vaipara,     //<N> <x><y>
-            comprasold,  //<N><S>
-            saveg,       //<nome>
-            loadg,       //<nome>
-            delg,        //<nome>
-            sair
-};
-
 using namespace std;
 
 class UI {
@@ -83,13 +60,12 @@ public:
     void imprimeSegundaFase();
     void imprimirMenu();
     
-    int escutaComandos();
+    string escutaComandos();
     int escutaMenu();
     
     int compraEscolherTipodeNavio(char tipo);
     char leCaraterInserido();
     int leInteiroInserido();
-    cmdsEnum convertCommandToEnum(string const &command);
     void imprimeOpcoes();
     void mensagemErroFicheiro();
     void mensagemAvisoNavio();

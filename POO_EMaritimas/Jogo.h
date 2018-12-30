@@ -32,6 +32,29 @@
 using namespace std;
 class Navio;
 
+enum cmdsEnum {
+            moedas = 1,  //<N>
+            exec,        //<nomeFicheiro>
+            prox,
+            compranav,   //<T>
+            vendenav,      //<N>
+            lista,
+            compra,      //<N><M>
+            vende,       //<N>
+            movenavio,        //<N><X>
+            automov,     //<N>
+            stop,        //<N>
+            pirata,      //<x><y><t>
+            evpos,       //<E> <x><y>
+            evnav,       //<E><N>
+            vaipara,     //<N> <x><y>
+            comprasold,  //<N><S>
+            saveg,       //<nome>
+            loadg,       //<nome>
+            delg,        //<nome>
+            sair
+};
+
 
 class Jogo {
 
@@ -123,6 +146,7 @@ public:
     int getPrecoVendeMercadoria();
     int getSoldadosPorto();
     int getPrecoNavio();
+    cmdsEnum convertCommandToEnum(string const &command);
     
     void compraNavio(char tipoNavio);
     void listaInfo();

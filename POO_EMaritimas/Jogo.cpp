@@ -79,8 +79,9 @@ void Jogo::compraNavio(char tipoNavio) {
         return;
     
     Navio *novoNavio;\
-
-    switch(textUI.compraEscolherTipodeNavio(tipoNavio)){
+    
+    // TODO mudar isto!!!
+    switch(tipoNavio){
         case 1:
             novoNavio = new Galeao();
             break;
@@ -376,50 +377,200 @@ void Jogo::lerFicheiro(){
     ficheiro.close();
 }
 
+cmdsEnum Jogo::convertCommandToEnum(string const &command) {
+    
+    cmdsEnum enumCommand;
+    
+    if (command == "lista") {
+        enumCommand = lista;
+    }
+    else if (command == "compranav") {
+        enumCommand = compranav;
+    }
+    else if(command == "sair"){
+        enumCommand = sair;
+    }
+    else if (command == "automov") {
+        enumCommand = automov;
+    }
+    else if(command == "vendenav"){
+        enumCommand = vendenav;
+    }
+    else if(command == "exec"){
+        enumCommand = exec;
+    }
+    else if(command == "prox"){
+        enumCommand = prox;
+    }
+    else if(command == "compra"){
+        enumCommand = compra;
+    }
+    else if(command == "vende"){
+        enumCommand = vende;
+    }
+    else if(command == "movenavio"){
+        enumCommand = movenavio;
+    }
+    else if(command == "stop"){
+        enumCommand = stop;
+    }
+    else if(command == "pirata"){
+        enumCommand = pirata;
+    }
+    else if(command == "evpos"){
+        enumCommand = evpos;
+    }
+    else if(command == "evnav"){
+        enumCommand = evnav;
+    }
+    else if(command == "vaipara"){
+        enumCommand = vaipara;
+    }
+    else if(command == "comprasold"){
+        enumCommand = comprasold;
+    }
+    else if(command == "saveg"){
+        enumCommand = saveg;
+    }
+    else if(command == "loadg"){
+        enumCommand = loadg;
+    }
+    else if(command == "delg"){
+        enumCommand = delg;
+    }
+    
+    
+    return enumCommand;
+}
+
 void Jogo::startNewGame(){
+    
+    string cmd;
     
     // A interface é responsável por receber os comandos inseridos pelo utilizador
     setNumMoedasIniciais(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
     textUI.imprimeMapa(mapa);
-    textUI.imprimeNumMoedasJogador(getNumMoedas());
-    textUI.imprimeNumNaviosJogador(getNumNavios());
+    textUI.listaInfo(getNumMoedas(), getNumNavios());
     textUI.imprimeSegundaFase();
     
+    
+    
     while(1){
+            
+        cmd = textUI.escutaComandos();
+        cout << cmd;
         
-        switch(textUI.escutaComandos()){
-            case 1:
-                // Escolher o tipo de navio
-                textUI.compraEscolherTipodeNavio(
-                    // Lê carater inserido
-                    textUI.leCaraterInserido()
-                );
-                break;
-            case 2:
-                // Sai do programa
-                exit(0);
-                break;
-            case 3:
-                textUI.listaInfo(getNumMoedas(), getNumNavios());
-                break;
-            case 4:
-                // Escolher o navio
-                moverNavioAutomaticamente(
-                    // Lê inteiro inserido
-                    textUI.leInteiroInserido()
-                );
-                break;
-            default:
-                break;
+        istringstream iss(cmd);
+  
+        // Vetor necessário para separar os comandos vindos da UI
+        vector<string> tokens{
+                        istream_iterator<string>{iss},
+                        istream_iterator<string>{}
+        };
+        
+        // Interpretação de comandos
+        if(tokens.size() > 0){
+            
+            cmdsEnum command = convertCommandToEnum(tokens[0]);
+            
+            if(tokens.size() == 1)
+            {
+                switch(command){
+                    case prox:
+                        // Implementar comportamento
+                        break;
+                    case lista:
+                        textUI.listaInfo(getNumMoedas(), getNumNavios());
+                        break;
+                    default:
+                        break;
+                }       
+            }else if(tokens.size() == 2)
+            {
+                switch(command){
+                    case exec:
+                        // Implementar comportamento
+                        break;
+                    case compranav:
+                        // Envia o primeiro caractere do token
+                        compraNavio(tokens[1].at(0));
+                        break;
+                    case vendenav:
+                        // Implementar comportamento
+                        break;
+                    case vende:
+                        // Implementar comportamento
+                        break;
+                    case automov:
+                        moverNavioAutomaticamente(tokens[1].at(0));
+                        break;
+                    case stop:
+                        // Implementar comportamento
+                        break;
+                    case moedas:
+                        // Implementar comportamento
+                        break;
+                    case saveg:
+                        // Implementar comportamento
+                        break;
+                    case loadg:
+                        // Implementar comportamento
+                        break;
+                    case delg:
+                        // Implementar comportamento
+                        break;
+                    default:
+                        break;
+                }       
+            }else if(tokens.size() == 3)
+            {
+                switch(command){
+                    case compra:
+                        // Implementar comportamento
+                        break;
+                    case movenavio:
+                        // Implementar comportamento
+                        break;
+                    case evnav:
+                        // Implementar comportamento
+                        break;
+                    case vaipara:
+                        // Implementar comportamento
+                        break;
+                    case comprasold:
+                        // Implementar comportamento
+                        break;
+                    default:
+                        break;
+                }     
+            }else if(tokens.size() == 4)
+            {
+                switch(command){
+                    case pirata:
+                        // Implementar comportamento
+                        break;
+                    case evpos:
+                        // Implementar comportamento
+                        break;
+                    case vaipara:
+                        // Implementar comportamento
+                        break;
+                    default:
+                        break;
+                }     
+            }
                 
+            
         }
-       
-    }
-    
-    
+        
+        if(cmd == "sair" || cmd == "SAIR")
+            return;
+        
 }
+}
+
 
 void Jogo::startGameFromFile() {
     
@@ -452,7 +603,6 @@ void Jogo::getOptions(){
 }
 
 void Jogo::menuJogo(){
-    int escolha;
     
     textUI.imprimirMenu();
     

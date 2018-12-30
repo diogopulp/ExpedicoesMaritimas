@@ -23,13 +23,33 @@
 using namespace std;
 
 class Porto {
+    
+private:
+    string car;
+    int numsoldados;
+
+    // Amizade
+    // 0 - Não conquistado;
+    // 1 - Jogador;
+    // 2 - Piratas;
+    int amigo;
+     
+    void portoAmigoJogador();
+    void portoAmigoPirata();
+    
 public:
+      
     Porto();
     Porto(const Porto& orig);
     virtual ~Porto();
     
+    void lutar();
     vector<Navio> navios;
-private:
+    void conquistarPorto(Navio navio);
+    void setNumSoldados(int num);
+    int getNumSoldados();
+    bool getRelacaoAmizade(Navio navio);
+
 
 };
 
