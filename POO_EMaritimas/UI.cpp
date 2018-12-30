@@ -83,24 +83,57 @@ void UI::imprimirMenu(){
             "1 - Começar Jogo" << endl <<
             "2 - Carregar Jogo" << endl <<
             "3 - Opcoes" << endl << 
-            "4 - Sair do Jogo" << endl << endl <<
-            ">> ";
+            "4 - Sair do Jogo" << endl << endl;
 }
 
 int UI::escutaMenu(){
     
     int escolha;
     cin >> escolha;
-    return escolha;  
+    
+    cout << ">> ";
+    cin >> escolha;
+    
+    //Inputs protegidos
+    if(cin.good())
+        return escolha;
+    
+    while(!cin.good()){
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+                
+        cout << ">> ";
+        cin >> escolha;
+        if(cin.good())
+            return escolha;
+    }
+    
+    return 0;
 }
 
 int UI::moedasIniciais(){
     
     int moedas;
-    cout << "\nIntroduza Moedas Iniciais: ";
+    cout << endl << "Introduza Moedas Iniciais: ";
     cin >> moedas;
     
-    return moedas;
+    //Inputs protegidos
+    if(cin.good())
+            return moedas;
+    
+    while(!cin.good()){
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+                
+        cout << endl <<"Introduza Moedas Iniciais: ";
+        cin >> moedas;
+        if(cin.good())
+            return moedas;
+    }
+    
+    return 0;
+    
+    
 }
 
 void UI::imprimeNumMoedasJogador(int nMoedas){

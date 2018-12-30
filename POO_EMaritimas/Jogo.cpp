@@ -463,11 +463,8 @@ void Jogo::startNewGame(){
     setNumMoedasIniciais(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
-    //textUI.imprimeMapa(mapa);
     textUI.listaInfo(getNumMoedas(), getNumNavios());
-    textUI.imprimeSegundaFase();
-    
-    
+    textUI.imprimeSegundaFase();  
     
     while(1){
             
