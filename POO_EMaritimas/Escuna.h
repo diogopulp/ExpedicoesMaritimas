@@ -20,15 +20,33 @@
 
 using namespace std;
 
-class Jogo;
 
 class Escuna : public Navio{
 
 public:
     Escuna();
+    Escuna(Jogo *jogo, int posX, int posy):Navio(jogo, 'E', posX, posy, true, 10, 100, 0, 0, 0){}
     Navio * duplica()const override;
     void pescar();
+    /*void abasteceNavioComAgua(int agua) override;
+    void soldadosPerdidos(int soldados) override;
+*/
+    void soldadosComsomemAgua()override;
+    void setQuantidadeDeAgua(int agua)override;
+    void setQuantidadeDeSoldados(int soldados)override;
+    int getQuantidadeDeAgua() const override;
+    int getNumeroDeSoldados() const override;
+    int getCargaTotal()const override;
+    int getQuantidadeDePeixe()const override;
+    int getQuantidadeDeMercadorias()const override;
+    void setQuantidadeDePeixe(int quantPeixes)override;
+    void setQuantidadeDeMercadorias(int quantMercadorias)override;
+    void setQuantidadeTotalDeCarga(int quantCarga)override;
+    void reabastecerAguaDoNavio()override;
+
     
+
+
     //void abastecerNavioComAgua();
     //int moverNavio(int direcao);
     //void navegar(int px, int py);

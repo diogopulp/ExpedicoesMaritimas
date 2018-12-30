@@ -26,7 +26,6 @@ tipo(t),posicaoAtualX(posX),posicaoAtualY(posY), idNavio(identificador++), aliad
 {}
 */
 
-/*
 Navio::Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal){
     this->jogo = jogo;
     this->tipo = t;
@@ -39,7 +38,6 @@ Navio::Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldad
     this->toneladasDeMercadoria = quantMercadorias;
     this->cargaTotal = quantTotal;
 }
-*/
 //construtor por copia
 
 Navio::Navio(const Navio& orig):
@@ -94,8 +92,12 @@ bool Navio::getAliancaDoNavio(){
 void Navio::setBarcoAmigo(bool a){
     aliado = a;
 }
-
-
+Navio * Navio::verificaNavioAdjacente(int x, int y){
+    
+    // verificar se existe navio adjacente a x e y, se houver retorna navio senão retorna null
+    
+    return nullptr;
+}
 //fabrica de objectos
 Navio * Navio::fabrica(char t){
     if(t == 'v'){

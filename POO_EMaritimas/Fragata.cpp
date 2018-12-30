@@ -20,3 +20,58 @@ Fragata::Fragata():Navio('f') {
 Navio * Fragata::duplica() const{
     return new Fragata(*this);
 }
+
+void Fragata::soldadosComsomemAgua(){
+    if(this->getQuantidadeDeAgua()>= this->getNumeroDeSoldados()){
+        this->setQuantidadeDeAgua(this->getQuantidadeDeAgua() - getNumeroDeSoldados());
+    }
+    else{
+         int soldadosVivos = this->getNumeroDeSoldados() - this->getQuantidadeDeAgua();
+        this->setQuantidadeDeSoldados(soldadosVivos);
+        this->setQuantidadeDeAgua(0);
+    }
+}
+
+void Fragata::reabastecerAguaDoNavio(){
+    this->litosDeAgua = 500;
+}
+
+void Fragata::setQuantidadeDeAgua(int agua){
+    this->litosDeAgua = agua;
+}
+
+void Fragata::setQuantidadeDeSoldados(int soldados){
+    this->numeroDeSoldados = soldados;
+}
+
+int Fragata::getQuantidadeDeAgua() const {
+    return litosDeAgua;
+}
+
+int Fragata::getNumeroDeSoldados() const {
+    return numeroDeSoldados;
+}
+
+int Fragata::getCargaTotal()const{
+    return cargaTotal;
+}
+
+int Fragata::getQuantidadeDePeixe()const{
+    return toneladasDePeixe;
+}
+
+int Fragata::getQuantidadeDeMercadorias()const{
+    return toneladasDeMercadoria;
+}
+
+void Fragata::setQuantidadeDePeixe(int peixes){
+    this->toneladasDePeixe = peixes;
+}
+
+void Fragata::setQuantidadeDeMercadorias(int mercadoria){
+    this->toneladasDeMercadoria = mercadoria;
+}
+
+void Fragata::setQuantidadeTotalDeCarga(int total){
+    this->cargaTotal = total;
+}
