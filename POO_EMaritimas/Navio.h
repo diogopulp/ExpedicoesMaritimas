@@ -15,7 +15,6 @@
 #define NAVIO_H
 
 #include <stdio.h>
-
 using namespace std;
 
 class Jogo;
@@ -35,7 +34,6 @@ protected:
     int numeroDeSoldados;
     int litosDeAgua;
     int toneladasDePeixe, toneladasDeMercadoria, cargaTotal;
-    
 public:
     Navio(char t);
     Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
@@ -48,6 +46,7 @@ public:
     void setPosicaoAtualY(int y);
     void setTipoNavio(char tipo);
     void setBarcoAmigo(bool a);
+    virtual int getVelocidade() = 0;
     virtual void setQuantidadeDePeixe(int quantPeixes) = 0;
     virtual void setQuantidadeDeMercadorias(int quantMercadorias) = 0;
     virtual void setQuantidadeTotalDeCarga(int quantCarga) = 0;

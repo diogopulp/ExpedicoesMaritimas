@@ -77,6 +77,9 @@ void Veleiro::reabastecerAguaDoNavio() {
     this->litosDeAgua = 200;
 }
 
+int Veleiro::getVelocidade(){
+    return rand() % 2;
+}
 
 //lembrar de fazer verificacao de adjacencia
 void Veleiro::transferePeixe(){
@@ -96,4 +99,8 @@ void Veleiro::transferePeixe(){
         this->setQuantidadeDePeixe(navioAlvo->getQuantidadeDePeixe() - peixeEscunaFinal);
         navioAlvo->setQuantidadeDePeixe(peixeEscunaFinal);
     }
+}
+
+void Veleiro::venderPeixeAoPorto(){
+    
 }

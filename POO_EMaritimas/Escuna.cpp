@@ -78,3 +78,21 @@ void Escuna::setQuantidadeDeMercadorias(int mercadoria){
 void Escuna::setQuantidadeTotalDeCarga(int total){
     this->cargaTotal = total;
 }
+
+int Escuna::getVelocidade(){
+    return 1;
+}
+
+int Escuna::pescar(int peixe){
+    if(this->getQuantidadeDePeixe() + peixe <= this->getCargaTotal()){
+        this->setQuantidadeDePeixe(this->getQuantidadeDePeixe() + peixe);
+        return 0;
+    }
+    else{
+        int peixeTotal = this->getQuantidadeDePeixe() + peixe;
+        int peixeEscunaFinal = peixeTotal - this->getCargaTotal();
+        this->setQuantidadeDePeixe(peixe - peixeEscunaFinal);
+        return peixeTotal - peixeEscunaFinal;
+    }
+}
+

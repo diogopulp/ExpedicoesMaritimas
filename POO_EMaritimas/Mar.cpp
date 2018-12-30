@@ -23,3 +23,10 @@ Mar::Mar(const Mar& orig) {
 Mar::~Mar() {
 }
 
+void Mar::setQuantidadeDePeixeNaCelulaMar(int p){
+    peixe = p;
+}
+
+int Mar::getQuantidadeDePeixeNaCelulaMar(){
+    return peixe;
+}

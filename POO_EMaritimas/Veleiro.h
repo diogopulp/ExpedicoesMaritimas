@@ -20,6 +20,8 @@ class Veleiro : public Navio {
         
     public:
         Veleiro();
+        //so pode carregar ate 40 toneladas de carga-peixe e mercadorias
+        Veleiro(Jogo *jogo, int posX, int posy):Navio(jogo, 'V', posX, posy, true, 20, 200, 0, 0, 0){}
         void navegar(int posx, int posy);
         Navio * duplica()const override;
         void transferePeixe();
@@ -36,6 +38,7 @@ class Veleiro : public Navio {
         void setQuantidadeDeMercadorias(int quantMercadorias)override;
         void setQuantidadeTotalDeCarga(int quantCarga)override;
         void reabastecerAguaDoNavio()override;
+        int getVelocidade()override;
         
 
 };

@@ -25,9 +25,10 @@ class Escuna : public Navio{
 
 public:
     Escuna();
+    //so pode cargar ate 20 toneladas de carga - so pode carregar peixe
     Escuna(Jogo *jogo, int posX, int posy):Navio(jogo, 'E', posX, posy, true, 10, 100, 0, 0, 0){}
     Navio * duplica()const override;
-    void pescar();
+    int pescar(int peixe);
     /*void abasteceNavioComAgua(int agua) override;
     void soldadosPerdidos(int soldados) override;
 */
@@ -43,6 +44,8 @@ public:
     void setQuantidadeDeMercadorias(int quantMercadorias)override;
     void setQuantidadeTotalDeCarga(int quantCarga)override;
     void reabastecerAguaDoNavio()override;
+    int getVelocidade()override;
+
 
     
 

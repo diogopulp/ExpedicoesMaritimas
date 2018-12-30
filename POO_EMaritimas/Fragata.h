@@ -14,11 +14,14 @@
 #ifndef FRAGATA_H
 #define FRAGATA_H
 #include "Navio.h"
+#include <math.h>
 
 
 class Fragata : public Navio {
 public:
     Fragata();
+    //nao pode carregar carga nenhuma - so pode ter soldados e agua
+    Fragata(Jogo *jogo, int posX, int posy):Navio(jogo, 'F', posX, posy, true, 50, 500, 0, 0, 0){}
     //void navegar(int posx, int posy);
     Navio * duplica()const override;
     void protegeGaleao();
@@ -34,6 +37,7 @@ public:
     void setQuantidadeDeMercadorias(int quantMercadorias)override;
     void setQuantidadeTotalDeCarga(int quantCarga)override;
     void reabastecerAguaDoNavio()override;
+    int getVelocidade()override;
 
 };
 

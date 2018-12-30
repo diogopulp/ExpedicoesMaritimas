@@ -95,3 +95,7 @@ void Galeao::setQuantidadeDeMercadorias(int mercadoria){
 void Galeao::setQuantidadeTotalDeCarga(int total){
     this->cargaTotal = total;
 }
+
+int Galeao::getVelocidade(){
+    return 1;
+}

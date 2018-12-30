@@ -12,7 +12,8 @@
  */
 
 #include "Fragata.h"
-
+#include <math.h>
+#include <cstdlib>
 Fragata::Fragata():Navio('f') {
 
 }
@@ -74,4 +75,8 @@ void Fragata::setQuantidadeDeMercadorias(int mercadoria){
 
 void Fragata::setQuantidadeTotalDeCarga(int total){
     this->cargaTotal = total;
+}
+
+int Fragata::getVelocidade(){
+    return rand() % 2;
 }

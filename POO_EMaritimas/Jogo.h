@@ -32,6 +32,17 @@
 using namespace std;
 class Navio;
 
+enum DIRECAO {
+    frente = 1,
+    diagonalfrenteDireita,
+    diagonalfrenteEsquerda,
+    direita,
+    esquerda,
+    tras,
+    diagonaltrasDireita,
+    diagonaltrasEsquerda
+};
+
 enum cmdsEnum {
             info,  
             moedas = 1,  //<N>
@@ -68,6 +79,9 @@ private:
     int procuraNavio(int id)const;
     
     UI textUI;
+    
+    DIRECAO moverN;
+    int distancia;
     
     int numeroMoedas;
     int numeroPortos;
@@ -150,9 +164,15 @@ public:
     cmdsEnum convertCommandToEnum(string const &command);
     
     void compraNavio(char tipoNavio);
+    void ocorreTempestade();
+    void ocorreEvento();
+    void danificaNavio(Navio *navio, int i);
     void listaInfo();
     void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
     void moverNavioAutomaticamente(int id);
+    void moveNavio(Navio * navio, DIRECAO moverN);
+    void escunasPescam();
+    Celula * getCelula(int x, int y)const;
     Jogo & operator=(const Jogo& orig);
 
     //void moverNavioAutomaticamente(int numeroNavio);

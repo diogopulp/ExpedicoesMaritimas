@@ -17,12 +17,16 @@
 #include "Celula.h"
 
 class Mar: public Celula {
+    
+private:
+    int peixe;
+    
 public:
     Mar();
     Mar(const Mar& orig);
     virtual ~Mar();
-private:
-
+    int getQuantidadeDePeixeNaCelulaMar();
+    void setQuantidadeDePeixeNaCelulaMar(int peixe);
 };
 
 #endif /* MAR_H */

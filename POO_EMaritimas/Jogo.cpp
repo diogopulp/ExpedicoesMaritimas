@@ -6,6 +6,7 @@
  */
 
 #include <fstream>
+#include <math.h>
 #include "Jogo.h"
 #include "Terra.h"
 #include "Navio.h"
@@ -13,6 +14,7 @@
 #include "Veleiro.h"
 #include "Fragata.h"
 #include "Escuna.h"
+#include "Jogador.h"
 
 
 Jogo & Jogo::operator=(const Jogo& orig){
@@ -163,7 +165,7 @@ void Jogo::moverNavioAutomaticamente(int id){
             case 1:
             {
                 novaLinha = navio->getPosicaoAtualX() - 1;
-                novaColuna = navio->getPosicaoAtualY() - 1;;
+                novaColuna = navio->getPosicaoAtualY() - 1;
             }
             break;
             case 2:
@@ -909,3 +911,153 @@ void Jogo::setDimensoesMapa(int lin, int col){
     
 }
 
+void Jogo::moveNavio(Navio * navio, DIRECAO moverN){
+    
+    int novaLinha = 0, novaColuna = 0;
+    int distancia = navio->getVelocidade();
+    
+        switch(moverN){
+            case frente:
+            {
+                novaLinha = navio->getPosicaoAtualX();
+                novaColuna = navio->getPosicaoAtualY() + distancia;
+            }
+                break;
+            case diagonalfrenteDireita:
+            {
+                novaLinha = navio->getPosicaoAtualX() + distancia;
+                novaColuna = navio->getPosicaoAtualY() + distancia;
+            }
+                break;
+            case diagonalfrenteEsquerda:
+            {
+                novaLinha = navio->getPosicaoAtualX() - distancia;
+                novaColuna = navio->getPosicaoAtualY() + distancia;
+            }
+                break;
+            case direita:
+            {
+                novaLinha = navio->getPosicaoAtualX() + distancia;
+                novaColuna = navio->getPosicaoAtualY();
+            }
+                break;
+            case esquerda:
+            {
+                novaLinha = navio->getPosicaoAtualX() - distancia;
+                novaColuna = navio->getPosicaoAtualY();
+            }
+                break;
+            case tras:
+            {
+                novaLinha = navio->getPosicaoAtualX();
+                novaColuna = navio->getPosicaoAtualY() - distancia;
+            }
+                break;
+            case diagonaltrasDireita:
+            {
+                novaLinha = navio->getPosicaoAtualX() + distancia;
+                novaColuna = navio->getPosicaoAtualY() - distancia;
+            }
+                break;
+            case diagonaltrasEsquerda:
+            {
+                novaLinha = navio->getPosicaoAtualX() - distancia;
+                novaColuna = navio->getPosicaoAtualY() - distancia;
+            }
+                break;
+            default:
+                break;
+    
+        }
+
+            
+    if((novaLinha <= getLinhas() || novaColuna <= getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] == '~'){
+    navio->setPosicaoAtualX(novaLinha);
+    navio->setPosicaoAtualY(novaColuna);
+    }
+}
+
+Celula * Jogo::getCelula(int x, int y) const{
+    return mapa[x][y];
+}
+
+void Jogo::escunasPescam(){
+    for(int i = 0; i < navios.size(); i++){
+        if(navios[i]->getTipoNavio() == 'E'){
+            Escuna *e = dynamic_cast<Escuna *>(navios[i]);
+            Celula *mar = getCelula(e->getPosicaoAtualX(), e->getPosicaoAtualY());
+            int peixeSobra = e->pescar(((Mar *)mar)->getQuantidadeDePeixeNaCelulaMar());
+            ((Mar *)mar)->setQuantidadeDePeixeNaCelulaMar(peixeSobra);
+        }
+    }
+}
+
+void Jogo::ocorreTempestade(){
+    for(int i = 0; i<navios.size(); i++){
+        danificaNavio(navios[i], i);
+    }
+}
+
+void Jogo::danificaNavio(Navio *navio, int posicaoArray){
+    int probabilidade = rand() % 101;
+    
+    if(navio->getTipoNavio() == 'E'){
+        if(probabilidade <= 20){
+            Escuna *escuna = dynamic_cast<Escuna *>(navio);
+            escuna->setQuantidadeDePeixe(0);
+        }else if(probabilidade > 20 && probabilidade <= 55){
+            delete navio;
+            navios.erase(navios.begin() + posicaoArray);
+        }
+    }else if(navio->getTipoNavio() == 'V'){
+        Veleiro *veleiro = dynamic_cast<Veleiro *>(navio);
+        int cargaDoVeleiro = veleiro->getQuantidadeDePeixe() + veleiro->getQuantidadeDeMercadorias();
+        if(cargaDoVeleiro > veleiro->getCargaTotal()/2){
+            if(probabilidade <= 35){
+                delete navio;
+                navios.erase(navios.begin() + posicaoArray);
+            }
+        }else{
+            if(probabilidade <= 20){
+                delete navio;
+                navios.erase(navios.begin() + posicaoArray);
+            }
+        }
+    }else if(navio->getTipoNavio() == 'G'){
+        Galeao *galeao = dynamic_cast<Galeao *>(navio);
+        galeao->setQuantidadeDeSoldados(galeao->getNumeroDeSoldados() * 0.9);
+        
+        if(probabilidade <= 40){
+            delete navio;
+            navios.erase(navios.begin() + posicaoArray);
+        }
+    }else if(navio->getTipoNavio() == 'F'){
+        Fragata *fragata = dynamic_cast<Fragata *>(navio);
+        int perdeSoldados = fragata->getNumeroDeSoldados() * 0.85;
+        fragata->setQuantidadeDeSoldados(perdeSoldados);
+        if(probabilidade <= 20){
+            delete navio;
+            navios.erase(navios.begin() + posicaoArray);
+        }
+    }
+    
+    
+    
+    
+
+}
+
+void Jogo::ocorreEvento(){
+    int probabilidade = rand() % 101;
+    
+    if(probabilidade <= 30){
+        //ocorreCalmaria();
+    }
+    else if(probabilidade > 30 && probabilidade <= 60){
+        //ocorre tempestade
+    }else if(probabilidade > 60 && probabilidade <= 80){
+        //ocorre sereias
+    }else{
+        //ocorre motim
+    }
+}
