@@ -33,6 +33,7 @@ using namespace std;
 class Navio;
 
 enum cmdsEnum {
+            info,  
             moedas = 1,  //<N>
             exec,        //<nomeFicheiro>
             prox,

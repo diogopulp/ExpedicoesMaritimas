@@ -393,7 +393,10 @@ cmdsEnum Jogo::convertCommandToEnum(string const &command) {
     
     cmdsEnum enumCommand;
     
-    if (command == "lista") {
+    if(command == "info"){
+        enumCommand = info;
+    }
+    else if (command == "lista") {
         enumCommand = lista;
     }
     else if (command == "compranav") {
@@ -487,6 +490,9 @@ void Jogo::startNewGame(){
             if(tokens.size() == 1)
             {
                 switch(command){
+                    case info:
+                        textUI.infoComandos();
+                        break;
                     case prox:
                         // Implementar comportamento
                         break;
