@@ -21,20 +21,21 @@ void UI::imprimeMapa(vector<vector<Celula*> > mapa){
     
     // Gera representação do mapa com células 2x2
     for(int i = 0; i<mapa.size(); i++){
-        cout << endl;
+        cout << endl << endl;
         for(int j=0; j<mapa[i].size(); j++){
 
+            
             // Imprime os dois primeiros carateres
-            cout << mapa[i][j]->getCarater()[0];
-            cout << mapa[i][j]->getCarater()[1] << " ";
+            cout << mapa[i][j]->getCarater()[0] << " ";
+            cout << mapa[i][j]->getCarater()[1] << "   ";
            
         }
         cout << endl;
         for(int j=0; j<mapa[i].size(); j++){
             
             // Imprime os restantes carateres
-            cout << mapa[i][j]->getCarater()[2];
-            cout << mapa[i][j]->getCarater()[3] << " ";
+            cout << mapa[i][j]->getCarater()[2] << " ";
+            cout << mapa[i][j]->getCarater()[3] << "   ";
 
         }
     }   
@@ -127,33 +128,6 @@ string UI::escutaComandos(){
     return cmd;
 
 }
-
-/*int UI::compraEscolherTipodeNavio(char tipo){
-    
-    cout << "Cheguei aqui!" << endl;
-    cout << "tipo = " << tipo << endl;
-    
-    switch(tipo){
-        case 'g':
-            return 1;
-        case 'G':
-            return 1;
-        case 'v':
-            return 2;
-        case 'V':
-            return 2;
-        case 'e':
-            return 3;
-        case 'E':
-            return 3;
-        case 'f':
-            return 4;
-        case 'F':
-            return 4;
-        default:
-            return 0;
-    }
-}*/
 
 char UI::leCaraterInserido(){
     

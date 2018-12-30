@@ -81,24 +81,36 @@ void Jogo::compraNavio(char tipoNavio) {
     Navio *novoNavio;\
     
     // TODO mudar isto!!!
+    
     switch(tipoNavio){
-        case 1:
+        case 'g':
             novoNavio = new Galeao();
             break;
-        case 2:
+        case 'G':
+            novoNavio = new Galeao();
+            break;
+        case 'v':
             novoNavio = new Veleiro();
             break;
-        case 3:
+        case 'V':
+            novoNavio = new Veleiro();
+            break;
+        case 'e':
             novoNavio = new Escuna();
             break;
-        case 4:
-             novoNavio = new Fragata();
-             break;
-        case 0:
+        case 'E':
+            novoNavio = new Escuna();
             break;
+        case 'f':
+            novoNavio = new Fragata();
+             break;
+        case 'F':
+            novoNavio = new Fragata();
+             break;
         default:
             break;
     }
+    
     
     novoNavio->setTipoNavio(tipoNavio);
     
@@ -451,7 +463,7 @@ void Jogo::startNewGame(){
     setNumMoedasIniciais(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
-    textUI.imprimeMapa(mapa);
+    //textUI.imprimeMapa(mapa);
     textUI.listaInfo(getNumMoedas(), getNumNavios());
     textUI.imprimeSegundaFase();
     
@@ -567,6 +579,8 @@ void Jogo::startNewGame(){
         
         if(cmd == "sair" || cmd == "SAIR")
             return;
+        
+        textUI.imprimeMapa(mapa);
         
 }
 }
