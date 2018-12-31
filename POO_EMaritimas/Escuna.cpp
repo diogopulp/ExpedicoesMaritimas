@@ -96,3 +96,11 @@ int Escuna::pescar(int peixe){
     }
 }
 
+bool Escuna::getAliancaDoNavio()const{
+    return aliado;
+}
+
+//barco pertence ao jogador
+void Escuna::setAliancaDoNavio(bool a){
+    aliado = a;
+}

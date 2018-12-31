@@ -37,6 +37,10 @@ public:
     void setQuantidadeTotalDeCarga(int quantCarga)override;
     void reabastecerAguaDoNavio()override;
     int getVelocidade()override;
+    bool getAliancaDoNavio() const override;
+    void setAliancaDoNavio(bool alianca) override;
+
+
 };
 
 #endif /* GALEAO_H */

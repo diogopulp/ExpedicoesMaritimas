@@ -34,6 +34,8 @@ private:
     vector<Porto*> portos;
     
 public:
+    void setNumeroDeMoedas(int moedas);
+    int getNumeroDeMoedas();
     Jogador();
     Jogador(const Jogador& orig);
     virtual ~Jogador();

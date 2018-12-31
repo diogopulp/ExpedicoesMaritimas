@@ -26,14 +26,14 @@ private:
     char tipo;
     int posicaoAtualX, posicaoAtualY, idNavio;
     static int identificador;
-    bool aliado = true;
-    
     
 protected:
     Jogo *jogo;
     int numeroDeSoldados;
     int litosDeAgua;
     int toneladasDePeixe, toneladasDeMercadoria, cargaTotal;
+    bool calmaria = false;
+    bool aliado = true;
 public:
     Navio(char t);
     Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
@@ -45,13 +45,14 @@ public:
     void setPosicaoAtualX(int x);
     void setPosicaoAtualY(int y);
     void setTipoNavio(char tipo);
-    void setBarcoAmigo(bool a);
     virtual int getVelocidade() = 0;
     virtual void setQuantidadeDePeixe(int quantPeixes) = 0;
     virtual void setQuantidadeDeMercadorias(int quantMercadorias) = 0;
     virtual void setQuantidadeTotalDeCarga(int quantCarga) = 0;
     virtual void reabastecerAguaDoNavio() = 0;
-    void setAliancaDoNavio(bool alianca);
+    int combate(Navio *nav);
+    //void setAliancaDoNavio(bool alianca);
+    virtual void setAliancaDoNavio(bool alianca) = 0;
     virtual void setQuantidadeDeAgua(int agua) = 0;
     virtual void setQuantidadeDeSoldados(int soldados) = 0;
     Navio * verificaNavioAdjacente(int x, int y);
@@ -64,7 +65,10 @@ public:
     virtual int getQuantidadeDePeixe()const = 0;
     virtual int getQuantidadeDeMercadorias()const = 0;
     char getTipoNavio();
-    bool getAliancaDoNavio();
+    virtual bool getAliancaDoNavio()const = 0;
+    //bool getAliancaDoNavio();
+    bool getEstadoDeCalmaria();
+    void setEstadoDeCalmaria(bool calmaria);
     //funcao que e chamada para criar os diferentes tipos de navios dentro do jogo
     static Navio * fabrica(char t);
     virtual Navio * duplica()const = 0;

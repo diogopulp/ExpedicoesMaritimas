@@ -99,3 +99,12 @@ void Galeao::setQuantidadeTotalDeCarga(int total){
 int Galeao::getVelocidade(){
     return 1;
 }
+
+bool Galeao::getAliancaDoNavio()const{
+    return aliado;
+}
+
+//barco pertence ao jogador
+void Galeao::setAliancaDoNavio(bool a){
+    aliado = a;
+}

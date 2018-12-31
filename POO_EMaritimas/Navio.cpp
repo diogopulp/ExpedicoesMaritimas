@@ -16,6 +16,7 @@
 #include "Galeao.h"
 #include "Veleiro.h"
 #include "Escuna.h"
+#include <math.h>
 
 using namespace std;
 /*
@@ -84,20 +85,50 @@ char Navio::getTipoNavio(){
 }
 
 //barco do jogador
+/*
 bool Navio::getAliancaDoNavio(){
     return aliado;
 }
 
 //barco pertence ao jogador
-void Navio::setBarcoAmigo(bool a){
+void Navio::setAliancaDoNavio(bool a){
     aliado = a;
 }
+*/
 Navio * Navio::verificaNavioAdjacente(int x, int y){
     
     // verificar se existe navio adjacente a x e y, se houver retorna navio senão retorna null
     
     return nullptr;
 }
+
+bool Navio::getEstadoDeCalmaria(){
+    return calmaria;
+}
+
+void Navio::setEstadoDeCalmaria(bool calmaria) {
+    calmaria = true;
+}
+
+int Navio::combate(Navio* nav){
+    int probNavioAliado = rand() % this->getNumeroDeSoldados();
+    int probNavioPirata = rand() % this->getNumeroDeSoldados();
+   
+    if(probNavioAliado > probNavioPirata){
+        this->setQuantidadeDeSoldados(this->getNumeroDeSoldados() * 0.8);
+        nav->setQuantidadeDeSoldados(nav->getNumeroDeSoldados() * 0.6);
+    }else{
+         nav->setQuantidadeDeSoldados(nav->getNumeroDeSoldados() * 0.8);
+         this->setQuantidadeDeSoldados(this->getNumeroDeSoldados() * 0.6);   
+    }
+    
+    if(this->getNumeroDeSoldados() <= 0){
+        return this->getIdNavio();
+    }else if(nav->getNumeroDeSoldados() <= 0){
+        return nav->getIdNavio();
+    }
+}
+
 //fabrica de objectos
 Navio * Navio::fabrica(char t){
     if(t == 'v'){

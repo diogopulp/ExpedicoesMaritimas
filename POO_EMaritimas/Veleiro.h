@@ -39,7 +39,10 @@ class Veleiro : public Navio {
         void setQuantidadeTotalDeCarga(int quantCarga)override;
         void reabastecerAguaDoNavio()override;
         int getVelocidade()override;
-        
+        void setAliancaDoNavio(bool alianca) override;
+        bool getAliancaDoNavio() const override;
+
+
 
 };
 

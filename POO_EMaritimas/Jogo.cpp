@@ -7,6 +7,7 @@
 
 #include <fstream>
 #include <math.h>
+#include <regex>
 #include "Jogo.h"
 #include "Terra.h"
 #include "Navio.h"
@@ -463,9 +464,10 @@ cmdsEnum Jogo::convertCommandToEnum(string const &command) {
 void Jogo::startNewGame(){
     
     string cmd;
-    
+    jogador = new Jogador();
+    jogador->setNumeroDeMoedas(textUI.moedasIniciais());
     // A interface é responsável por receber os comandos inseridos pelo utilizador
-    setNumMoedasIniciais(textUI.moedasIniciais());
+    //setNumMoedasIniciais(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
     textUI.listaInfo(getNumMoedas(), getNumNavios());
@@ -913,6 +915,9 @@ void Jogo::setDimensoesMapa(int lin, int col){
 
 void Jogo::moveNavio(Navio * navio, DIRECAO moverN){
     
+    if(navio->getEstadoDeCalmaria() == true || navio->getAliancaDoNavio() == false){
+        return;
+    }
     int novaLinha = 0, novaColuna = 0;
     int distancia = navio->getVelocidade();
     
@@ -998,52 +1003,167 @@ void Jogo::ocorreTempestade(){
     }
 }
 
+void Jogo::ocorreSereias(){
+    int linha=0, coluna=0;
+    
+    do{
+        linha = rand() % getLinhas();
+        coluna = rand() % getColunas();
+    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCarater()[0] == 'E' || mapa[linha][coluna]->getCarater()[0] == 'V' || mapa[linha][coluna]->getCarater()[0] == 'G' || mapa[linha][coluna]->getCarater()[0] == 'F'));
+}
+
+void Jogo::sereiasMatamSoldados(){
+    int navioRand = rand() % navios.size();
+    navios[navioRand]->setQuantidadeDeSoldados(navios[navioRand]->getNumeroDeSoldados() * 0.9);
+}
+
+void Jogo::ocorreCalmaria(){
+    int navioRand = rand() % navios.size();
+    navios[navioRand]->soldadosComsomemAgua();
+    navios[navioRand]->setEstadoDeCalmaria(true);
+    jogador->setNumeroDeMoedas(jogador->getNumeroDeMoedas() + 100);
+}
+
+void Jogo::ocorreMotim() {
+    int navioRand = rand() % navios.size();
+    if(navios[navioRand]->getTipoNavio() == 'E' || navios[navioRand]->getTipoNavio() == 'F'){
+        navios[navioRand]->setAliancaDoNavio(false);
+    }else{
+        delete navios[navioRand];
+        navios.erase(navios.begin() + navioRand);
+    }
+}
+
+void Jogo::apareceNavioPirata(){
+    int linha=0, coluna=0;
+    
+    do{
+        linha = rand() % getLinhas();
+        coluna = rand() % getColunas();
+    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCarater()[0] == '~'));
+    
+    int tipoDeNavioPirata = rand() % 2;
+    if(tipoDeNavioPirata <= 50){
+        Fragata *f = new Fragata();
+        f->setAliancaDoNavio(false);
+        f->setPosicaoAtualX(linha);
+        f->setPosicaoAtualY(coluna);
+    }else{
+        Veleiro *v = new Veleiro();
+        v->setAliancaDoNavio(false);
+        v->setPosicaoAtualX(linha);
+        v->setPosicaoAtualY(coluna);
+    }
+    
+}
+
+
 void Jogo::danificaNavio(Navio *navio, int posicaoArray){
     int probabilidade = rand() % 101;
     
     if(navio->getTipoNavio() == 'E'){
         if(probabilidade <= 20){
-            Escuna *escuna = dynamic_cast<Escuna *>(navio);
-            escuna->setQuantidadeDePeixe(0);
+            Escuna escuna;
+            navio = &escuna;
+            escuna.setQuantidadeDePeixe(0);
+            
+//            Escuna *escuna = dynamic_cast<Escuna *>(navio);
+//            escuna->setQuantidadeDePeixe(0);
         }else if(probabilidade > 20 && probabilidade <= 55){
             delete navio;
             navios.erase(navios.begin() + posicaoArray);
+        }else{
+            Escuna escuna;
+            navio = &escuna;
+            escuna.setQuantidadeDeAgua(100);
         }
     }else if(navio->getTipoNavio() == 'V'){
-        Veleiro *veleiro = dynamic_cast<Veleiro *>(navio);
-        int cargaDoVeleiro = veleiro->getQuantidadeDePeixe() + veleiro->getQuantidadeDeMercadorias();
-        if(cargaDoVeleiro > veleiro->getCargaTotal()/2){
+        Veleiro veleiro;
+        navio = &veleiro;
+        int cargaDoVeleiro = veleiro.getQuantidadeDePeixe() + veleiro.getQuantidadeDeMercadorias();
+//        Veleiro *veleiro = dynamic_cast<Veleiro *>(navio);
+//        int cargaDoVeleiro = veleiro->getQuantidadeDePeixe() + veleiro->getQuantidadeDeMercadorias();
+        if(cargaDoVeleiro > veleiro.getCargaTotal()/2){
             if(probabilidade <= 35){
                 delete navio;
                 navios.erase(navios.begin() + posicaoArray);
             }
-        }else{
-            if(probabilidade <= 20){
+        }else if(probabilidade <= 20){
                 delete navio;
                 navios.erase(navios.begin() + posicaoArray);
-            }
+        }else {
+            Veleiro veleiro;
+            navio = &veleiro;
+            veleiro.setQuantidadeDeAgua(200);
         }
     }else if(navio->getTipoNavio() == 'G'){
-        Galeao *galeao = dynamic_cast<Galeao *>(navio);
-        galeao->setQuantidadeDeSoldados(galeao->getNumeroDeSoldados() * 0.9);
-        
+        Galeao galeao;
+        navio = &galeao;
+        galeao.setQuantidadeDeSoldados(galeao.getNumeroDeSoldados() * 0.9);
+//        Galeao *galeao = dynamic_cast<Galeao *>(navio);
+//        galeao->setQuantidadeDeSoldados(galeao->getNumeroDeSoldados() * 0.9);
         if(probabilidade <= 40){
             delete navio;
             navios.erase(navios.begin() + posicaoArray);
+        }else{
+            Galeao galeao;
+            navio = &galeao;
+            galeao.setQuantidadeDeAgua(400);
         }
     }else if(navio->getTipoNavio() == 'F'){
-        Fragata *fragata = dynamic_cast<Fragata *>(navio);
-        int perdeSoldados = fragata->getNumeroDeSoldados() * 0.85;
-        fragata->setQuantidadeDeSoldados(perdeSoldados);
+        Fragata fragata;
+        navio = &fragata;
+        int perdeSoldados = fragata.getNumeroDeSoldados() * 0.85;
+        fragata.setQuantidadeDeSoldados(perdeSoldados);
+//        Fragata *fragata = dynamic_cast<Fragata *>(navio);
+//        int perdeSoldados = fragata->getNumeroDeSoldados() * 0.85;
+//        fragata->setQuantidadeDeSoldados(perdeSoldados);
         if(probabilidade <= 20){
             delete navio;
             navios.erase(navios.begin() + posicaoArray);
+        }else{
+            Fragata fragata;
+            navio = &fragata;
+            fragata.setQuantidadeDeAgua(500);
         }
     }
+}
+
+int Jogo::contaPontuacao(){
+    int totalDeBarcosAliados = 0;
+    for(int i = 0; i < navios.size(); i++){
+        if(navios[i]->getAliancaDoNavio() == true){
+            totalDeBarcosAliados++;
+        }
+    }
+    int pontuacao = (totalDeBarcosAliados * 100) + jogador->getNumeroDeMoedas();
+    return pontuacao;
+}
+
+void Jogo::venderNavio(int idNav){
     
-    
-    
-    
+    if(navios.size() > 0){
+        for(int i = 0; i < navios.size(); i++){
+            if(navios[i]->getIdNavio() == idNav){
+                delete navios[i];
+                navios.erase(navios.begin() + i);
+                jogador->setNumeroDeMoedas(jogador->getNumeroDeMoedas() + 100);
+                break;
+            }
+        }
+    }
+}
+
+void Jogo::verificaCombate(){
+    for(int i = 0; i< navios.size(); i++){
+        if(navios[i]->getAliancaDoNavio() == true){
+            Navio * nav = navios[i]->verificaNavioAdjacente(navios[i]->getPosicaoAtualX(), navios[i]->getPosicaoAtualY());
+            if(nav!=nullptr){
+               int navQuePerdeu = navios[i]->combate(nav);
+               destroiNavio(navQuePerdeu);
+            }
+        }
+    }
 
 }
 
@@ -1051,13 +1171,13 @@ void Jogo::ocorreEvento(){
     int probabilidade = rand() % 101;
     
     if(probabilidade <= 30){
-        //ocorreCalmaria();
+        ocorreCalmaria();
     }
     else if(probabilidade > 30 && probabilidade <= 60){
-        //ocorre tempestade
+        ocorreTempestade();
     }else if(probabilidade > 60 && probabilidade <= 80){
-        //ocorre sereias
+        ocorreSereias();
     }else{
-        //ocorre motim
+        ocorreMotim();
     }
 }

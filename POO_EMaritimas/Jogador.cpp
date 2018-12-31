@@ -22,3 +22,10 @@ Jogador::Jogador(const Jogador& orig) {
 Jogador::~Jogador() {
 }
 
+void Jogador::setNumeroDeMoedas(int moedas){
+    numeroTotalDeMoedas += moedas;
+}
+
+int Jogador::getNumeroDeMoedas(){
+    return numeroTotalDeMoedas;
+}

@@ -80,3 +80,12 @@ void Fragata::setQuantidadeTotalDeCarga(int total){
 int Fragata::getVelocidade(){
     return rand() % 2;
 }
+
+bool Fragata::getAliancaDoNavio()const{
+    return aliado;
+}
+
+//barco pertence ao jogador
+void Fragata::setAliancaDoNavio(bool a){
+    aliado = a;
+}

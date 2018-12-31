@@ -104,3 +104,12 @@ void Veleiro::transferePeixe(){
 void Veleiro::venderPeixeAoPorto(){
     
 }
+
+bool Veleiro::getAliancaDoNavio()const{
+    return aliado;
+}
+
+//barco pertence ao jogador
+void Veleiro::setAliancaDoNavio(bool a){
+    aliado = a;
+}

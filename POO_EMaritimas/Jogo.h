@@ -19,7 +19,7 @@
 #include "Mar.h"
 #include "Terra.h"
 #include "UI.h"
-
+#include "Jogador.h"
 #include <math.h>
 //#include <time.h>
 #include <iostream>
@@ -77,6 +77,7 @@ private:
     vector<vector<Celula*> > mapa;
     vector<Navio *> navios;
     int procuraNavio(int id)const;
+    Jogador *jogador;
     
     UI textUI;
     
@@ -162,10 +163,17 @@ public:
     int getSoldadosPorto();
     int getPrecoNavio();
     cmdsEnum convertCommandToEnum(string const &command);
-    
+    void apareceNavioPirata();
     void compraNavio(char tipoNavio);
     void ocorreTempestade();
+    void ocorreSereias();
+    void ocorreCalmaria();
+    void ocorreMotim();
     void ocorreEvento();
+    void sereiasMatamSoldados();
+    int contaPontuacao();
+    void venderNavio(int idNav);
+    void verificaCombate();
     void danificaNavio(Navio *navio, int i);
     void listaInfo();
     void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
