@@ -74,12 +74,13 @@ void Jogo::constroiMapa(int lin, int col){
     }           
 }
 
-
 void Jogo::compraNavio(char tipoNavio) {
 
     // Se o jogador não tiver moedas em quantia suficiente, sai da função
-    if(numeroMoedas < CUSTONAVIO)
+    if(jogador->getNumeroDeMoedas() < CUSTONAVIO){
+        textUI.mensagemSemMoedas();
         return;
+    }
     
     Navio *novoNavio;\
     
@@ -121,7 +122,7 @@ void Jogo::compraNavio(char tipoNavio) {
     colocarNavioEmPosicao(novoNavio, tipoNavio);
     navios.push_back(novoNavio);
     
-    numeroMoedas -= CUSTONAVIO;
+    jogador->dimNumMoedas(CUSTONAVIO);
     
     textUI.novoNavioConstruido(
             novoNavio->getIdNavio(),
@@ -347,7 +348,7 @@ void Jogo::lerFicheiro(){
                         setProbabilidadePirata(valor);
                         break;
                     case MOEDAS:
-                        setNumMoedasIniciais(valor);
+                        jogador->setNumeroDeMoedas(valor);
                         break;
                     case PROB_SEREIAS:
                         setProbabilidadeSereias(valor);
@@ -465,15 +466,16 @@ void Jogo::startNewGame(){
     
     string cmd;
     jogador = new Jogador();
-    jogador->setNumeroDeMoedas(textUI.moedasIniciais());
+    
     // A interface é responsável por receber os comandos inseridos pelo utilizador
-    //setNumMoedasIniciais(textUI.moedasIniciais());
+    jogador->setNumeroDeMoedas(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
-    textUI.listaInfo(jogador->getNumeroDeMoedas(), getNumNavios());
-    textUI.imprimeSegundaFase();  
+    textUI.imprimeSegundaFase();
     
     while(1){
+        
+        textUI.listaInfo(jogador->getNumeroDeMoedas(), getNumNavios());
             
         cmd = textUI.escutaComandos();
         cout << cmd;
@@ -501,7 +503,7 @@ void Jogo::startNewGame(){
                         // Implementar comportamento
                         break;
                     case lista:
-                        textUI.listaInfo(getNumMoedas(), getNumNavios());
+                        textUI.listaInfo(jogador->getNumeroDeMoedas(), getNumNavios());
                         break;
                     default:
                         break;
@@ -600,7 +602,7 @@ void Jogo::startGameFromFile() {
     constroiMapa(getLinhas(), getColunas());
     textUI.imprimeMapa(mapa);
     textUI.resumoFicheiroCarregado(
-            getNumMoedas(),
+            jogador->getNumeroDeMoedas(),
             getNumNavios(),
             getProbabilidadePirata(),
             getPrecoNavio(),
@@ -677,20 +679,6 @@ bool Jogo::setColunas(int colunas) {
 
 int Jogo::getColunas() {
     return colunas;
-}
-
-bool Jogo::setNumMoedasIniciais(int numMoedas){
-    
-    // O número de moedas inserido deve ser positivo
-    if(numMoedas > 0){
-        numeroMoedas = numMoedas;
-        return true;
-    }
-    return false;
-}
-
-int Jogo::getNumMoedas() { 
-    return  numeroMoedas; 
 }
 
 int Jogo::getNumNavios() {

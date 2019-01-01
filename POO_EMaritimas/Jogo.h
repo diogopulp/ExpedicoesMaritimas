@@ -84,7 +84,6 @@ private:
     DIRECAO moverN;
     int distancia;
     
-    int numeroMoedas;
     int numeroPortos;
     
     int linhas;
@@ -128,7 +127,6 @@ public:
     bool setPrecoCompraMercadoria(int preco);
     bool setPrecoVendeMercadoria(int preco);
     bool setSoldadosPorto(int num);
-    bool setNumMoedasIniciais(int nummoedas);
     bool setNumPortosIniciais(int numPortos);
     bool setPortoPrincipal();
 
@@ -144,7 +142,6 @@ public:
     void infoComandos();
     int getLinhas();
     int getColunas();
-    int getNumMoedas();
     int getNumNavios();
     int getNumPortos();
     void lerFicheiro();

@@ -41,3 +41,14 @@ void Jogador::addMaisMoedas(int moedas){
 int Jogador::getNumeroDeMoedas(){
     return numeroTotalDeMoedas;
 }
+
+ void Jogador::dimNumMoedas(int custo){
+     
+     int diferenca = numeroTotalDeMoedas - custo;
+     
+     if(diferenca > 0){
+         numeroTotalDeMoedas -=custo;
+     }else{
+         return;
+     }
+ }

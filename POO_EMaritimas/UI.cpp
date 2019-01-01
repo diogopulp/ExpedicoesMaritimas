@@ -197,12 +197,16 @@ void UI::imprimeOpcoes(){
     
 }
 
+void UI::mensagemSemMoedas(){
+    cout << endl << "Nao tem moedas suficientes para efetuar a compra." << endl;
+}
+
 void UI::mensagemErroFicheiro(){
-    cout << "Erro ao carregar ficheiro. Fechar programa.";
+    cout << endl <<"Erro ao carregar ficheiro. Fechar programa." << endl;
 }
 
 void UI::mensagemAvisoNavio(){
-    cout << "Não tem nenhum navio" << endl;
+    cout << endl <<"Não tem nenhum navio" << endl;
 }
 
 void UI::novoNavioConstruido(int navioID, int tipo, int posX, int posY){

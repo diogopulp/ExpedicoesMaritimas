@@ -71,7 +71,8 @@ public:
     void mensagemAvisoNavio();
     void novoNavioConstruido(int navioID, int tipo, int posX, int posY);
     void mensagemAvisoNavio(int id);
-    void imprimeLinhasColunas(int lin, int col);  
+    void imprimeLinhasColunas(int lin, int col); 
+    void mensagemSemMoedas();
     void resumoFicheiroCarregado(
         int nMoedas,
         int nNavios,
