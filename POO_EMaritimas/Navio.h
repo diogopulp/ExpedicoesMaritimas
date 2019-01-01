@@ -57,7 +57,6 @@ public:
     virtual void setAliancaDoNavio(bool alianca) = 0;
     virtual void setQuantidadeDeAgua(int agua) = 0;
     virtual void setQuantidadeDeSoldados(int soldados) = 0;
-    Navio * verificaNavioAdjacente(int x, int y);
     int getPosicaoAtualX();
     int getPosicaoAtualY();
     int getIdNavio()const;

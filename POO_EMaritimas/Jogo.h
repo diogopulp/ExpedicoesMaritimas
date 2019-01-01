@@ -31,6 +31,8 @@
 
 using namespace std;
 class Navio;
+class Escuna;
+
 
 enum DIRECAO {
     frente = 1,
@@ -178,6 +180,9 @@ public:
     void moverNavioAutomaticamente(int id);
     void moveNavio(Navio * navio, DIRECAO moverN);
     void escunasPescam();
+    Navio * verificaNavioAdjacente(int x, int y);
+    Escuna * procuraEscuna(int x, int y);
+    void verificaTransfernciaDePeixe();
     Celula * getCelula(int x, int y)const;
     Jogo & operator=(const Jogo& orig);
 

@@ -33,22 +33,17 @@ void Galeao::soldadosComsomemAgua(){
 }
 
 //lembrar de fazer verificacao de adjacencia
-void Galeao::transferePeixe(){
-    Navio *navioAlvo = verificaNavioAdjacente(getPosicaoAtualX(), getPosicaoAtualY());
+void Galeao::transferePeixe(Escuna *e){
     
-    if(navioAlvo->getCaractereNavio()[0]!= 'E'){
-        return;
-    }
-    
-    if(this->getCargaTotal() >= this->getQuantidadeDePeixe() + this->getQuantidadeDeMercadorias() + navioAlvo->getQuantidadeDePeixe()){
-        this->setQuantidadeDePeixe(this->getQuantidadeDePeixe() + navioAlvo->getQuantidadeDePeixe());
-        navioAlvo->setQuantidadeDePeixe(0);
+    if(this->getCargaTotal() >= this->getQuantidadeDePeixe() + this->getQuantidadeDeMercadorias() + e->getQuantidadeDePeixe()){
+        this->setQuantidadeDePeixe(this->getQuantidadeDePeixe() + e->getQuantidadeDePeixe());
+        e->setQuantidadeDePeixe(0);
     }
     else{
-        int peixeTotal = this->getQuantidadeDePeixe() + navioAlvo->getQuantidadeDePeixe();
+        int peixeTotal = this->getQuantidadeDePeixe() + e->getQuantidadeDePeixe();
         int peixeEscunaFinal = peixeTotal - this->getCargaTotal();
-        this->setQuantidadeDePeixe(navioAlvo->getQuantidadeDePeixe() - peixeEscunaFinal);
-        navioAlvo->setQuantidadeDePeixe(peixeEscunaFinal);
+        this->setQuantidadeDePeixe(e->getQuantidadeDePeixe() - peixeEscunaFinal);
+        e->setQuantidadeDePeixe(peixeEscunaFinal);
     }
 }
 

@@ -95,13 +95,6 @@ void Navio::setAliancaDoNavio(bool a){
     aliado = a;
 }
 */
-Navio * Navio::verificaNavioAdjacente(int x, int y){
-    
-    // verificar se existe navio adjacente a x e y, se houver retorna navio senão retorna null
-    
-    return nullptr;
-}
-
 bool Navio::getEstadoDeCalmaria(){
     return calmaria;
 }

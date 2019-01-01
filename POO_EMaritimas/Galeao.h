@@ -14,7 +14,7 @@
 #ifndef GALEAO_H
 #define GALEAO_H
 #include "Navio.h"
-
+#include "Escuna.h"
 
 class Galeao: public Navio{
 public:
@@ -23,7 +23,7 @@ public:
     Galeao(Jogo *jogo, int posX, int posy):Navio(jogo, "GGGG", posX, posy, true, 40, 400, 0, 0, 0){}
     void navegar(int posx, int posy);
     Navio * duplica()const override;
-    void transferePeixe();
+    void transferePeixe(Escuna *e);
     void soldadosComsomemAgua()override;
     void setQuantidadeDeAgua(int agua)override;
     void setQuantidadeDeSoldados(int soldados)override;

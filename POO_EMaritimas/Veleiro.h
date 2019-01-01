@@ -14,7 +14,7 @@
 #ifndef VELEIRO_H
 #define VELEIRO_H
 #include "Navio.h"
-
+#include "Escuna.h"
 
 class Veleiro : public Navio {
         
@@ -24,7 +24,7 @@ class Veleiro : public Navio {
         Veleiro(Jogo *jogo, int posX, int posy):Navio(jogo, "VVVV", posX, posy, true, 20, 200, 0, 0, 0){}
         void navegar(int posx, int posy);
         Navio * duplica()const override;
-        void transferePeixe();
+        void transferePeixe(Escuna *e);
         void venderPeixeAoPorto();
         void soldadosComsomemAgua()override;
         void setQuantidadeDeAgua(int agua)override;

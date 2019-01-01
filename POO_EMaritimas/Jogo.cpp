@@ -8,6 +8,7 @@
 #include <fstream>
 #include <math.h>
 #include <regex>
+#include <string.h>
 #include "Jogo.h"
 #include "Terra.h"
 #include "Navio.h"
@@ -913,7 +914,7 @@ void Jogo::setDimensoesMapa(int lin, int col){
     
 }
 
-void Jogo::moveNavio(Navio * navio, DIRECAO moverN){
+void Jogo::moveNavio(Navio *navio, DIRECAO moverN){
     
     if(navio->getEstadoDeCalmaria() == true || navio->getAliancaDoNavio() == false){
         return;
@@ -988,6 +989,7 @@ Celula * Jogo::getCelula(int x, int y) const{
 
 void Jogo::escunasPescam(){
     for(int i = 0; i < navios.size(); i++){
+        
         if(navios[i]->getCaractereNavio()[0] == 'E'){
             Escuna *e = dynamic_cast<Escuna *>(navios[i]);
             Celula *mar = getCelula(e->getPosicaoAtualX(), e->getPosicaoAtualY());
@@ -1157,7 +1159,7 @@ void Jogo::venderNavio(int idNav){
 void Jogo::verificaCombate(){
     for(int i = 0; i< navios.size(); i++){
         if(navios[i]->getAliancaDoNavio() == true){
-            Navio * nav = navios[i]->verificaNavioAdjacente(navios[i]->getPosicaoAtualX(), navios[i]->getPosicaoAtualY());
+            Navio * nav = this->verificaNavioAdjacente(navios[i]->getPosicaoAtualX(), navios[i]->getPosicaoAtualY());
             if(nav!=nullptr){
                int navQuePerdeu = navios[i]->combate(nav);
                destroiNavio(navQuePerdeu);
@@ -1179,5 +1181,63 @@ void Jogo::ocorreEvento(){
         ocorreSereias();
     }else{
         ocorreMotim();
+    }
+}
+
+Navio * Jogo::verificaNavioAdjacente(int x, int y){
+    
+    // verificar se existe navio adjacente a x e y, se houver retorna navio senão retorna null
+    
+    if(x + 1 > this->getLinhas() || y + 1 > this->getColunas() || x - 1 < 0 || y - 1 < 0){
+        return nullptr;
+    }
+    
+    for(int i = 0; i < navios.size(); i++){
+        int posx = navios[i]->getPosicaoAtualX();
+        int posy = navios[i]->getPosicaoAtualY();
+        if((posx == x - 1 && posy == y + 1) || (posx == x && posy == y + 1) || (posx == x + 1 && posy == y + 1) || (posx == x - 1 && posy == y) || (posx == x + 1 && posy == y) || (posx == x - 1 && posy == y - 1) || (posx == x && posy == y - 1) || (posx == x + 1 && posy == y - 1)){
+            return navios[i];
+        }
+    }
+    return nullptr;
+}
+
+
+
+Escuna * Jogo::procuraEscuna(int x, int y){
+     if(x + 1 > this->getLinhas() || y + 1 > this->getColunas() || x - 1 < 0 || y - 1 < 0){
+        return nullptr;;
+    }
+    
+     for(int i = 0; i < navios.size(); i++){
+        int posx = navios[i]->getPosicaoAtualX();
+        int posy = navios[i]->getPosicaoAtualY();
+        if(((posx == x - 1 && posy == y + 1) || (posx == x && posy == y + 1) || (posx == x + 1 && posy == y + 1) || (posx == x - 1 && posy == y) || (posx == x + 1 && posy == y) || (posx == x - 1 && posy == y - 1) || (posx == x && posy == y - 1) || (posx == x + 1 && posy == y - 1)) && navios[i]->getCaractereNavio() == "EEEE"){
+            Escuna escuna;
+            navios[i] = &escuna;
+            return (Escuna *)navios[i];
+        }
+    }
+     return nullptr;
+}
+
+void Jogo::verificaTransfernciaDePeixe(){
+    for(int i = 0; i < navios.size(); i++){
+        if(navios[i]->getCaractereNavio()[0] == 'G'){
+            Escuna *e = this->procuraEscuna(navios[i]->getPosicaoAtualX(),navios[i]->getPosicaoAtualY());
+            if(e != nullptr){
+                Galeao galeao;
+                navios[i] = &galeao;
+                galeao.transferePeixe(e);
+            }
+        }else if(navios[i]->getCaractereNavio()[0] == 'V' && navios[i]->getAliancaDoNavio() == true){
+            Escuna *e = this->procuraEscuna(navios[i]->getPosicaoAtualX(), navios[i]->getPosicaoAtualY());
+            if(e != nullptr){
+                Veleiro veleiro;
+                navios[i] = &veleiro;
+                veleiro.transferePeixe(e);
+            }
+            
+        }
     }
 }
