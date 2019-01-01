@@ -470,7 +470,7 @@ void Jogo::startNewGame(){
     //setNumMoedasIniciais(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
-    textUI.listaInfo(getNumMoedas(), getNumNavios());
+    textUI.listaInfo(jogador->getNumeroDeMoedas(), getNumNavios());
     textUI.imprimeSegundaFase();  
     
     while(1){

@@ -127,6 +127,7 @@ int Navio::combate(Navio* nav){
     }else if(nav->getNumeroDeSoldados() <= 0){
         return nav->getIdNavio();
     }
+    return 0;
 }
 
 //fabrica de objectos

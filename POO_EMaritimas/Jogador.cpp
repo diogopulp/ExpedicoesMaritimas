@@ -14,6 +14,7 @@
 #include "Jogador.h"
 
 Jogador::Jogador() {
+    numeroTotalDeMoedas = 0;
 }
 
 Jogador::Jogador(const Jogador& orig) {
@@ -23,7 +24,18 @@ Jogador::~Jogador() {
 }
 
 void Jogador::setNumeroDeMoedas(int moedas){
-    numeroTotalDeMoedas += moedas;
+    
+    if (moedas > 0){
+        numeroTotalDeMoedas = moedas;
+    }
+}
+
+void Jogador::addMaisMoedas(int moedas){
+    
+    if(numeroTotalDeMoedas >= 0){
+        numeroTotalDeMoedas += moedas;
+    }
+    
 }
 
 int Jogador::getNumeroDeMoedas(){

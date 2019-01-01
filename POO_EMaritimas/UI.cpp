@@ -89,7 +89,6 @@ void UI::imprimirMenu(){
 int UI::escutaMenu(){
     
     int escolha;
-    cin >> escolha;
     
     cout << ">> ";
     cin >> escolha;

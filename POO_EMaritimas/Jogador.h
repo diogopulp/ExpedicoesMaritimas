@@ -36,6 +36,7 @@ private:
 public:
     void setNumeroDeMoedas(int moedas);
     int getNumeroDeMoedas();
+    void addMaisMoedas(int moedas);
     Jogador();
     Jogador(const Jogador& orig);
     virtual ~Jogador();
