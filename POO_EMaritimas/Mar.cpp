@@ -12,12 +12,17 @@
  */
 
 #include "Mar.h"
+#include "Navio.h"
 
 Mar::Mar() {
     this->car = "~~~~";
 }
 
 Mar::Mar(const Mar& orig) {
+}
+
+Mar::Mar(Mar& orig){
+    
 }
 
 Mar::~Mar() {
@@ -29,4 +34,9 @@ void Mar::setQuantidadeDePeixeNaCelulaMar(int p){
 
 int Mar::getQuantidadeDePeixeNaCelulaMar(){
     return peixe;
+}
+
+void Mar::colocarNavio(Navio* navio){
+    this->navio = navio;
+    car = navio->getCaractereNavio();
 }

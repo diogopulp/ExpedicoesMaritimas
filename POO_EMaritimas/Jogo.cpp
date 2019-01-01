@@ -40,7 +40,6 @@ Jogo::~Jogo(){
     }
 }
 
-
 Jogo::Jogo() {
     //constroiMapa(10,20);
 
@@ -235,6 +234,18 @@ void Jogo::colocarNavioEmPosicao(Navio *navio) {
         novaColuna = rand() % getColunas();
 
     }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
+    
+    //static_cast<Mar>(&mapa[novaLinha][novaColuna]).colocarNavio(&navio);
+    
+    // Verificação se o objeto do mapa realmente se trata de um objeto do tipo Mar
+    //if(dynamic_cast<Mar>(mapa[novaLinha][novaColuna] != nullptr)){
+    
+    //TODO DownCasting
+        static_cast<Mar*>(mapa[novaLinha][novaColuna])->colocarNavio(navio);
+        
+        
+    //}
+    
     
     //mapa[novaLinha][novaColuna]->setCarater(caraterNavio);
     navio->setPosicaoAtualX(novaLinha);

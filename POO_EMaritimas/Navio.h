@@ -21,7 +21,7 @@ using namespace std;
 
 class Jogo;
 
-class Navio {
+class Navio{
     
 private:
     //Jogo *jogo;

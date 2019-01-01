@@ -20,7 +20,6 @@
 
 using namespace std;
 
-
 class Escuna : public Navio{
 
 public:

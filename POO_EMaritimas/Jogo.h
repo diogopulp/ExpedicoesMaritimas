@@ -112,6 +112,7 @@ public:
     Jogo(const Jogo& orig);
     
     Jogo();
+   
     
     bool setLinhas(int linhas);
     bool setColunas(int colunas);
