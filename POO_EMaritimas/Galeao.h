@@ -20,7 +20,7 @@ class Galeao: public Navio{
 public:
     Galeao();
     //so pode carregar ate 70 toneladas de carga - peixe e mercadorias
-    Galeao(Jogo *jogo, int posX, int posy):Navio(jogo, 'G', posX, posy, true, 40, 400, 0, 0, 0){}
+    Galeao(Jogo *jogo, int posX, int posy):Navio(jogo, "GGGG", posX, posy, true, 40, 400, 0, 0, 0){}
     void navegar(int posx, int posy);
     Navio * duplica()const override;
     void transferePeixe();

@@ -116,17 +116,17 @@ void Jogo::compraNavio(char tipoNavio) {
     }
     
     
-    novoNavio->setTipoNavio(tipoNavio);
+    //novoNavio->setTipoNavio(tipoNavio);
     
     // 1ª fase (apagar depois) -> colocar navio numa posição no mar
-    colocarNavioEmPosicao(novoNavio, tipoNavio);
+    colocarNavioEmPosicao(novoNavio);
     navios.push_back(novoNavio);
     
     jogador->dimNumMoedas(CUSTONAVIO);
     
     textUI.novoNavioConstruido(
             novoNavio->getIdNavio(),
-            novoNavio->getTipoNavio(),
+            novoNavio->getCaractereNavio()[0],
             novoNavio->getPosicaoAtualX(),
             novoNavio->getPosicaoAtualY()
     );
@@ -218,14 +218,15 @@ void Jogo::moverNavioAutomaticamente(int id){
         
     }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
     
-    //mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()]->setCarater('~');
     //mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
+    //mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()] = navio;
+    
     
 }
 
-void Jogo::colocarNavioEmPosicao(Navio *navio, char caraterNavio) {
+void Jogo::colocarNavioEmPosicao(Navio *navio) {
     int novaLinha = 0, novaColuna = 0;
     
     do{
@@ -976,7 +977,7 @@ Celula * Jogo::getCelula(int x, int y) const{
 
 void Jogo::escunasPescam(){
     for(int i = 0; i < navios.size(); i++){
-        if(navios[i]->getTipoNavio() == 'E'){
+        if(navios[i]->getCaractereNavio()[0] == 'E'){
             Escuna *e = dynamic_cast<Escuna *>(navios[i]);
             Celula *mar = getCelula(e->getPosicaoAtualX(), e->getPosicaoAtualY());
             int peixeSobra = e->pescar(((Mar *)mar)->getQuantidadeDePeixeNaCelulaMar());
@@ -1014,7 +1015,7 @@ void Jogo::ocorreCalmaria(){
 
 void Jogo::ocorreMotim() {
     int navioRand = rand() % navios.size();
-    if(navios[navioRand]->getTipoNavio() == 'E' || navios[navioRand]->getTipoNavio() == 'F'){
+    if(navios[navioRand]->getCaractereNavio()[0] == 'E' || navios[navioRand]->getCaractereNavio()[0] == 'F'){
         navios[navioRand]->setAliancaDoNavio(false);
     }else{
         delete navios[navioRand];
@@ -1049,7 +1050,7 @@ void Jogo::apareceNavioPirata(){
 void Jogo::danificaNavio(Navio *navio, int posicaoArray){
     int probabilidade = rand() % 101;
     
-    if(navio->getTipoNavio() == 'E'){
+    if(navio->getCaractereNavio()[0] == 'E'){
         if(probabilidade <= 20){
             Escuna escuna;
             navio = &escuna;
@@ -1065,7 +1066,7 @@ void Jogo::danificaNavio(Navio *navio, int posicaoArray){
             navio = &escuna;
             escuna.setQuantidadeDeAgua(100);
         }
-    }else if(navio->getTipoNavio() == 'V'){
+    }else if(navio->getCaractereNavio()[0] == 'V'){
         Veleiro veleiro;
         navio = &veleiro;
         int cargaDoVeleiro = veleiro.getQuantidadeDePeixe() + veleiro.getQuantidadeDeMercadorias();
@@ -1084,7 +1085,7 @@ void Jogo::danificaNavio(Navio *navio, int posicaoArray){
             navio = &veleiro;
             veleiro.setQuantidadeDeAgua(200);
         }
-    }else if(navio->getTipoNavio() == 'G'){
+    }else if(navio->getCaractereNavio()[0] == 'G'){
         Galeao galeao;
         navio = &galeao;
         galeao.setQuantidadeDeSoldados(galeao.getNumeroDeSoldados() * 0.9);
@@ -1098,7 +1099,7 @@ void Jogo::danificaNavio(Navio *navio, int posicaoArray){
             navio = &galeao;
             galeao.setQuantidadeDeAgua(400);
         }
-    }else if(navio->getTipoNavio() == 'F'){
+    }else if(navio->getCaractereNavio()[0] == 'F'){
         Fragata fragata;
         navio = &fragata;
         int perdeSoldados = fragata.getNumeroDeSoldados() * 0.85;

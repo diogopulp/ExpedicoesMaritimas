@@ -15,7 +15,7 @@
 
 #include "Veleiro.h"
 
-Veleiro::Veleiro() : Navio('v'){
+Veleiro::Veleiro() : Navio("VVVV"){
 }
 
 Navio * Veleiro::duplica()const{
@@ -85,7 +85,7 @@ int Veleiro::getVelocidade(){
 void Veleiro::transferePeixe(){
     Navio *navioAlvo = verificaNavioAdjacente(getPosicaoAtualX(), getPosicaoAtualY());
     
-    if(navioAlvo->getTipoNavio() != 'e'){
+    if(navioAlvo->getCaractereNavio()[0] != 'E'){
         return;
     }
     

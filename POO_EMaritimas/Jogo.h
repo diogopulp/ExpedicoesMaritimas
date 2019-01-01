@@ -173,7 +173,7 @@ public:
     void verificaCombate();
     void danificaNavio(Navio *navio, int i);
     void listaInfo();
-    void colocarNavioEmPosicao(Navio *navio, char caraterNavio);
+    void colocarNavioEmPosicao(Navio *navio);
     void moverNavioAutomaticamente(int id);
     void moveNavio(Navio * navio, DIRECAO moverN);
     void escunasPescam();

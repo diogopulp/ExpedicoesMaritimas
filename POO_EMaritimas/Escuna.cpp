@@ -14,7 +14,7 @@
 #include "Escuna.h"
 #include "Jogo.h"
 
-Escuna::Escuna() : Navio('E'){
+Escuna::Escuna() : Navio("EEEE"){
     
 }
 

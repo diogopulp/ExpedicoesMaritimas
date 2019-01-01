@@ -211,7 +211,7 @@ void UI::mensagemAvisoNavio(){
 
 void UI::novoNavioConstruido(int navioID, int tipo, int posX, int posY){
     
-    cout << "Novo navio construido com ID:" << navioID 
+    cout << endl << "Novo navio construido com ID:" << navioID 
     << ", Tipo:" << tipo
     << ", Posicao: (" << posX << "," << posY << ")" << endl;
     

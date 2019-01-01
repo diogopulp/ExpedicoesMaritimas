@@ -13,7 +13,7 @@
 
 #include "Galeao.h"
 
-Galeao::Galeao(): Navio('g') {
+Galeao::Galeao(): Navio("GGGG") {
 }
 
 
@@ -36,7 +36,7 @@ void Galeao::soldadosComsomemAgua(){
 void Galeao::transferePeixe(){
     Navio *navioAlvo = verificaNavioAdjacente(getPosicaoAtualX(), getPosicaoAtualY());
     
-    if(navioAlvo->getTipoNavio() != 'e'){
+    if(navioAlvo->getCaractereNavio()[0]!= 'E'){
         return;
     }
     

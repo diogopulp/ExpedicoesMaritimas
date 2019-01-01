@@ -14,7 +14,7 @@
 #include "Fragata.h"
 #include <math.h>
 #include <cstdlib>
-Fragata::Fragata():Navio('f') {
+Fragata::Fragata():Navio("FFFF") {
 
 }
 

@@ -14,6 +14,8 @@
 #ifndef NAVIO_H
 #define NAVIO_H
 
+#include <iostream>
+#include <string>
 #include <stdio.h>
 using namespace std;
 
@@ -23,7 +25,7 @@ class Navio {
     
 private:
     //Jogo *jogo;
-    char tipo;
+    string caractere;
     int posicaoAtualX, posicaoAtualY, idNavio;
     static int identificador;
     
@@ -35,8 +37,8 @@ protected:
     bool calmaria = false;
     bool aliado = true;
 public:
-    Navio(char t);
-    Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
+    Navio(string car);
+    Navio(Jogo *jogo, string car, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
     
     Navio(const Navio & orig);
 
@@ -44,7 +46,7 @@ public:
     
     void setPosicaoAtualX(int x);
     void setPosicaoAtualY(int y);
-    void setTipoNavio(char tipo);
+ 
     virtual int getVelocidade() = 0;
     virtual void setQuantidadeDePeixe(int quantPeixes) = 0;
     virtual void setQuantidadeDeMercadorias(int quantMercadorias) = 0;
@@ -64,7 +66,8 @@ public:
     virtual int getCargaTotal()const = 0;
     virtual int getQuantidadeDePeixe()const = 0;
     virtual int getQuantidadeDeMercadorias()const = 0;
-    char getTipoNavio();
+    string getCaractereNavio();
+    void setTipoNavio(string caractere);
     virtual bool getAliancaDoNavio()const = 0;
     //bool getAliancaDoNavio();
     bool getEstadoDeCalmaria();

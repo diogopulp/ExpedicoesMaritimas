@@ -21,7 +21,7 @@ class Fragata : public Navio {
 public:
     Fragata();
     //nao pode carregar carga nenhuma - so pode ter soldados e agua
-    Fragata(Jogo *jogo, int posX, int posy):Navio(jogo, 'F', posX, posy, true, 50, 500, 0, 0, 0){}
+    Fragata(Jogo *jogo, int posX, int posy):Navio(jogo, "FFFF", posX, posy, true, 50, 500, 0, 0, 0){}
     //void navegar(int posx, int posy);
     Navio * duplica()const override;
     void protegeGaleao();

@@ -27,9 +27,9 @@ tipo(t),posicaoAtualX(posX),posicaoAtualY(posY), idNavio(identificador++), aliad
 {}
 */
 
-Navio::Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal){
+Navio::Navio(Jogo *jogo, string car, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal){
     this->jogo = jogo;
-    this->tipo = t;
+    this->caractere = car;
     this->posicaoAtualX = posX;
     this->posicaoAtualY = posY;
     this->aliado = alianca;
@@ -42,7 +42,7 @@ Navio::Navio(Jogo *jogo, char t, int posX, int posY, bool alianca, int numSoldad
 //construtor por copia
 
 Navio::Navio(const Navio& orig):
-    tipo(orig.tipo), numeroDeSoldados(orig.numeroDeSoldados),
+    caractere(orig.caractere), numeroDeSoldados(orig.numeroDeSoldados),
             idNavio(identificador++), 
             posicaoAtualX(orig.posicaoAtualX), 
             posicaoAtualY(orig.posicaoAtualY){
@@ -50,7 +50,7 @@ Navio::Navio(const Navio& orig):
 
 int Navio::identificador = 0;
 
-Navio::Navio(char t):tipo(t){
+Navio::Navio(string car):caractere(car){
     
 }
 
@@ -64,8 +64,8 @@ void Navio::setPosicaoAtualY(int y){
     posicaoAtualY = y;
 }
 
-void Navio::setTipoNavio(char tipo) {
-    this->tipo = tipo;
+void Navio::setTipoNavio(string caractere) {
+    this->caractere = caractere;
 }
 
 int Navio::getPosicaoAtualX(){
@@ -80,8 +80,8 @@ int Navio::getIdNavio()const{
     return idNavio;
 }
 
-char Navio::getTipoNavio(){
-    return tipo;
+string Navio::getCaractereNavio(){
+    return caractere;
 }
 
 //barco do jogador
