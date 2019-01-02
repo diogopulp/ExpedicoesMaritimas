@@ -192,6 +192,7 @@ public:
     void getOptions();
     void adicionaNavioAoPorto(Navio* navio,int idPorto);
     void vaiPara(Navio* navio, Porto* porto);
+    void colocarNavioEmPosicaoAtualizada(Navio *navio);
    
 };
 

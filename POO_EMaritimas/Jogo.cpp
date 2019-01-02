@@ -252,6 +252,16 @@ void Jogo::colocarNavioEmPosicao(Navio *navio) {
     navio->setPosicaoAtualY(novaColuna);
 }
 
+void Jogo::colocarNavioEmPosicaoAtualizada(Navio *navio) {
+    
+   
+    //DownCasting
+    // Depois de colocado o navio no mapa, o navio deve ir buscar as coordenadas ao mapa
+    static_cast<Mar*>(mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()])->colocarNavio(navio);
+        
+    
+}
+
 void Jogo::colocarPortoEmPosicao(Porto *porto){
     int linhaTerra = 0, colunaTerra = 0;
     int linhaMar = 0, colunaMar = 0;
@@ -972,7 +982,8 @@ void Jogo::setDimensoesMapa(int lin, int col){
 
 void Jogo::moveNavio(Navio *navio, DIRECAO moverN){
     
-    cout << endl << "IDNAVIO: " << navio->getIdNavio() << endl;
+    cout << endl << "IDNAVIO: " << navio->getIdentificador() << endl;
+    cout << "NAVIO X: " << navio->getPosicaoAtualX() << " Y: " << navio->getPosicaoAtualY() << endl;
     
     if(navio->getEstadoDeCalmaria() == true || navio->getAliancaDoNavio() == false){
         return;
@@ -1036,8 +1047,12 @@ void Jogo::moveNavio(Navio *navio, DIRECAO moverN){
         }
             
     if((novaLinha <= getLinhas() || novaColuna <= getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] == '~'){
+        cout << endl << "ATUALIZA POSICAO" << endl;
         navio->setPosicaoAtualX(novaLinha);
         navio->setPosicaoAtualY(novaColuna);
+        
+        colocarNavioEmPosicaoAtualizada(navio);
+        cout << "NAVIO X: " << navio->getPosicaoAtualX() << " Y: " << navio->getPosicaoAtualY() << endl;
     }
 }
 

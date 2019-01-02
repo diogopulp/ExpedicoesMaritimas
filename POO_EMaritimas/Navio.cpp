@@ -81,10 +81,6 @@ int Navio::getPosicaoAtualY(){
     return posicaoAtualY;
 }
 
-int Navio::getIdNavio()const{
-    return idNavio;
-}
-
 string Navio::getCaractereNavio(){
     return caractere;
 }
@@ -121,9 +117,9 @@ int Navio::combate(Navio* nav){
     }
     
     if(this->getNumeroDeSoldados() <= 0){
-        return this->getIdNavio();
+        return this->getIdentificador();
     }else if(nav->getNumeroDeSoldados() <= 0){
-        return nav->getIdNavio();
+        return nav->getIdentificador();
     }
     return 0;
 }

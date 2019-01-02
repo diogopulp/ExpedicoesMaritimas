@@ -26,7 +26,7 @@ class Navio{
 private:
     //Jogo *jogo;
     string caractere;
-    int posicaoAtualX, posicaoAtualY, idNavio;
+    int posicaoAtualX, posicaoAtualY;
     static int identificador;
     
 protected:
@@ -59,7 +59,6 @@ public:
     virtual void setQuantidadeDeSoldados(int soldados) = 0;
     int getPosicaoAtualX();
     int getPosicaoAtualY();
-    int getIdNavio()const;
     int getIdentificador();
     virtual int getNumeroDeSoldados()const = 0;
     virtual int getQuantidadeDeAgua()const  = 0;
