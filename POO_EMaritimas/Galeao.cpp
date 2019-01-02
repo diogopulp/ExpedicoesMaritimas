@@ -13,9 +13,9 @@
 
 #include "Galeao.h"
 
-Galeao::Galeao(): Navio("GGGG") {
+Galeao::Galeao(): Navio("GGGG",40, 400, 70) {
+    
 }
-
 
 Navio * Galeao::duplica() const{
     return new Galeao(*this);

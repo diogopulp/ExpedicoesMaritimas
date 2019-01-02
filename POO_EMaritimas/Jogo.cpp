@@ -88,28 +88,29 @@ void Jogo::compraNavio(char tipoNavio) {
     
     switch(tipoNavio){
         case 'g':
-            novoNavio = new Galeao();
+            novoNavio = Navio::fabrica(tipoNavio);
+            //novoNavio = new Galeao();
             break;
         case 'G':
-            novoNavio = new Galeao();
+            novoNavio = Navio::fabrica(tipoNavio);
             break;
         case 'v':
-            novoNavio = new Veleiro();
+            novoNavio = Navio::fabrica(tipoNavio);
             break;
         case 'V':
-            novoNavio = new Veleiro();
+            novoNavio = Navio::fabrica(tipoNavio);
             break;
         case 'e':
-            novoNavio = new Escuna();
+            novoNavio = Navio::fabrica(tipoNavio);
             break;
         case 'E':
-            novoNavio = new Escuna();
+            novoNavio = Navio::fabrica(tipoNavio);
             break;
         case 'f':
-            novoNavio = new Fragata();
+            novoNavio = Navio::fabrica(tipoNavio);
              break;
         case 'F':
-            novoNavio = new Fragata();
+            novoNavio = Navio::fabrica(tipoNavio);
              break;
         default:
             textUI.mensagemErroComando();
@@ -126,10 +127,15 @@ void Jogo::compraNavio(char tipoNavio) {
     jogador->dimNumMoedas(CUSTONAVIO);
     
     textUI.novoNavioConstruido(
-            novoNavio->getIdNavio(),
+            novoNavio->getIdentificador(),
             novoNavio->getCaractereNavio()[0],
             novoNavio->getPosicaoAtualX(),
-            novoNavio->getPosicaoAtualY()
+            novoNavio->getPosicaoAtualY(),
+            novoNavio->getNumeroDeSoldados(),
+            novoNavio->getQuantidadeDeAgua(),
+            novoNavio->getQuantidadeDePeixe(),
+            novoNavio->getQuantidadeDeMercadorias()
+                    
     );
     
 }
@@ -146,7 +152,7 @@ void Jogo::moverNavioAutomaticamente(int id){
     
     for (int i = 0; i < getNumNavios(); i++) {
         
-        if (navios[i]->getIdNavio() == id) {
+        if (navios[i]->getIdentificador() == id) {
             navio = navios[i];
             navioEncontrado = true;
             break;
@@ -222,9 +228,9 @@ void Jogo::moverNavioAutomaticamente(int id){
     //mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
-    //mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()] = navio;
-    
-    
+    static_cast<Mar*>(mapa[navio->getPosicaoAtualX()][navio->getPosicaoAtualY()])->colocarNavio(navio);
+    cout << navio->getPosicaoAtualX();
+    cout << navio->getPosicaoAtualY();
 }
 
 void Jogo::colocarNavioEmPosicao(Navio *navio) {
@@ -558,7 +564,7 @@ void Jogo::startNewGame(){
                         compraNavio(tokens[1].at(0));
                         break;
                     case vendenav:
-                        // Implementar comportamento
+                        //
                         break;
                     case vende:
                         // Implementar comportamento
@@ -877,7 +883,7 @@ bool Jogo::adicionaNavio(char tipo){
 
 int Jogo::procuraNavio(int id)const{
     for(int i = 0; i<navios.size(); i++){
-        if(navios[i]->getIdNavio() == id){
+        if(navios[i]->getIdentificador() == id){
             return i; // posicao do vector
         }
     }
@@ -1172,7 +1178,7 @@ void Jogo::venderNavio(int idNav){
     
     if(navios.size() > 0){
         for(int i = 0; i < navios.size(); i++){
-            if(navios[i]->getIdNavio() == idNav){
+            if(navios[i]->getIdentificador() == idNav){
                 delete navios[i];
                 navios.erase(navios.begin() + i);
                 jogador->setNumeroDeMoedas(jogador->getNumeroDeMoedas() + 100);

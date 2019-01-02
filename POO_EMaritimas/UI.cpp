@@ -213,11 +213,12 @@ void UI::mensagemAvisoNavio(){
     cout << endl <<"Não tem nenhum navio" << endl;
 }
 
-void UI::novoNavioConstruido(int navioID, int tipo, int posX, int posY){
+void UI::novoNavioConstruido(int navioID, char tipo, int posX, int posY, int quantSoldados, int quantAgua, int quantPeixe, int quantMercadorias){
     
     cout << endl << "Novo navio construido com ID:" << navioID 
     << ", Tipo:" << tipo
-    << ", Posicao: (" << posX << "," << posY << ")" << endl;
+    << ", Posicao: (" << posX << "," << posY << ")" <<" Soldados: "<<quantSoldados<<" Agua: "<<quantAgua
+    << " Peixes: "<<quantPeixe << " Mercadorias: "<< quantMercadorias <<endl;
     
 }
 
