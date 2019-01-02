@@ -26,6 +26,7 @@ tipo(t),posicaoAtualX(posX),posicaoAtualY(posY), idNavio(identificador++), aliad
         toneladasDeMercadoria(quantMercadorias), cargaTotal(quantTotal)
 {}
 */
+int Navio::identificador = 0;
 
 Navio::Navio(Jogo *jogo, string car, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal){
     this->jogo = jogo;
@@ -38,24 +39,28 @@ Navio::Navio(Jogo *jogo, string car, int posX, int posY, bool alianca, int numSo
     this->toneladasDePeixe = quantPeixe;
     this->toneladasDeMercadoria = quantMercadorias;
     this->cargaTotal = quantTotal;
+    identificador++;
 }
 //construtor por copia
 
 Navio::Navio(const Navio& orig):
-    caractere(orig.caractere), numeroDeSoldados(orig.numeroDeSoldados),
-            idNavio(identificador++), 
+    caractere(orig.caractere), numeroDeSoldados(orig.numeroDeSoldados), 
             posicaoAtualX(orig.posicaoAtualX), 
             posicaoAtualY(orig.posicaoAtualY){
+    identificador++;
 }
 
-int Navio::identificador = 0;
-
-Navio::Navio(string car):caractere(car){
-    
+Navio::Navio(string car, int numSoldados, int quantAgua, int cargaMax):caractere(car),numeroDeSoldados(numSoldados),litosDeAgua(quantAgua){
+    this->aliado = true;
+    this->toneladasDePeixe = 0;
+    this->toneladasDeMercadoria=0;
+    this->cargaTotal = cargaMax;
+    identificador++;
 }
 
-
-
+int Navio::getIdentificador(){
+    return identificador;
+}
 void Navio::setPosicaoAtualX(int x){
     posicaoAtualX = x;
 }

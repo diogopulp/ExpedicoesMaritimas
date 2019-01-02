@@ -15,7 +15,7 @@
 
 #include "Veleiro.h"
 
-Veleiro::Veleiro() : Navio("VVVV"){
+Veleiro::Veleiro() : Navio("VVVV",20, 200, 40){
 }
 
 Navio * Veleiro::duplica()const{

@@ -39,7 +39,7 @@ protected:
 public:
     Navio(string car);
     Navio(Jogo *jogo, string car, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
-    
+     Navio(string car, int numSoldados, int quantAgua, int cargaMax);
     Navio(const Navio & orig);
 
     virtual ~Navio(){}
@@ -60,6 +60,7 @@ public:
     int getPosicaoAtualX();
     int getPosicaoAtualY();
     int getIdNavio()const;
+    int getIdentificador();
     virtual int getNumeroDeSoldados()const = 0;
     virtual int getQuantidadeDeAgua()const  = 0;
     virtual int getCargaTotal()const = 0;

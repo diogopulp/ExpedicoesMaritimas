@@ -70,7 +70,7 @@ public:
     void mensagemErroFicheiro();
     void mensagemErroComando();
     void mensagemAvisoNavio();
-    void novoNavioConstruido(int navioID, int tipo, int posX, int posY);
+    void novoNavioConstruido(int navioID, char tipo, int posX, int posY, int quantSoldados, int quantAgua, int quantPeixe, int quantMercadorias);
     void mensagemAvisoNavio(int id);
     void imprimeLinhasColunas(int lin, int col); 
     void mensagemSemMoedas();
