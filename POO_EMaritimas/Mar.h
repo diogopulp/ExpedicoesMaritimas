@@ -16,18 +16,24 @@
 
 #include "Celula.h"
 class Navio;
+class Porto;
 
 class Mar: public Celula {
     
 private:
     int peixe;
     Navio *navio;
+    Porto *porto;
     
 public:
     Mar();
     Mar(Mar& orig);
     Mar(const Mar& orig);
+    
+    // Colocar objetos
     void colocarNavio(Navio* navio);
+    void colocarPorto(Porto* porto);
+    
     virtual ~Mar();
     int getQuantidadeDePeixeNaCelulaMar();
     void setQuantidadeDePeixeNaCelulaMar(int peixe);

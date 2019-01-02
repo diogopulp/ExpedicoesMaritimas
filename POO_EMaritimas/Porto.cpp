@@ -69,4 +69,21 @@ bool Porto::getRelacaoAmizade(Navio navio){
     return false;
 }
 
+string Porto::getCaracterePorto(){
+    return car;
+}
+
+void Porto::setPosXMar(int posX){
+    posXMar = posX;
+}
+void Porto::setPosYMar(int posY){
+    posYMar = posY;
+}
+void Porto::setPosXTerra(int posX){
+    posXTerra = posX;
+}
+void Porto::setPosYTerra(int posY){
+    posYTerra = posY;
+}
+
 

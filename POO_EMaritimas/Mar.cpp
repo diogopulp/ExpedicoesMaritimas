@@ -13,6 +13,7 @@
 
 #include "Mar.h"
 #include "Navio.h"
+#include "Porto.h"
 
 Mar::Mar() {
     this->car = "~~~~";
@@ -39,4 +40,9 @@ int Mar::getQuantidadeDePeixeNaCelulaMar(){
 void Mar::colocarNavio(Navio* navio){
     this->navio = navio;
     car = navio->getCaractereNavio();
+}
+
+void Mar::colocarPorto(Porto* porto){
+    this->porto = porto;
+    car = porto->getCaracterePorto();
 }

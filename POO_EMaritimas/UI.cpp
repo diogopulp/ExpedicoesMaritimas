@@ -197,6 +197,10 @@ void UI::imprimeOpcoes(){
     
 }
 
+void UI::mensagemErroComando(){
+    cout << endl << "Insira um valor valido." << endl;
+}
+
 void UI::mensagemSemMoedas(){
     cout << endl << "Nao tem moedas suficientes para efetuar a compra." << endl;
 }

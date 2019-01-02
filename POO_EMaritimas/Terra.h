@@ -16,12 +16,21 @@
 
 #include "Celula.h"
 
+class Porto;
+
 class Terra: public Celula {
+    
+private:
+    Porto* porto;
+ 
+    
 public:
     Terra();
     Terra(const Terra& orig);
     virtual ~Terra();
-private:
+    
+    // Colocação dos objetos
+    void colocarPorto(Porto* porto);
 
 };
 

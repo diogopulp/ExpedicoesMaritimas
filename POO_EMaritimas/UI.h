@@ -68,6 +68,7 @@ public:
     int leInteiroInserido();
     void imprimeOpcoes();
     void mensagemErroFicheiro();
+    void mensagemErroComando();
     void mensagemAvisoNavio();
     void novoNavioConstruido(int navioID, int tipo, int posX, int posY);
     void mensagemAvisoNavio(int id);

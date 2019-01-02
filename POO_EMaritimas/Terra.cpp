@@ -12,6 +12,7 @@
  */
 
 #include "Terra.h"
+#include "Porto.h"
 
 Terra::Terra() {
     this->car = "....";
@@ -21,5 +22,10 @@ Terra::Terra(const Terra& orig) {
 }
 
 Terra::~Terra() {
+}
+
+void Terra::colocarPorto(Porto* porto){
+    this->porto = porto;
+    this->car = porto->getCaracterePorto();
 }
 

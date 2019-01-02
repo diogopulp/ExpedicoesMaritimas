@@ -138,6 +138,7 @@ public:
 
     void setDimensoesMapa(int lin, int col);
     
+    void colocarPortoEmPosicao(Porto *porto);
     void menuJogo();
     void getOptions()const;
     void startNewGame();

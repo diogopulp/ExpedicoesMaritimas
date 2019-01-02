@@ -84,7 +84,7 @@ void Jogo::compraNavio(char tipoNavio) {
     
     Navio *novoNavio;\
     
-    // TODO mudar isto!!!
+    // TODO mudar isto para a nova forma implementada pelo Daniel!
     
     switch(tipoNavio){
         case 'g':
@@ -112,7 +112,8 @@ void Jogo::compraNavio(char tipoNavio) {
             novoNavio = new Fragata();
              break;
         default:
-            break;
+            textUI.mensagemErroComando();
+            return;
     }
     
     
@@ -236,21 +237,44 @@ void Jogo::colocarNavioEmPosicao(Navio *navio) {
 
     }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
     
-    //static_cast<Mar>(&mapa[novaLinha][novaColuna]).colocarNavio(&navio);
     
-    // Verificação se o objeto do mapa realmente se trata de um objeto do tipo Mar
-    //if(dynamic_cast<Mar>(mapa[novaLinha][novaColuna] != nullptr)){
-    
-    //TODO DownCasting
+    //DownCasting
         static_cast<Mar*>(mapa[novaLinha][novaColuna])->colocarNavio(navio);
         
-        
-    //}
-    
-    
-    //mapa[novaLinha][novaColuna]->setCarater(caraterNavio);
     navio->setPosicaoAtualX(novaLinha);
     navio->setPosicaoAtualY(novaColuna);
+}
+
+void Jogo::colocarPortoEmPosicao(Porto *porto){
+    int linhaTerra = 0, colunaTerra = 0;
+    int linhaMar = 0, colunaMar = 0;
+    
+    // Encontra posição com terra
+    do{ 
+        linhaTerra = rand() % getLinhas();
+        colunaTerra = rand() % getColunas();
+
+    }while((linhaTerra > getLinhas() || colunaTerra > getColunas()) && mapa[linhaTerra][colunaTerra]->getCarater()[0] != '.');
+    
+    // NOTA: Neste momento os portos estão a ser construidos horizontalmente
+    // e não está a ser feita uma verificação dos limites do mapa!
+    
+    //do{
+        linhaMar = linhaTerra;
+        colunaMar = colunaTerra+1;
+    //}while();
+    
+    //DownCasting
+    static_cast<Terra*>(mapa[linhaTerra][colunaTerra])->colocarPorto(porto);
+    static_cast<Mar*>(mapa[linhaMar][colunaMar])->colocarPorto(porto);
+        
+    
+    porto->setPosXTerra(linhaTerra);
+    porto->setPosYTerra(colunaTerra);
+    porto->setPosXMar(linhaMar);
+    porto->setPosYMar(colunaMar);
+    
+   
 }
 
 int Jogo::converteValoresFicheiro(string chave) {
@@ -335,6 +359,7 @@ int Jogo::valorNaLinhaDoFicheiro(string linha) {
 
 void Jogo::lerFicheiro(){
 
+    // TODO o programa crasha quando chega aqui
     fstream ficheiro("startGame.txt");
     string linha;
     int valor;
@@ -484,6 +509,7 @@ void Jogo::startNewGame(){
     jogador->setNumeroDeMoedas(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
+    colocarPortoEmPosicao(new Porto());
     textUI.imprimeSegundaFase();
     
     while(1){

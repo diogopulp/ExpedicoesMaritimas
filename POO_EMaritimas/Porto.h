@@ -27,6 +27,8 @@ class Porto {
 private:
     string car;
     int numsoldados;
+    int posXMar, posYMar;
+    int posXTerra, posYTerra;
 
     // Amizade
     // 0 - Não conquistado;
@@ -49,6 +51,11 @@ public:
     void setNumSoldados(int num);
     int getNumSoldados();
     bool getRelacaoAmizade(Navio navio);
+    string getCaracterePorto();
+    void setPosXMar(int posX);
+    void setPosYMar(int posY);
+    void setPosXTerra(int posX);
+    void setPosYTerra(int posY);
 
 
 };
