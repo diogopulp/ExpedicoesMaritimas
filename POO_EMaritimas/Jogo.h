@@ -186,9 +186,12 @@ public:
     void verificaTransfernciaDePeixe();
     Celula * getCelula(int x, int y)const;
     Jogo & operator=(const Jogo& orig);
+    void adicionaNavioAoPorto(Navio* navio);
 
     //void moverNavioAutomaticamente(int numeroNavio);
     void getOptions();
+    void adicionaNavioAoPorto(Navio* navio,int idPorto);
+    void vaiPara(Navio* navio, Porto* porto);
    
 };
 

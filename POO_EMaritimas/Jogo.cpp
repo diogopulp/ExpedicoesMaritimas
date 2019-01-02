@@ -116,13 +116,14 @@ void Jogo::compraNavio(char tipoNavio) {
             return;
     }
     
-    
+ 
     //novoNavio->setTipoNavio(tipoNavio);
     
     // 1ª fase (apagar depois) -> colocar navio numa posição no mar
     colocarNavioEmPosicao(novoNavio);
     navios.push_back(novoNavio);
     
+    jogador->adicionaNavio(novoNavio);
     jogador->dimNumMoedas(CUSTONAVIO);
     
     textUI.novoNavioConstruido(
@@ -265,10 +266,13 @@ void Jogo::colocarPortoEmPosicao(Porto *porto){
     //}while();
     
     //DownCasting
+    // Adicionar o porto ao bloco de terra e ao bloco de mar
     static_cast<Terra*>(mapa[linhaTerra][colunaTerra])->colocarPorto(porto);
     static_cast<Mar*>(mapa[linhaMar][colunaMar])->colocarPorto(porto);
-        
     
+    // Adicionar o porto ao jogador
+    jogador->adicionaPorto(porto);
+        
     porto->setPosXTerra(linhaTerra);
     porto->setPosYTerra(colunaTerra);
     porto->setPosXMar(linhaMar);
@@ -355,6 +359,22 @@ int Jogo::valorNaLinhaDoFicheiro(string linha) {
     }
     
     return 0;
+}
+
+void Jogo::adicionaNavioAoPorto(Navio* navio,int idPorto){
+    
+    int tamanho;
+    
+    tamanho = jogador->getPortos().size();
+    
+    for(int i=0; i<tamanho; i++){
+        
+        if(idPorto == jogador->getPortos()[i]->getPortoID()){
+            cout << jogador->getPortos()[i]->getPortoID();
+        }
+        
+    }
+    
 }
 
 void Jogo::lerFicheiro(){
@@ -592,12 +612,15 @@ void Jogo::startNewGame(){
                         break;
                     case movenavio:
                         // Implementar comportamento
+                        cout << "MOVENAVIO";
+                        moveNavio(jogador->getNavios()[0],frente);
                         break;
                     case evnav:
                         // Implementar comportamento
                         break;
                     case vaipara:
                         // Implementar comportamento
+                        //colocaNavioNoPorto()
                         break;
                     case comprasold:
                         // Implementar comportamento
@@ -641,6 +664,7 @@ void Jogo::startGameFromFile() {
     constroiMapa(getLinhas(), getColunas());
     textUI.imprimeMapa(mapa);
     textUI.resumoFicheiroCarregado(
+    // TODO Possível ERRO!!!
             jogador->getNumeroDeMoedas(),
             getNumNavios(),
             getProbabilidadePirata(),
@@ -942,6 +966,8 @@ void Jogo::setDimensoesMapa(int lin, int col){
 
 void Jogo::moveNavio(Navio *navio, DIRECAO moverN){
     
+    cout << endl << "IDNAVIO: " << navio->getIdNavio() << endl;
+    
     if(navio->getEstadoDeCalmaria() == true || navio->getAliancaDoNavio() == false){
         return;
     }
@@ -951,6 +977,7 @@ void Jogo::moveNavio(Navio *navio, DIRECAO moverN){
         switch(moverN){
             case frente:
             {
+                cout << endl << "Frente!" << endl;
                 novaLinha = navio->getPosicaoAtualX();
                 novaColuna = navio->getPosicaoAtualY() + distancia;
             }
@@ -1001,11 +1028,10 @@ void Jogo::moveNavio(Navio *navio, DIRECAO moverN){
                 break;
     
         }
-
             
     if((novaLinha <= getLinhas() || novaColuna <= getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] == '~'){
-    navio->setPosicaoAtualX(novaLinha);
-    navio->setPosicaoAtualY(novaColuna);
+        navio->setPosicaoAtualX(novaLinha);
+        navio->setPosicaoAtualY(novaColuna);
     }
 }
 
@@ -1084,7 +1110,6 @@ void Jogo::apareceNavioPirata(){
     }
     
 }
-
 
 void Jogo::danificaNavio(Navio *navio, int posicaoArray){
     int probabilidade = rand() % 101;
@@ -1266,4 +1291,48 @@ void Jogo::verificaTransfernciaDePeixe(){
             
         }
     }
+}
+
+void Jogo::vaiPara(Navio* navio, Porto* porto){
+    
+    int difLin, difCol;
+    int comp1, comp2;
+   
+    //Saber qual das duas células que o Porto tem fica mais perto
+    comp1 = navio->getPosicaoAtualX() - porto->getPosXMar();
+    comp2 = navio->getPosicaoAtualX() - porto->getPosXTerra();
+    
+    if(abs(comp1) < abs(comp2)){
+        difLin = abs(comp1);
+    }else if(abs(comp1) > abs(comp2)){
+        difLin = abs(comp2);
+    }else{
+        difLin = abs(comp1);
+    }
+    
+    cout << endl << abs(comp1) << endl;
+    cout << endl << abs(comp2) << endl;
+    
+    //Saber qual das duas células que o Porto tem fica mais perto
+    comp1 = navio->getPosicaoAtualY() - porto->getPosYMar();
+    comp2 = navio->getPosicaoAtualY() - porto->getPosYTerra();
+    
+    if(abs(comp1) < abs(comp2)){
+        difCol = abs(comp1);
+    }else if(abs(comp1) > abs(comp2)){
+        difCol = abs(comp2);
+    }else{
+        difCol = abs(comp1);
+    }
+    
+    cout << endl << abs(comp1) << endl;
+    cout << endl << abs(comp2) << endl;
+    
+    /*for(int i=navio->getPosicaoAtualX(); i<difLin; i++){
+        
+        moveNavio(navio,)
+    }*/
+    
+    
+    
 }

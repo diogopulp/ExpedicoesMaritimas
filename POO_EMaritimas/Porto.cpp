@@ -13,9 +13,12 @@
 
 #include "Porto.h"
 
+int Porto::identificador = 0;
+
 Porto::Porto() {
     car = "PPPP";
     numsoldados = 0;
+    identificador++;
 }
 
 Porto::Porto(const Porto& orig) {
@@ -86,4 +89,26 @@ void Porto::setPosYTerra(int posY){
     posYTerra = posY;
 }
 
+void Porto::adicionarNavio(Navio* navio){
+    
+    navios.push_back(navio);
+    
+}
 
+
+int Porto::getPortoID(){
+    return identificador;
+}
+
+int Porto::getPosXMar(){
+    return posXMar;
+}
+int Porto::getPosYMar(){
+    return posYMar;
+}
+int Porto::getPosXTerra(){
+    return posXTerra;
+}
+int Porto::getPosYTerra(){
+    return posYTerra;
+}

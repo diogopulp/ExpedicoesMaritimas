@@ -34,6 +34,11 @@ private:
     vector<Porto*> portos;
     
 public:
+    
+    void adicionaPorto(Porto* porto);
+    void adicionaNavio(Navio* navio);
+    
+    vector<Porto*> getPortos();
     void setNumeroDeMoedas(int moedas);
     int getNumeroDeMoedas();
     void addMaisMoedas(int moedas);
@@ -41,6 +46,8 @@ public:
     Jogador();
     Jogador(const Jogador& orig);
     virtual ~Jogador();
+    vector<Navio*> getNavios();
+   
 
 };
 

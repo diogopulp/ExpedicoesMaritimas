@@ -14,6 +14,7 @@
 #include "Jogador.h"
 
 Jogador::Jogador() {
+    
     numeroTotalDeMoedas = 0;
 }
 
@@ -52,3 +53,21 @@ int Jogador::getNumeroDeMoedas(){
          return;
      }
  }
+ 
+ void Jogador::adicionaPorto(Porto* porto){   
+     portos.push_back(porto);
+ }
+ 
+ void Jogador::adicionaNavio(Navio* navio){
+     navios.push_back(navio);
+ }
+ 
+ vector<Porto*> Jogador::getPortos(){
+     return this->portos;
+ }
+ 
+ vector<Navio*> Jogador::getNavios(){
+     return this->navios;
+ }
+ 
+ 

@@ -25,7 +25,10 @@ using namespace std;
 class Porto {
     
 private:
+    
+    static int identificador;
     string car;
+    vector<Navio *> navios;
     int numsoldados;
     int posXMar, posYMar;
     int posXTerra, posYTerra;
@@ -45,17 +48,27 @@ public:
     Porto(const Porto& orig);
     virtual ~Porto();
     
+    void adicionarNavio(Navio* navio);
+    
     void lutar();
-    vector<Navio> navios;
     void conquistarPorto(Navio navio);
     void setNumSoldados(int num);
     int getNumSoldados();
     bool getRelacaoAmizade(Navio navio);
     string getCaracterePorto();
+    int getPortoID();
+    
+    // Criação do Porto
     void setPosXMar(int posX);
     void setPosYMar(int posY);
     void setPosXTerra(int posX);
     void setPosYTerra(int posY);
+    
+    // Gets
+    int getPosXMar();
+    int getPosYMar();
+    int getPosXTerra();
+    int getPosYTerra();
 
 
 };
