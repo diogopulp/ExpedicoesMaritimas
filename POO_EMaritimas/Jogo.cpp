@@ -262,6 +262,13 @@ void Jogo::colocarNavioEmPosicaoAtualizada(Navio *navio) {
     
 }
 
+void Jogo::desocuparMarDeNavio(int lin, int col){
+    
+    cout << endl << "LIN: " << lin << " COL: " << col << endl;
+    static_cast<Mar*>(mapa[lin][col])->removerNavio();
+    
+}
+
 void Jogo::colocarPortoEmPosicao(Porto *porto){
     int linhaTerra = 0, colunaTerra = 0;
     int linhaMar = 0, colunaMar = 0;
@@ -295,6 +302,29 @@ void Jogo::colocarPortoEmPosicao(Porto *porto){
     porto->setPosYMar(colunaMar);
     
    
+}
+
+DIRECAO Jogo::converteStringParaDirecao(string dir){
+    
+    if (dir == "C"){
+        return C;
+    }else if(dir == "B"){
+        return B;
+    }else if(dir == "E"){
+        return E;
+    }else if(dir == "D"){
+        return D;
+    }else if(dir == "CD"){
+        return CD;
+    }else if(dir == "CE"){
+        return CE;
+    }else if(dir == "BD"){
+        return BD;
+    }else if(dir == "BE"){
+        return BE;
+    }else{
+        return C; 
+    }
 }
 
 int Jogo::converteValoresFicheiro(string chave) {
@@ -628,8 +658,7 @@ void Jogo::startNewGame(){
                         break;
                     case movenavio:
                         // Implementar comportamento
-                        cout << "MOVENAVIO";
-                        moveNavio(jogador->getNavios()[0],frente);
+                        moveNavio(tokens[1],tokens[2]);
                         break;
                     case evnav:
                         // Implementar comportamento
@@ -980,62 +1009,91 @@ void Jogo::setDimensoesMapa(int lin, int col){
     
 }
 
-void Jogo::moveNavio(Navio *navio, DIRECAO moverN){
+void Jogo::moveNavio(string id, string dir){
     
-    cout << endl << "IDNAVIO: " << navio->getIdentificador() << endl;
-    cout << "NAVIO X: " << navio->getPosicaoAtualX() << " Y: " << navio->getPosicaoAtualY() << endl;
+    
+    int idNavio; 
+    DIRECAO moverN;
+    
+    // Converte para inteiro
+    std::istringstream iss (id);
+    iss >> idNavio;
+    
+    
+    //std::istringstream lol(direc);
+    //iss >> direc;
+    
+    moverN = converteStringParaDirecao(dir);
+    
+    cout << endl << "OINPUT: " << id << ", " << dir << endl;
+    cout << endl << "INPUT: " << idNavio << ", " << moverN << endl;
+    
+    
+   
+    
+    for(int i=0; i<jogador->getNavios().size(); i++){
+        if(jogador->getNavios()[i]->getIdentificador() == idNavio){
+            
+            Navio* navio = jogador->getNavios()[i];
+            
+     
     
     if(navio->getEstadoDeCalmaria() == true || navio->getAliancaDoNavio() == false){
         return;
     }
     int novaLinha = 0, novaColuna = 0;
+    int antigaLinha = 0, antigaColuna = 0;
+    
+    antigaLinha = navio->getPosicaoAtualX();
+    antigaColuna = navio->getPosicaoAtualY();
+    
     int distancia = navio->getVelocidade();
     
         switch(moverN){
-            case frente:
+            case D:
             {
-                cout << endl << "Frente!" << endl;
+     
                 novaLinha = navio->getPosicaoAtualX();
                 novaColuna = navio->getPosicaoAtualY() + distancia;
             }
                 break;
-            case diagonalfrenteDireita:
+            case BD:
             {
                 novaLinha = navio->getPosicaoAtualX() + distancia;
                 novaColuna = navio->getPosicaoAtualY() + distancia;
             }
                 break;
-            case diagonalfrenteEsquerda:
+            case CD:
             {
                 novaLinha = navio->getPosicaoAtualX() - distancia;
                 novaColuna = navio->getPosicaoAtualY() + distancia;
             }
                 break;
-            case direita:
+            case B:
             {
                 novaLinha = navio->getPosicaoAtualX() + distancia;
                 novaColuna = navio->getPosicaoAtualY();
             }
                 break;
-            case esquerda:
+            case C:
             {
                 novaLinha = navio->getPosicaoAtualX() - distancia;
                 novaColuna = navio->getPosicaoAtualY();
             }
                 break;
-            case tras:
+            case E:
             {
                 novaLinha = navio->getPosicaoAtualX();
                 novaColuna = navio->getPosicaoAtualY() - distancia;
             }
                 break;
-            case diagonaltrasDireita:
+            case BE:
             {
                 novaLinha = navio->getPosicaoAtualX() + distancia;
                 novaColuna = navio->getPosicaoAtualY() - distancia;
             }
                 break;
-            case diagonaltrasEsquerda:
+            case CE:
             {
                 novaLinha = navio->getPosicaoAtualX() - distancia;
                 novaColuna = navio->getPosicaoAtualY() - distancia;
@@ -1046,15 +1104,26 @@ void Jogo::moveNavio(Navio *navio, DIRECAO moverN){
     
         }
             
-    if((novaLinha <= getLinhas() || novaColuna <= getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] == '~'){
-        cout << endl << "ATUALIZA POSICAO" << endl;
-        navio->setPosicaoAtualX(novaLinha);
-        navio->setPosicaoAtualY(novaColuna);
+            if((novaLinha <= getLinhas() || novaColuna <= getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] == '~'){
+
+                navio->setPosicaoAtualX(novaLinha);
+                navio->setPosicaoAtualY(novaColuna);
+
+                colocarNavioEmPosicaoAtualizada(navio);
+                desocuparMarDeNavio(antigaLinha, antigaColuna);
+
+                cout << endl << "NLIN: " << novaLinha << " NCOL: " << novaColuna << endl;
+
+                cout << endl << "ALIN: " << antigaLinha << " ACOL: " << antigaColuna << endl;
+
+
+            }
         
-        colocarNavioEmPosicaoAtualizada(navio);
-        cout << "NAVIO X: " << navio->getPosicaoAtualX() << " Y: " << navio->getPosicaoAtualY() << endl;
+           }
     }
 }
+
+
 
 Celula * Jogo::getCelula(int x, int y) const{
     return mapa[x][y];

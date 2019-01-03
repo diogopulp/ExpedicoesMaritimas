@@ -35,14 +35,14 @@ class Escuna;
 
 
 enum DIRECAO {
-    frente = 1,
-    diagonalfrenteDireita,
-    diagonalfrenteEsquerda,
-    direita,
-    esquerda,
-    tras,
-    diagonaltrasDireita,
-    diagonaltrasEsquerda
+    C = 1,
+    B,
+    D,
+    E,
+    CD,
+    CE,
+    BD,
+    BE
 };
 
 enum cmdsEnum {
@@ -179,7 +179,7 @@ public:
     void listaInfo();
     void colocarNavioEmPosicao(Navio *navio);
     void moverNavioAutomaticamente(int id);
-    void moveNavio(Navio * navio, DIRECAO moverN);
+    void moveNavio(string id, string dir);
     void escunasPescam();
     Navio * verificaNavioAdjacente(int x, int y);
     Escuna * procuraEscuna(int x, int y);
@@ -193,6 +193,8 @@ public:
     void adicionaNavioAoPorto(Navio* navio,int idPorto);
     void vaiPara(Navio* navio, Porto* porto);
     void colocarNavioEmPosicaoAtualizada(Navio *navio);
+    void desocuparMarDeNavio(int lin, int col);
+    DIRECAO converteStringParaDirecao(string dir);
    
 };
 

@@ -34,6 +34,8 @@ public:
     void colocarNavio(Navio* navio);
     void colocarPorto(Porto* porto);
     
+    void removerNavio();
+    
     virtual ~Mar();
     int getQuantidadeDePeixeNaCelulaMar();
     void setQuantidadeDePeixeNaCelulaMar(int peixe);

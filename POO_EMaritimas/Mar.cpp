@@ -46,3 +46,11 @@ void Mar::colocarPorto(Porto* porto){
     this->porto = porto;
     car = porto->getCaracterePorto();
 }
+
+void Mar::removerNavio(){
+    
+    navio = nullptr;
+    delete navio;
+    
+    car = "~~~~";
+}
