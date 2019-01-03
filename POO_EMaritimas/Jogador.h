@@ -47,6 +47,7 @@ public:
     Jogador(const Jogador& orig);
     virtual ~Jogador();
     vector<Navio*> getNavios();
+    void venderNavio(int idNav);
    
 
 };

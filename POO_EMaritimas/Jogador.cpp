@@ -70,4 +70,21 @@ int Jogador::getNumeroDeMoedas(){
      return this->navios;
  }
  
+ void Jogador::venderNavio(int idNav){
+    
+    
+    if(navios.size() > 0){
+        for(int i = 0; i < navios.size(); i++){
+            if(navios[i]->getIdentificador() == idNav){
+                
+                navios.erase(navios.begin() + i);
+                setNumeroDeMoedas(getNumeroDeMoedas() + 100);
+                
+                break;
+                
+            }
+        }
+    }
+}
+ 
  

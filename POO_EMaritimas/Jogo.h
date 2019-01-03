@@ -55,7 +55,7 @@ enum cmdsEnum {
             lista,
             compra,      //<N><M>
             vende,       //<N>
-            movenavio,        //<N><X>
+            movenav,        //<idNavio> <direcao>
             automov,     //<N>
             stop,        //<N>
             pirata,      //<x><y><t>
@@ -173,7 +173,6 @@ public:
     void ocorreEvento();
     void sereiasMatamSoldados();
     int contaPontuacao();
-    void venderNavio(int idNav);
     void verificaCombate();
     void danificaNavio(Navio *navio, int i);
     void listaInfo();
@@ -195,6 +194,7 @@ public:
     void colocarNavioEmPosicaoAtualizada(Navio *navio);
     void desocuparMarDeNavio(int lin, int col);
     DIRECAO converteStringParaDirecao(string dir);
+    void vendeNavio(string id);
    
 };
 

@@ -531,8 +531,8 @@ cmdsEnum Jogo::convertCommandToEnum(string const &command) {
     else if(command == "vende"){
         enumCommand = vende;
     }
-    else if(command == "movenavio"){
-        enumCommand = movenavio;
+    else if(command == "movenav"){
+        enumCommand = movenav;
     }
     else if(command == "stop"){
         enumCommand = stop;
@@ -625,6 +625,7 @@ void Jogo::startNewGame(){
                         break;
                     case vendenav:
                         //
+                        vendeNavio(tokens[1]);
                         break;
                     case vende:
                         // Implementar comportamento
@@ -656,7 +657,7 @@ void Jogo::startNewGame(){
                     case compra:
                         // Implementar comportamento
                         break;
-                    case movenavio:
+                    case movenav:
                         // Implementar comportamento
                         moveNavio(tokens[1],tokens[2]);
                         break;
@@ -1019,24 +1020,12 @@ void Jogo::moveNavio(string id, string dir){
     std::istringstream iss (id);
     iss >> idNavio;
     
-    
-    //std::istringstream lol(direc);
-    //iss >> direc;
-    
     moverN = converteStringParaDirecao(dir);
-    
-    cout << endl << "OINPUT: " << id << ", " << dir << endl;
-    cout << endl << "INPUT: " << idNavio << ", " << moverN << endl;
-    
-    
-   
-    
+      
     for(int i=0; i<jogador->getNavios().size(); i++){
         if(jogador->getNavios()[i]->getIdentificador() == idNavio){
             
-            Navio* navio = jogador->getNavios()[i];
-            
-     
+            Navio* navio = jogador->getNavios()[i];         
     
     if(navio->getEstadoDeCalmaria() == true || navio->getAliancaDoNavio() == false){
         return;
@@ -1283,20 +1272,6 @@ int Jogo::contaPontuacao(){
     return pontuacao;
 }
 
-void Jogo::venderNavio(int idNav){
-    
-    if(navios.size() > 0){
-        for(int i = 0; i < navios.size(); i++){
-            if(navios[i]->getIdentificador() == idNav){
-                delete navios[i];
-                navios.erase(navios.begin() + i);
-                jogador->setNumeroDeMoedas(jogador->getNumeroDeMoedas() + 100);
-                break;
-            }
-        }
-    }
-}
-
 void Jogo::verificaCombate(){
     for(int i = 0; i< navios.size(); i++){
         if(navios[i]->getAliancaDoNavio() == true){
@@ -1424,5 +1399,28 @@ void Jogo::vaiPara(Navio* navio, Porto* porto){
     }*/
     
     
+    
+}
+
+void Jogo::vendeNavio(string id){
+     
+    int idNav; 
+    
+    // Converte para inteiro
+    std::istringstream iss (id);
+    iss >> idNav;
+    
+    jogador->venderNavio(idNav);
+    
+    for(int i=0; i<navios.size(); i++){
+        if(idNav == navios[i]->getIdentificador()){
+            
+            desocuparMarDeNavio(navios[i]->getPosicaoAtualX(), navios[i]->getPosicaoAtualY());
+            
+            //delete navios[i];
+            navios.erase(navios.begin() + i);
+            
+        }
+    }
     
 }
