@@ -560,6 +560,8 @@ cmdsEnum Jogo::convertCommandToEnum(string const &command) {
     }
     else if(command == "delg"){
         enumCommand = delg;
+    }else if(command == "moedas"){
+        enumCommand = moedas;
     }
     
     
@@ -624,7 +626,6 @@ void Jogo::startNewGame(){
                         compraNavio(tokens[1].at(0));
                         break;
                     case vendenav:
-                        //
                         vendeNavio(tokens[1]);
                         break;
                     case vende:
@@ -637,7 +638,7 @@ void Jogo::startNewGame(){
                         // Implementar comportamento
                         break;
                     case moedas:
-                        // Implementar comportamento
+                        acrescentaMoedas(tokens[1]);
                         break;
                     case saveg:
                         // Implementar comportamento
@@ -694,8 +695,10 @@ void Jogo::startNewGame(){
             
         }
         
-        if(cmd == "sair" || cmd == "SAIR")
+        if(cmd == "sair" || cmd == "SAIR"){
+            textUI.mostraPontuacao(contaPontuacao());
             return;
+        }
         
         textUI.imprimeMapa(mapa);
         
@@ -1416,11 +1419,20 @@ void Jogo::vendeNavio(string id){
         if(idNav == navios[i]->getIdentificador()){
             
             desocuparMarDeNavio(navios[i]->getPosicaoAtualX(), navios[i]->getPosicaoAtualY());
-            
-            //delete navios[i];
             navios.erase(navios.begin() + i);
             
         }
     }
     
+}
+
+void Jogo::acrescentaMoedas(string moedas){
+    
+    int novasMoedas; 
+    
+    // Converte para inteiro
+    std::istringstream iss (moedas);
+    iss >> novasMoedas;
+    
+    jogador->addMaisMoedas(novasMoedas);
 }

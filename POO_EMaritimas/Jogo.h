@@ -195,6 +195,7 @@ public:
     void desocuparMarDeNavio(int lin, int col);
     DIRECAO converteStringParaDirecao(string dir);
     void vendeNavio(string id);
+    void acrescentaMoedas(string moedas);
    
 };
 

@@ -16,6 +16,10 @@ UI::UI(const UI& orig) {
 UI::~UI() {
 }
 
+void UI::mostraPontuacao(int pontuacao){
+    cout << endl << "Pontuacao Final: " << pontuacao;
+}
+
 void UI::imprimeMapa(vector<vector<Celula*> > mapa){
     
     

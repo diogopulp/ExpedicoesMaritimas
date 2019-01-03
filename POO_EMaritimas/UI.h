@@ -90,6 +90,8 @@ public:
         int probMotim
     );
     
+    void mostraPontuacao(int pontuacao);
+    
    
 };
 
