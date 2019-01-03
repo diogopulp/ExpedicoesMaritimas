@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/BarcoRemos.o \
 	${OBJECTDIR}/Celula.o \
 	${OBJECTDIR}/Escuna.o \
 	${OBJECTDIR}/Fragata.o \
@@ -73,6 +74,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/poo_emaritimas: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/poo_emaritimas ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/BarcoRemos.o: BarcoRemos.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BarcoRemos.o BarcoRemos.cpp
 
 ${OBJECTDIR}/Celula.o: Celula.cpp
 	${MKDIR} -p ${OBJECTDIR}

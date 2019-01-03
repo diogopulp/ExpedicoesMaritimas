@@ -120,6 +120,12 @@ void Jogo::compraNavio(char tipoNavio) {
             novoNavio = Navio::fabrica(tipoNavio);
             novoNavio->setJogo(this);
              break;
+        case 'r':
+            novoNavio = Navio::fabrica(tipoNavio);
+             break;
+        case 'R':
+            novoNavio = Navio::fabrica(tipoNavio);
+             break;
         default:
             textUI.mensagemErroComando();
             return;

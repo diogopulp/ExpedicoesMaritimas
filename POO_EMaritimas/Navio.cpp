@@ -18,6 +18,8 @@
 #include "Escuna.h"
 #include "Porto.h"
 #include "Jogo.h"
+#include "BarcoRemos.h"
+
 #include <math.h>
 
 // Os ficheiros .cpp têm os “includes” das classes que utilizam 
@@ -134,17 +136,19 @@ int Navio::combate(Navio* nav){
 // Faábrica de objectos
 // Não é possível passar o jogo porque o construtor é 'static'
 Navio * Navio::fabrica(char t){
-    if(t == 'v'){
+    if(t == 'v' || t == 'V'){
         return new Veleiro();
     }
-    else if(t == 'g'){
+    else if(t == 'g' || t == 'G'){
         return new Galeao();
     }
-    else if(t == 'f'){
+    else if(t == 'f' || t == 'F'){
         return new Fragata();
     }
-    else if(t == 'e'){
+    else if(t == 'e' || t == 'E'){
         return new Escuna();
+    }else if(t == 'r' || t == 'R'){
+        return new BarcoRemos();
     }
     return nullptr;
 }
