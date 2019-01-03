@@ -196,6 +196,7 @@ public:
     DIRECAO converteStringParaDirecao(string dir);
     void vendeNavio(string id);
     void acrescentaMoedas(string moedas);
+    void criaNavioPirata(string x, string y, string tipo);
    
 };
 

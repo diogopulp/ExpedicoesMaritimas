@@ -60,7 +60,7 @@ void UI::infoComandos(){
             "lista\n"
             "compra <N><M>\n"
             "vende <N>\n"
-            "move <N><X>\n"
+            "movenav <N><X>\n"
             "auto <N>\n"
             "stop <N>\n"
             "pirata <x><y><t>\n"
@@ -147,6 +147,18 @@ void UI::imprimeNumMoedasJogador(int nMoedas){
 void UI::imprimeNumNaviosJogador(int nNavios){
     
     cout << "Navios do jogador: " << nNavios << endl << endl;
+    
+}
+
+void UI::imprimeListaNavios(vector <Navio*> navios){
+    
+    cout << endl;
+    for (int i=0; i<navios.size(); i++){
+        
+        cout << "[" << navios[i]->getCaractereNavio()[0] << "] ";
+    }
+    cout << endl;
+            
     
 }
 

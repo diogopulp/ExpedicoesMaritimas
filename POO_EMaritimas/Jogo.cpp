@@ -583,6 +583,7 @@ void Jogo::startNewGame(){
     while(1){
         
         textUI.listaInfo(jogador->getNumeroDeMoedas(), getNumNavios());
+        textUI.imprimeListaNavios(navios);
             
         cmd = textUI.escutaComandos();
         cout << cmd;
@@ -680,6 +681,7 @@ void Jogo::startNewGame(){
                 switch(command){
                     case pirata:
                         // Implementar comportamento
+                        criaNavioPirata(tokens[1],tokens[2],tokens[3]);
                         break;
                     case evpos:
                         // Implementar comportamento
@@ -1435,4 +1437,28 @@ void Jogo::acrescentaMoedas(string moedas){
     iss >> novasMoedas;
     
     jogador->addMaisMoedas(novasMoedas);
+}
+
+void Jogo::criaNavioPirata(string x, string y, string tipo){
+    
+    int lin, col; 
+    
+    // Converte para inteiro
+    std::istringstream iss (x);
+    iss >> lin;
+    
+    std::istringstream oss(y);
+    oss >> col;
+    
+    if(tipo == "F" || tipo == "f"){
+        Fragata* fragata = new Fragata();
+        
+        static_cast<Mar*>(mapa[lin][col])->colocarNavio(fragata);
+        navios.push_back(fragata);
+    }else if(tipo == "V" || tipo == "v"){
+        Veleiro* veleiro = new Veleiro();
+        
+        static_cast<Mar*>(mapa[lin][col])->colocarNavio(veleiro);
+        navios.push_back(veleiro);
+    }
 }

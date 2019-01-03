@@ -20,6 +20,7 @@
 #include <string>
 
 #include "Celula.h"
+#include "Navio.h"
 
 enum valoresFicheiro {
     LINHAS = 1,
@@ -91,6 +92,7 @@ public:
     );
     
     void mostraPontuacao(int pontuacao);
+    void imprimeListaNavios(vector <Navio*> navios);
     
    
 };
