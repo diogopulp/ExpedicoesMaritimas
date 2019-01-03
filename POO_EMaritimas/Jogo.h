@@ -78,6 +78,7 @@ private:
     
     vector<vector<Celula*> > mapa;
     vector<Navio *> navios;
+    vector<Porto *> portos;
     int procuraNavio(int id)const;
     Jogador *jogador;
     
@@ -190,13 +191,15 @@ public:
     //void moverNavioAutomaticamente(int numeroNavio);
     void getOptions();
     void adicionaNavioAoPorto(Navio* navio,int idPorto);
-    void vaiPara(Navio* navio, Porto* porto);
+    void vaiPara(string idNavio, string idPorto);
     void colocarNavioEmPosicaoAtualizada(Navio *navio);
     void desocuparMarDeNavio(int lin, int col);
     DIRECAO converteStringParaDirecao(string dir);
     void vendeNavio(string id);
     void acrescentaMoedas(string moedas);
     void criaNavioPirata(string x, string y, string tipo);
+    void adicionaNovoPorto(Porto* porto);
+    vector <Porto*> getPortos();
    
 };
 

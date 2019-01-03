@@ -572,12 +572,14 @@ void Jogo::startNewGame(){
     
     string cmd;
     jogador = new Jogador();
+    Porto* porto = new Porto();
     
     // A interface é responsável por receber os comandos inseridos pelo utilizador
     jogador->setNumeroDeMoedas(textUI.moedasIniciais());
     setDimensoesMapa(10,20);
     constroiMapa(getLinhas(),getColunas());
-    colocarPortoEmPosicao(new Porto());
+    colocarPortoEmPosicao(porto);
+    adicionaNovoPorto(porto);
     textUI.imprimeSegundaFase();
     
     while(1){
@@ -668,7 +670,7 @@ void Jogo::startNewGame(){
                         break;
                     case vaipara:
                         // Implementar comportamento
-                        //colocaNavioNoPorto()
+                        vaiPara(tokens[1],tokens[2]);
                         break;
                     case comprasold:
                         // Implementar comportamento
@@ -1363,14 +1365,45 @@ void Jogo::verificaTransfernciaDePeixe(){
     }
 }
 
-void Jogo::vaiPara(Navio* navio, Porto* porto){
+void Jogo::vaiPara(string idNavio, string idPorto){
+    
+    int idN;
+    int idP;
+    Navio* navio;
+    Porto* porto;
+    
+    // Converte para inteiro
+    std::istringstream iss (idNavio);
+    iss >> idN;
+    
+    // Converte para inteiro
+    std::istringstream oss (idPorto);
+    oss >> idP;
+    
+    // Verifica se existe um navio com o id inserido
+    for(int i=0; i<navios.size(); i++){
+        if(navios[i]->getIdentificador() == idN){
+            navio = navios[i];
+        }
+    }
+    
+    // Verifica se existe um porto com o id inserido
+    for(int i=0; i<portos.size(); i++){
+        if(portos[i]->getPortoID() == idP){
+            porto = portos[i];
+        }
+    }
+    
+    // O navio ou o porto inserido não exite
+    if(navio==nullptr || porto == nullptr)
+        return;
     
     int difLin, difCol;
     int comp1, comp2;
    
     //Saber qual das duas células que o Porto tem fica mais perto
-    comp1 = navio->getPosicaoAtualX() - porto->getPosXMar();
-    comp2 = navio->getPosicaoAtualX() - porto->getPosXTerra();
+    comp1 = porto->getPosXMar() - navio->getPosicaoAtualX();
+    comp2 = porto->getPosXTerra() - navio->getPosicaoAtualX();
     
     if(abs(comp1) < abs(comp2)){
         difLin = abs(comp1);
@@ -1380,12 +1413,12 @@ void Jogo::vaiPara(Navio* navio, Porto* porto){
         difLin = abs(comp1);
     }
     
-    cout << endl << abs(comp1) << endl;
-    cout << endl << abs(comp2) << endl;
+    cout << endl << comp1 << endl;
+    cout << endl << comp2 << endl;
     
     //Saber qual das duas células que o Porto tem fica mais perto
-    comp1 = navio->getPosicaoAtualY() - porto->getPosYMar();
-    comp2 = navio->getPosicaoAtualY() - porto->getPosYTerra();
+    comp1 = porto->getPosYMar() - navio->getPosicaoAtualY();
+    comp2 = porto->getPosYTerra() - navio->getPosicaoAtualY();
     
     if(abs(comp1) < abs(comp2)){
         difCol = abs(comp1);
@@ -1461,4 +1494,11 @@ void Jogo::criaNavioPirata(string x, string y, string tipo){
         static_cast<Mar*>(mapa[lin][col])->colocarNavio(veleiro);
         navios.push_back(veleiro);
     }
+}
+
+void Jogo::adicionaNovoPorto(Porto* porto){
+    portos.push_back(porto);
+}
+vector <Porto*> Jogo::getPortos(){
+    return portos;
 }
