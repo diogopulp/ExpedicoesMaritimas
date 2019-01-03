@@ -89,28 +89,36 @@ void Jogo::compraNavio(char tipoNavio) {
     switch(tipoNavio){
         case 'g':
             novoNavio = Navio::fabrica(tipoNavio);
+            novoNavio->setJogo(this);
             //novoNavio = new Galeao();
             break;
         case 'G':
             novoNavio = Navio::fabrica(tipoNavio);
+            novoNavio->setJogo(this);
             break;
         case 'v':
             novoNavio = Navio::fabrica(tipoNavio);
+            novoNavio->setJogo(this);
             break;
         case 'V':
             novoNavio = Navio::fabrica(tipoNavio);
+            novoNavio->setJogo(this);
             break;
         case 'e':
             novoNavio = Navio::fabrica(tipoNavio);
+            novoNavio->setJogo(this);
             break;
         case 'E':
             novoNavio = Navio::fabrica(tipoNavio);
+            novoNavio->setJogo(this);
             break;
         case 'f':
             novoNavio = Navio::fabrica(tipoNavio);
+            novoNavio->setJogo(this);
              break;
         case 'F':
             novoNavio = Navio::fabrica(tipoNavio);
+            novoNavio->setJogo(this);
              break;
         default:
             textUI.mensagemErroComando();
@@ -224,7 +232,7 @@ void Jogo::moverNavioAutomaticamente(int id){
                 break;
         }
         
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCaratere()[0] != '~');
     
     //mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
     navio->setPosicaoAtualX(novaLinha);
@@ -242,7 +250,7 @@ void Jogo::colocarNavioEmPosicao(Navio *navio) {
         novaLinha = rand() % getLinhas();
         novaColuna = rand() % getColunas();
 
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCaratere()[0] != '~');
     
     
     //DownCasting
@@ -278,14 +286,14 @@ void Jogo::colocarPortoEmPosicao(Porto *porto){
         linhaTerra = rand() % getLinhas();
         colunaTerra = rand() % getColunas();
 
-    }while((linhaTerra > getLinhas() || colunaTerra > getColunas()) && mapa[linhaTerra][colunaTerra]->getCarater()[0] != '.');
+    }while((linhaTerra > getLinhas() || colunaTerra > getColunas()) && mapa[linhaTerra][colunaTerra]->getCaratere()[0] != '.');
     
     // NOTA: Neste momento os portos estão a ser construidos horizontalmente
     // e não está a ser feita uma verificação dos limites do mapa!
     
     //do{
-        linhaMar = linhaTerra;
-        colunaMar = colunaTerra+1;
+    linhaMar = linhaTerra;
+    colunaMar = colunaTerra+1;
     //}while();
     
     //DownCasting
@@ -302,29 +310,6 @@ void Jogo::colocarPortoEmPosicao(Porto *porto){
     porto->setPosYMar(colunaMar);
     
    
-}
-
-DIRECAO Jogo::converteStringParaDirecao(string dir){
-    
-    if (dir == "C"){
-        return C;
-    }else if(dir == "B"){
-        return B;
-    }else if(dir == "E"){
-        return E;
-    }else if(dir == "D"){
-        return D;
-    }else if(dir == "CD"){
-        return CD;
-    }else if(dir == "CE"){
-        return CE;
-    }else if(dir == "BD"){
-        return BD;
-    }else if(dir == "BE"){
-        return BE;
-    }else{
-        return C; 
-    }
 }
 
 int Jogo::converteValoresFicheiro(string chave) {
@@ -945,6 +930,7 @@ int Jogo::getPrecoVendeMercadoria(){
 //criacao dos diferentes navios metodo a chamar quando se compra um navio
 bool Jogo::adicionaNavio(char tipo){
     Navio * n = Navio::fabrica(tipo);
+    n->setJogo(this);
     if(n == nullptr){
         return false;
     }
@@ -1018,103 +1004,22 @@ void Jogo::setDimensoesMapa(int lin, int col){
 }
 
 void Jogo::moveNavio(string id, string dir){
-    
-    
+      
     int idNavio; 
-    DIRECAO moverN;
     
     // Converte para inteiro
     std::istringstream iss (id);
     iss >> idNavio;
-    
-    moverN = converteStringParaDirecao(dir);
-      
+       
     for(int i=0; i<jogador->getNavios().size(); i++){
+        
+        // Verifica se existe um navio com o ID inserido pelo utilizador
         if(jogador->getNavios()[i]->getIdentificador() == idNavio){
             
+            cout << endl << "MANDA PRA NAVIO" << endl;
             Navio* navio = jogador->getNavios()[i];         
-    
-    if(navio->getEstadoDeCalmaria() == true || navio->getAliancaDoNavio() == false){
-        return;
-    }
-    int novaLinha = 0, novaColuna = 0;
-    int antigaLinha = 0, antigaColuna = 0;
-    
-    antigaLinha = navio->getPosicaoAtualX();
-    antigaColuna = navio->getPosicaoAtualY();
-    
-    int distancia = navio->getVelocidade();
-    
-        switch(moverN){
-            case D:
-            {
-     
-                novaLinha = navio->getPosicaoAtualX();
-                novaColuna = navio->getPosicaoAtualY() + distancia;
-            }
-                break;
-            case BD:
-            {
-                novaLinha = navio->getPosicaoAtualX() + distancia;
-                novaColuna = navio->getPosicaoAtualY() + distancia;
-            }
-                break;
-            case CD:
-            {
-                novaLinha = navio->getPosicaoAtualX() - distancia;
-                novaColuna = navio->getPosicaoAtualY() + distancia;
-            }
-                break;
-            case B:
-            {
-                novaLinha = navio->getPosicaoAtualX() + distancia;
-                novaColuna = navio->getPosicaoAtualY();
-            }
-                break;
-            case C:
-            {
-                novaLinha = navio->getPosicaoAtualX() - distancia;
-                novaColuna = navio->getPosicaoAtualY();
-            }
-                break;
-            case E:
-            {
-                novaLinha = navio->getPosicaoAtualX();
-                novaColuna = navio->getPosicaoAtualY() - distancia;
-            }
-                break;
-            case BE:
-            {
-                novaLinha = navio->getPosicaoAtualX() + distancia;
-                novaColuna = navio->getPosicaoAtualY() - distancia;
-            }
-                break;
-            case CE:
-            {
-                novaLinha = navio->getPosicaoAtualX() - distancia;
-                novaColuna = navio->getPosicaoAtualY() - distancia;
-            }
-                break;
-            default:
-                break;
-    
-        }
-            
-            if((novaLinha <= getLinhas() || novaColuna <= getColunas()) && mapa[novaLinha][novaColuna]->getCarater()[0] == '~'){
-
-                navio->setPosicaoAtualX(novaLinha);
-                navio->setPosicaoAtualY(novaColuna);
-
-                colocarNavioEmPosicaoAtualizada(navio);
-                desocuparMarDeNavio(antigaLinha, antigaColuna);
-
-                cout << endl << "NLIN: " << novaLinha << " NCOL: " << novaColuna << endl;
-
-                cout << endl << "ALIN: " << antigaLinha << " ACOL: " << antigaColuna << endl;
-
-
-            }
-        
+            navio->moveNavio(dir);
+             
            }
     }
 }
@@ -1149,7 +1054,7 @@ void Jogo::ocorreSereias(){
     do{
         linha = rand() % getLinhas();
         coluna = rand() % getColunas();
-    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCarater()[0] == 'E' || mapa[linha][coluna]->getCarater()[0] == 'V' || mapa[linha][coluna]->getCarater()[0] == 'G' || mapa[linha][coluna]->getCarater()[0] == 'F'));
+    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCaratere()[0] == 'E' || mapa[linha][coluna]->getCaratere()[0] == 'V' || mapa[linha][coluna]->getCaratere()[0] == 'G' || mapa[linha][coluna]->getCaratere()[0] == 'F'));
 }
 
 void Jogo::sereiasMatamSoldados(){
@@ -1180,7 +1085,7 @@ void Jogo::apareceNavioPirata(){
     do{
         linha = rand() % getLinhas();
         coluna = rand() % getColunas();
-    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCarater()[0] == '~'));
+    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCaratere()[0] == '~'));
     
     int tipoDeNavioPirata = rand() % 2;
     if(tipoDeNavioPirata <= 50){

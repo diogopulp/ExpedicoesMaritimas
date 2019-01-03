@@ -17,6 +17,7 @@
 #include "Veleiro.h"
 #include "Escuna.h"
 #include "Porto.h"
+#include "Jogo.h"
 #include <math.h>
 
 // Os ficheiros .cpp têm os “includes” das classes que utilizam 
@@ -130,7 +131,8 @@ int Navio::combate(Navio* nav){
     return 0;
 }
 
-//fabrica de objectos
+// Faábrica de objectos
+// Não é possível passar o jogo porque o construtor é 'static'
 Navio * Navio::fabrica(char t){
     if(t == 'v'){
         return new Veleiro();
@@ -186,8 +188,151 @@ void Navio::navega(Porto* porto){
     cout << endl << "DIF TERRA: " << comp2;
     cout << endl << "Resultado: " << difCol;
     
+    // Lógica a implementar:
     // Caso (-4, 0) -> C *4
     // Caso (-4, -1) -> CD *1 + C*3
     // ...
     
+    if(difLin > 0){
+        // Caso a diferença seja positiva (ACIMA)
+        for(int i = difLin; i>0; i--){
+            
+        }
+    }else if(difLin < 0){
+        // Caso a diferença seja negativa (ABAIXO)
+        for(int i = difLin; i<0; i++){
+            
+        }
+    }
+    
+    if(difCol > 0){
+         // Caso a diferença seja positiva (ACIMA)
+        for(int i = difCol; i>0; i--){
+            
+        }
+        
+    }else if(difCol < 0){
+         // Caso a diferença seja negativa (ABAIXO)
+        for(int i = difCol; i<0; i++){
+            
+        }
+        
+    }
+    
 }
+
+void Navio::moveNavio(string dir){
+    
+    DIRECAO moverN;
+    int novaLinha = 0, novaColuna = 0;
+    int antigaLinha = 0, antigaColuna = 0;
+   
+    moverN = converteStringParaDirecao(dir);
+    
+    cout <<  endl << "DIRECAO: " << moverN << endl;
+              
+    if(getEstadoDeCalmaria() == true || getAliancaDoNavio() == false){
+        return;
+    }
+    
+    antigaLinha = getPosicaoAtualX();
+    antigaColuna = getPosicaoAtualY();
+    
+    int distancia = getVelocidade();
+    
+    switch(moverN){
+        case D:
+        {
+
+            novaLinha = getPosicaoAtualX();
+            novaColuna = getPosicaoAtualY() + distancia;
+        }
+            break;
+        case BD:
+        {
+            novaLinha = getPosicaoAtualX() + distancia;
+            novaColuna = getPosicaoAtualY() + distancia;
+        }
+            break;
+        case CD:
+        {
+            novaLinha = getPosicaoAtualX() - distancia;
+            novaColuna = getPosicaoAtualY() + distancia;
+        }
+            break;
+        case B:
+        {
+            novaLinha = getPosicaoAtualX() + distancia;
+            novaColuna = getPosicaoAtualY();
+        }
+            break;
+        case C:
+        {
+
+            novaLinha = getPosicaoAtualX() - distancia;
+            novaColuna = getPosicaoAtualY();
+        }
+            break;
+        case E:
+        {
+            novaLinha = getPosicaoAtualX();
+            novaColuna = getPosicaoAtualY() - distancia;
+        }
+            break;
+        case BE:
+        {
+            novaLinha = getPosicaoAtualX() + distancia;
+            novaColuna = getPosicaoAtualY() - distancia;
+        }
+            break;
+        case CE:
+        {
+            novaLinha = getPosicaoAtualX() - distancia;
+            novaColuna = getPosicaoAtualY() - distancia;
+        }
+            break;
+        default:
+            break;
+
+    }
+            
+    if( (novaLinha <= jogo->getLinhas() || novaColuna <= jogo->getColunas()) 
+            && jogo->getMapa()[novaLinha][novaColuna]->getCaratere()[0] == '~'){
+   
+
+        setPosicaoAtualX(novaLinha);
+        setPosicaoAtualY(novaColuna);
+
+        jogo->colocarNavioEmPosicaoAtualizada(this);
+        jogo->desocuparMarDeNavio(antigaLinha, antigaColuna);
+
+    }
+        
+}
+
+DIRECAO Navio::converteStringParaDirecao(string dir){
+    
+    if (dir == "C"){
+        return C;
+    }else if(dir == "B"){
+        return B;
+    }else if(dir == "E"){
+        return E;
+    }else if(dir == "D"){
+        return D;
+    }else if(dir == "CD"){
+        return CD;
+    }else if(dir == "CE"){
+        return CE;
+    }else if(dir == "BD"){
+        return BD;
+    }else if(dir == "BE"){
+        return BE;
+    }else{
+        return C; 
+    }
+}
+
+    void Navio::setJogo(Jogo* jogo){
+        this->jogo = jogo;
+    }

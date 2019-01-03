@@ -29,7 +29,7 @@ public:
     explicit Celula(const Celula& orig);
     virtual ~Celula();
     void setCaratere(string carater);
-    virtual string getCarater() const;
+    virtual string getCaratere() const;
     //friend 
 private:
 

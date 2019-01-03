@@ -28,17 +28,26 @@ using namespace std;
 class Porto;
 class Jogo;
 
+enum DIRECAO {
+    C = 1,
+    B,
+    D,
+    E,
+    CD,
+    CE,
+    BD,
+    BE
+};
 
 class Navio{
     
 private:
-    //Jogo *jogo;
     string caractere;
     int posicaoAtualX, posicaoAtualY;
     static int identificador;
     
 protected:
-    Jogo *jogo;
+    Jogo* jogo;
     int numeroDeSoldados;
     int litosDeAgua;
     int toneladasDePeixe, toneladasDeMercadoria, cargaTotal;
@@ -85,8 +94,11 @@ public:
     //virtual void abasteceNavioComAgua(int agua) = 0;
     //virtual void soldadosPerdidos(int soldados) = 0;
     virtual void soldadosComsomemAgua() = 0;
+    void setJogo(Jogo* jogo);
     
     void navega(Porto* porto);
+    void moveNavio(string dir);
+    DIRECAO converteStringParaDirecao(string dir);
     
     /*
     int moverNavio(int direcao);

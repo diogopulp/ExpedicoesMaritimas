@@ -33,18 +33,6 @@ using namespace std;
 class Navio;
 class Escuna;
 
-
-enum DIRECAO {
-    C = 1,
-    B,
-    D,
-    E,
-    CD,
-    CE,
-    BD,
-    BE
-};
-
 enum cmdsEnum {
             info,  
             moedas = 1,  //<N>
@@ -194,7 +182,7 @@ public:
     void vaiPara(string idNavio, string idPorto);
     void colocarNavioEmPosicaoAtualizada(Navio *navio);
     void desocuparMarDeNavio(int lin, int col);
-    DIRECAO converteStringParaDirecao(string dir);
+    //DIRECAO converteStringParaDirecao(string dir);
     void vendeNavio(string id);
     void acrescentaMoedas(string moedas);
     void criaNavioPirata(string x, string y, string tipo);

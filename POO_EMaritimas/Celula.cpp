@@ -27,7 +27,7 @@ void Celula::setCaratere(string caracter) {
     car = caracter;
 }
 
-string Celula::getCarater() const{
+string Celula::getCaratere() const{
     return car;
 }
 

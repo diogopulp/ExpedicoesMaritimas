@@ -30,16 +30,16 @@ void UI::imprimeMapa(vector<vector<Celula*> > mapa){
 
             
             // Imprime os dois primeiros carateres
-            cout << mapa[i][j]->getCarater()[0] << " ";
-            cout << mapa[i][j]->getCarater()[1] << "   ";
+            cout << mapa[i][j]->getCaratere()[0] << " ";
+            cout << mapa[i][j]->getCaratere()[1] << "   ";
            
         }
         cout << endl;
         for(int j=0; j<mapa[i].size(); j++){
             
             // Imprime os restantes carateres
-            cout << mapa[i][j]->getCarater()[2] << " ";
-            cout << mapa[i][j]->getCarater()[3] << "   ";
+            cout << mapa[i][j]->getCaratere()[2] << " ";
+            cout << mapa[i][j]->getCaratere()[3] << "   ";
 
         }
     }   
