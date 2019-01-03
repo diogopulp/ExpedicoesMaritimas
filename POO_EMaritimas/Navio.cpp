@@ -196,7 +196,6 @@ void Navio::navega(Porto* porto){
     if(difLin < 0){
         // Caso a diferença seja positiva (ACIMA)
         for(int i = difLin; i<0; i++){
-            cout << endl << "CIMA";
             moveNavio("C");
         }
     }else if(difLin > 0){
@@ -209,13 +208,13 @@ void Navio::navega(Porto* porto){
     if(difCol > 0){
          // Caso a diferença seja positiva (ACIMA)
         for(int i = difCol; i>0; i--){
-            moveNavio("E");
+            moveNavio("D");
         }
         
     }else if(difCol < 0){
          // Caso a diferença seja negativa (ABAIXO)
         for(int i = difCol; i<0; i++){
-            moveNavio("D");
+            moveNavio("E");
         }
         
     }
