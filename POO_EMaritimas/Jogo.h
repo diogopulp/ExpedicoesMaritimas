@@ -179,7 +179,7 @@ public:
     //void moverNavioAutomaticamente(int numeroNavio);
     void getOptions();
     void adicionaNavioAoPorto(Navio* navio,int idPorto);
-    void vaiPara(string idNavio, string idPorto);
+    
     void colocarNavioEmPosicaoAtualizada(Navio *navio);
     void desocuparMarDeNavio(int lin, int col);
     //DIRECAO converteStringParaDirecao(string dir);
@@ -188,6 +188,9 @@ public:
     void criaNavioPirata(string x, string y, string tipo);
     void adicionaNovoPorto(Porto* porto);
     vector <Porto*> getPortos();
+    
+    void vaiPara(string idNavio, string idPorto);
+    void vaiPara(string idNavio, string x, string y);
    
 };
 

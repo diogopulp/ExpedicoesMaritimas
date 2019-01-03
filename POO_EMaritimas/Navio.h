@@ -98,6 +98,7 @@ public:
     
     void navega(Porto* porto);
     void moveNavio(string dir);
+    void vaiPara(int x, int y);
     DIRECAO converteStringParaDirecao(string dir);
     
     /*

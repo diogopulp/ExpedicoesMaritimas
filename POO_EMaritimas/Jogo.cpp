@@ -678,7 +678,7 @@ void Jogo::startNewGame(){
                         // Implementar comportamento
                         break;
                     case vaipara:
-                        // Implementar comportamento
+                        vaiPara(tokens[1],tokens[2],tokens[3]);
                         break;
                     default:
                         break;
@@ -1020,7 +1020,7 @@ void Jogo::moveNavio(string id, string dir){
         // Verifica se existe um navio com o ID inserido pelo utilizador
         if(jogador->getNavios()[i]->getIdentificador() == idNavio){
             
-            cout << endl << "MANDA PRA NAVIO" << endl;
+           
             Navio* navio = jogador->getNavios()[i];         
             navio->moveNavio(dir);
              
@@ -1309,6 +1309,43 @@ void Jogo::vaiPara(string idNavio, string idPorto){
         return;
     }else{
         navio->navega(porto);
+    }
+    
+}
+
+void Jogo::vaiPara(string idNavio, string x, string y){
+   
+    
+    int lin;
+    int col;
+    int idN;
+    Navio* navio;
+    
+    
+    // Converte para inteiro
+    std::istringstream iss (idNavio);
+    iss >> idN;
+    
+    // Converte para inteiro
+    std::istringstream oss (x);
+    oss >> lin;
+    
+    // Converte para inteiro
+    std::istringstream uss (y);
+    uss >> col;
+    
+    // Verifica se existe um navio com o id inserido
+    for(int i=0; i<navios.size(); i++){
+        if(navios[i]->getIdentificador() == idN){
+            navio = navios[i];
+        }
+    }
+    
+    // Se o navio inserido não exite
+    if(navio==nullptr){
+        return;
+    }else{
+        navio->vaiPara(lin,col);
     }
     
 }

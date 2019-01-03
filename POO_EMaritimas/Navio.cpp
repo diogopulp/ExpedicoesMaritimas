@@ -344,6 +344,14 @@ DIRECAO Navio::converteStringParaDirecao(string dir){
     }
 }
 
-    void Navio::setJogo(Jogo* jogo){
-        this->jogo = jogo;
-    }
+void Navio::setJogo(Jogo* jogo){
+    this->jogo = jogo;
+}
+
+void Navio::vaiPara(int x, int y){
+    
+    jogo->desocuparMarDeNavio(getPosicaoAtualX(),getPosicaoAtualY());
+    static_cast<Mar*>(jogo->getMapa()[x][y])->colocarNavio(this);
+    
+    
+}
