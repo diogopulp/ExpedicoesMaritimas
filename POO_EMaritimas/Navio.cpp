@@ -227,6 +227,7 @@ void Navio::navega(Porto* porto){
     if(difLin==0 && difCol == 0){
    
         porto->adicionarNavio(this);
+        this->setPorto(porto);
         jogo->desocuparMarDeNavio(this->getPosicaoAtualX(), this->getPosicaoAtualY());
     }
     
@@ -354,4 +355,40 @@ void Navio::vaiPara(int x, int y){
     setPosicaoAtualY(y);
     
     
+}
+
+void Navio::compraSoldados(int nSoldados){
+    
+    if(porto->vendeSoldados(nSoldados)>0){
+        adicionaSoldados(porto->vendeSoldados(nSoldados));
+    }
+    
+}
+
+void Navio::adicionaSoldados(int soldados){
+    
+    if(soldados <= 0)
+        return;
+    
+    if(numeroDeSoldados + soldados <= numMaxSoldados)
+        numeroDeSoldados += soldados;
+}
+
+
+void Navio::setNumMaxSoldados(int soldados){
+    
+    if(soldados >0)
+        numMaxSoldados = soldados;
+}
+
+int Navio::getNumMaxSoldados(){
+    return numMaxSoldados;
+}
+
+void Navio::setPorto(Porto* porto){
+    this->porto = porto;
+}
+
+Porto* Navio::getPorto(){
+    return porto;
 }

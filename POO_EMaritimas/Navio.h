@@ -48,6 +48,8 @@ private:
     
 protected:
     Jogo* jogo;
+    Porto* porto;
+    int numMaxSoldados;
     int numeroDeSoldados;
     int litosDeAgua;
     int toneladasDePeixe, toneladasDeMercadoria, cargaTotal;
@@ -99,6 +101,16 @@ public:
     void navega(Porto* porto);
     void moveNavio(string dir);
     void vaiPara(int x, int y);
+    
+    void setPorto(Porto* porto);
+    Porto* getPorto();
+    
+    void setNumMaxSoldados(int soldados);
+    int getNumMaxSoldados();
+    void adicionaSoldados(int soldados);
+    
+    void compraSoldados(int nSoldados);
+    
     DIRECAO converteStringParaDirecao(string dir);
     
     /*

@@ -663,7 +663,7 @@ void Jogo::startNewGame(){
                         vaiPara(tokens[1],tokens[2]);
                         break;
                     case comprasold:
-                        // Implementar comportamento
+                        compraSoldados(tokens[1],tokens[2]);
                         break;
                     default:
                         break;
@@ -1411,4 +1411,27 @@ void Jogo::adicionaNovoPorto(Porto* porto){
 }
 vector <Porto*> Jogo::getPortos(){
     return portos;
+}
+
+void Jogo::compraSoldados(string nSold, string idNav){
+    
+    int sold, nav; 
+    
+    // Converte para inteiro
+    std::istringstream iss (nSold);
+    iss >> sold;
+    
+    std::istringstream oss(idNav);
+    oss >> nav;
+    
+    for(int i=0; i<navios.size(); i++){
+        if(navios[i]->getIdentificador() == nav){
+            if(navios[i]->getPorto() == nullptr){
+                return;
+            }else{
+                navios[i]->compraSoldados(sold);
+            }
+        }
+    }
+    
 }

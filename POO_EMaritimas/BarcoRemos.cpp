@@ -14,7 +14,7 @@
 #include "BarcoRemos.h"
 
 BarcoRemos::BarcoRemos() : Navio("RRRR", 1, 100, 500){
-    
+    setNumMaxSoldados(1);
 }
 
 Navio * BarcoRemos::duplica() const{

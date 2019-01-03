@@ -15,7 +15,7 @@
 #include <math.h>
 #include <cstdlib>
 Fragata::Fragata():Navio("FFFF", 50, 500, 0) {
-
+    setNumMaxSoldados(50);
 }
 
 Navio * Fragata::duplica() const{

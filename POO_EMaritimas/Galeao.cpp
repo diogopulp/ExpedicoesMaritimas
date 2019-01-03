@@ -14,7 +14,7 @@
 #include "Galeao.h"
 
 Galeao::Galeao(): Navio("GGGG",40, 400, 70) {
-    
+    setNumMaxSoldados(40);
 }
 
 Navio * Galeao::duplica() const{

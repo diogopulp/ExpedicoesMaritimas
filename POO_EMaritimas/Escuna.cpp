@@ -15,7 +15,7 @@
 #include "Jogo.h"
 
 Escuna::Escuna() : Navio("EEEE", 10, 100, 20){
-    
+    setNumMaxSoldados(10);
 }
 
 Navio * Escuna::duplica() const{

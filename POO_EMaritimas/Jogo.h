@@ -191,6 +191,8 @@ public:
     
     void vaiPara(string idNavio, string idPorto);
     void vaiPara(string idNavio, string x, string y);
+    
+    void compraSoldados(string nSold, string idNav);
    
 };
 

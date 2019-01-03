@@ -116,3 +116,9 @@ int Porto::getPosYTerra(){
 int Porto::getNumNavios(){
     return navios.size();
 }
+
+int Porto::vendeSoldados(int nSoldados){
+    if(nSoldados > 0)
+        return nSoldados;
+    return 0;
+}

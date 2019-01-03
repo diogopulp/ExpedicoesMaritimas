@@ -71,6 +71,8 @@ public:
     int getPosYTerra();
     
     int getNumNavios();
+    
+    int vendeSoldados(int nSoldados);
 
 
 };

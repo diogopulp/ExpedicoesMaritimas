@@ -16,6 +16,7 @@
 #include "Veleiro.h"
 
 Veleiro::Veleiro() : Navio("VVVV",20, 200, 40){
+    setNumMaxSoldados(20);
 }
 
 Navio * Veleiro::duplica()const{
@@ -108,3 +109,4 @@ bool Veleiro::getAliancaDoNavio()const{
 void Veleiro::setAliancaDoNavio(bool a){
     aliado = a;
 }
+
