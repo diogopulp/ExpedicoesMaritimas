@@ -14,12 +14,20 @@
 #ifndef NAVIO_H
 #define NAVIO_H
 
+
 #include <iostream>
 #include <string>
 #include <stdio.h>
+
 using namespace std;
 
+// Em Navio.h apenas está declarado um ponteiro para Porto, 
+// não sendo preciso conhecer a estrutura de Porto, apenas o seu nome. Em Navio.h, 
+// em vez de se incluir toda a declaração de Porto, declara-se o seu nome:
+
+class Porto;
 class Jogo;
+
 
 class Navio{
     
@@ -39,7 +47,7 @@ protected:
 public:
     Navio(string car);
     Navio(Jogo *jogo, string car, int posX, int posY, bool alianca, int numSoldados, int quantAgua, int quantPeixe, int quantMercadorias, int quantTotal);
-     Navio(string car, int numSoldados, int quantAgua, int cargaMax);
+    Navio(string car, int numSoldados, int quantAgua, int cargaMax);
     Navio(const Navio & orig);
 
     virtual ~Navio(){}
@@ -77,6 +85,8 @@ public:
     //virtual void abasteceNavioComAgua(int agua) = 0;
     //virtual void soldadosPerdidos(int soldados) = 0;
     virtual void soldadosComsomemAgua() = 0;
+    
+    void navega(Porto* porto);
     
     /*
     int moverNavio(int direcao);

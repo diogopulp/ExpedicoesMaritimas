@@ -16,7 +16,13 @@
 #include "Galeao.h"
 #include "Veleiro.h"
 #include "Escuna.h"
+#include "Porto.h"
 #include <math.h>
+
+// Os ficheiros .cpp têm os “includes” das classes que utilizam 
+// porque não são incluídos (não provocando inclusão circular)
+// e normalmente necessitam de conhecer a estrutura das 
+// classes (membros variáveis e funções membros) .
 
 using namespace std;
 /*
@@ -139,4 +145,49 @@ Navio * Navio::fabrica(char t){
         return new Escuna();
     }
     return nullptr;
+}
+
+// O Navio deve ser autónomo e navegar para o porto indicado pelo jogador
+void Navio::navega(Porto* porto){
+    
+    int difLin, difCol;
+    int comp1, comp2;
+   
+    //Saber qual das duas células que o Porto tem fica mais perto
+    comp1 = porto->getPosXMar() - getPosicaoAtualX();
+    comp2 = porto->getPosXTerra() - getPosicaoAtualX();
+    
+    if(abs(comp1) < abs(comp2)){
+        difLin = comp1;
+    }else if(abs(comp1) > abs(comp2)){
+        difLin = comp2;
+    }else{
+        difLin = comp1;
+    }
+    
+    cout << endl << "DIF MAR: " << comp1;
+    cout << endl << "DIF TERRA: " << comp2;
+    cout << endl << "Resultado: " << difLin;
+    
+    //Saber qual das duas células que o Porto tem fica mais perto
+    comp1 = porto->getPosYMar() - getPosicaoAtualY();
+    comp2 = porto->getPosYTerra() - getPosicaoAtualY();
+    
+    
+    if(abs(comp1) < abs(comp2)){
+        difCol = comp1;
+    }else if(abs(comp1) > abs(comp2)){
+        difCol = comp2;
+    }else{
+        difCol = comp1;
+    }
+    
+    cout << endl << "DIF MAR: " << comp1;
+    cout << endl << "DIF TERRA: " << comp2;
+    cout << endl << "Resultado: " << difCol;
+    
+    // Caso (-4, 0) -> C *4
+    // Caso (-4, -1) -> CD *1 + C*3
+    // ...
+    
 }

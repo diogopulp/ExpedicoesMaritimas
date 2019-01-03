@@ -1367,6 +1367,7 @@ void Jogo::verificaTransfernciaDePeixe(){
 
 void Jogo::vaiPara(string idNavio, string idPorto){
     
+    
     int idN;
     int idP;
     Navio* navio;
@@ -1395,50 +1396,11 @@ void Jogo::vaiPara(string idNavio, string idPorto){
     }
     
     // O navio ou o porto inserido não exite
-    if(navio==nullptr || porto == nullptr)
+    if(navio==nullptr || porto == nullptr){
         return;
-    
-    int difLin, difCol;
-    int comp1, comp2;
-   
-    //Saber qual das duas células que o Porto tem fica mais perto
-    comp1 = porto->getPosXMar() - navio->getPosicaoAtualX();
-    comp2 = porto->getPosXTerra() - navio->getPosicaoAtualX();
-    
-    if(abs(comp1) < abs(comp2)){
-        difLin = comp1;
-    }else if(abs(comp1) > abs(comp2)){
-        difLin = comp2;
     }else{
-        difLin = comp1;
+        navio->navega(porto);
     }
-    
-    cout << endl << "DIF MAR: " << comp1;
-    cout << endl << "DIF TERRA: " << comp2;
-    cout << endl << "Resultado: " << difLin;
-    
-    //Saber qual das duas células que o Porto tem fica mais perto
-    comp1 = porto->getPosYMar() - navio->getPosicaoAtualY();
-    comp2 = porto->getPosYTerra() - navio->getPosicaoAtualY();
-    
-    if(abs(comp1) < abs(comp2)){
-        difCol = comp1;
-    }else if(abs(comp1) > abs(comp2)){
-        difCol = comp2;
-    }else{
-        difCol = comp1;
-    }
-    
-    cout << endl << "DIF MAR: " << comp1;
-    cout << endl << "DIF TERRA: " << comp2;
-    cout << endl << "Resultado: " << difCol;
-    
-    // Caso (-4, 0) -> C *4
-    // Caso (-4, -1) -> CD *1 + C*3
-    // ...
-    
-    
-    
     
 }
 
