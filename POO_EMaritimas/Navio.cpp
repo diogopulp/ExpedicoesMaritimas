@@ -158,6 +158,7 @@ void Navio::navega(Porto* porto){
     
     int difLin, difCol;
     int comp1, comp2;
+    
    
     //Saber qual das duas células que o Porto tem fica mais perto
     comp1 = porto->getPosXMar() - getPosicaoAtualX();
@@ -170,10 +171,7 @@ void Navio::navega(Porto* porto){
     }else{
         difLin = comp1;
     }
-    
-    cout << endl << "DIF MAR: " << comp1;
-    cout << endl << "DIF TERRA: " << comp2;
-    cout << endl << "Resultado: " << difLin;
+   
     
     //Saber qual das duas células que o Porto tem fica mais perto
     comp1 = porto->getPosYMar() - getPosicaoAtualY();
@@ -187,10 +185,7 @@ void Navio::navega(Porto* porto){
     }else{
         difCol = comp1;
     }
-    
-    cout << endl << "DIF MAR: " << comp1;
-    cout << endl << "DIF TERRA: " << comp2;
-    cout << endl << "Resultado: " << difCol;
+   
     
     // Lógica a implementar:
     // Caso (-4, 0) -> C *4
@@ -201,11 +196,13 @@ void Navio::navega(Porto* porto){
         // Caso a diferença seja positiva (ACIMA)
         for(int i = difLin; i<0; i++){
             moveNavio("C");
+            difLin++;
         }
     }else if(difLin > 0){
         // Caso a diferença seja negativa (ABAIXO)
         for(int i = difLin; i>0; i--){
             moveNavio("B");
+            difLin--;
         }
     }
     
@@ -213,14 +210,27 @@ void Navio::navega(Porto* porto){
          // Caso a diferença seja positiva (ACIMA)
         for(int i = difCol; i>0; i--){
             moveNavio("D");
+            difCol--;
         }
         
     }else if(difCol < 0){
          // Caso a diferença seja negativa (ABAIXO)
         for(int i = difCol; i<0; i++){
             moveNavio("E");
+            difCol++;
         }
         
+    }
+    
+    
+    // Quando chega à porta do Porto
+    if(difLin==0 && difCol == 0){
+        for(int i=0; i<jogo->getPortos().size(); i++){
+            if(jogo->getPortos()[i]->getPortoID() == porto->getPortoID()){
+                jogo->getPortos()[i]->adicionarNavio(this);
+            }
+        }
+        jogo->desocuparMarDeNavio(this->getPosicaoAtualX(), this->getPosicaoAtualY());
     }
     
 }
@@ -245,7 +255,6 @@ void Navio::moveNavio(string dir){
     switch(moverN){
         case D:
         {
-
             novaLinha = getPosicaoAtualX();
             novaColuna = getPosicaoAtualY() + distancia;
         }

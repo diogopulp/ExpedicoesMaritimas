@@ -112,3 +112,7 @@ int Porto::getPosXTerra(){
 int Porto::getPosYTerra(){
     return posYTerra;
 }
+
+int Porto::getNumNavios(){
+    return navios.size();
+}

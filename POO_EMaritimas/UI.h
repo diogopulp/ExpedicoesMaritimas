@@ -93,6 +93,7 @@ public:
     
     void mostraPontuacao(int pontuacao);
     void imprimeListaNavios(vector <Navio*> navios);
+    void mostraNaviosPorto(int nNavios, int idPorto);
     
    
 };

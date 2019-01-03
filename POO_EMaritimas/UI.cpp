@@ -146,8 +146,13 @@ void UI::imprimeNumMoedasJogador(int nMoedas){
 
 void UI::imprimeNumNaviosJogador(int nNavios){
     
-    cout << "Navios do jogador: " << nNavios << endl << endl;
+    cout << endl << "Navios do jogador: " << nNavios << endl << endl;
     
+}
+
+void UI::mostraNaviosPorto(int nNavios, int idPorto){
+    
+    cout << endl << "Navios no porto " << idPorto << ": " <<  nNavios << endl << endl;
 }
 
 void UI::imprimeListaNavios(vector <Navio*> navios){

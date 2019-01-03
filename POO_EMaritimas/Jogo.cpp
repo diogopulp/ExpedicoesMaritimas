@@ -577,6 +577,8 @@ void Jogo::startNewGame(){
         
         textUI.listaInfo(jogador->getNumeroDeMoedas(), getNumNavios());
         textUI.imprimeListaNavios(navios);
+        textUI.mostraNaviosPorto(porto->getNumNavios(), porto->getPortoID());
+        
             
         cmd = textUI.escutaComandos();
         cout << cmd;

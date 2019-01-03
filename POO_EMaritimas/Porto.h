@@ -69,6 +69,8 @@ public:
     int getPosYMar();
     int getPosXTerra();
     int getPosYTerra();
+    
+    int getNumNavios();
 
 
 };
