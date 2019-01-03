@@ -193,28 +193,29 @@ void Navio::navega(Porto* porto){
     // Caso (-4, -1) -> CD *1 + C*3
     // ...
     
-    if(difLin > 0){
+    if(difLin < 0){
         // Caso a diferença seja positiva (ACIMA)
-        for(int i = difLin; i>0; i--){
-            
-        }
-    }else if(difLin < 0){
-        // Caso a diferença seja negativa (ABAIXO)
         for(int i = difLin; i<0; i++){
-            
+            cout << endl << "CIMA";
+            moveNavio("C");
+        }
+    }else if(difLin > 0){
+        // Caso a diferença seja negativa (ABAIXO)
+        for(int i = difLin; i>0; i--){
+            moveNavio("B");
         }
     }
     
     if(difCol > 0){
          // Caso a diferença seja positiva (ACIMA)
         for(int i = difCol; i>0; i--){
-            
+            moveNavio("E");
         }
         
     }else if(difCol < 0){
          // Caso a diferença seja negativa (ABAIXO)
         for(int i = difCol; i<0; i++){
-            
+            moveNavio("D");
         }
         
     }
@@ -228,8 +229,6 @@ void Navio::moveNavio(string dir){
     int antigaLinha = 0, antigaColuna = 0;
    
     moverN = converteStringParaDirecao(dir);
-    
-    cout <<  endl << "DIRECAO: " << moverN << endl;
               
     if(getEstadoDeCalmaria() == true || getAliancaDoNavio() == false){
         return;

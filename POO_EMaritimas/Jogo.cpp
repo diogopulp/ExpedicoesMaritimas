@@ -610,7 +610,6 @@ void Jogo::startNewGame(){
                         // Implementar comportamento
                         break;
                     case compranav:
-                        // Envia o primeiro caractere do token
                         compraNavio(tokens[1].at(0));
                         break;
                     case vendenav:
@@ -646,15 +645,13 @@ void Jogo::startNewGame(){
                     case compra:
                         // Implementar comportamento
                         break;
-                    case movenav:
-                        // Implementar comportamento
+                    case movenav:                  
                         moveNavio(tokens[1],tokens[2]);
                         break;
                     case evnav:
                         // Implementar comportamento
                         break;
-                    case vaipara:
-                        // Implementar comportamento
+                    case vaipara:                       
                         vaiPara(tokens[1],tokens[2]);
                         break;
                     case comprasold:
@@ -667,7 +664,6 @@ void Jogo::startNewGame(){
             {
                 switch(command){
                     case pirata:
-                        // Implementar comportamento
                         criaNavioPirata(tokens[1],tokens[2],tokens[3]);
                         break;
                     case evpos:
@@ -948,11 +944,11 @@ int Jogo::procuraNavio(int id)const{
     /*posicao impossivel*/
 }
 
-/*remove navio do jogo
+//remove navio do jogo
 //destroi o navio alvo
 //liberta memoria dinamica
 //retirar do vector o ponteiro que aponta para a memoria que ja foi livertada anteriormente
- */
+
 bool Jogo::destroiNavio(int id){
     int alvo = procuraNavio(id);
     if(alvo == -1){
