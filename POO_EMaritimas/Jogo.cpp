@@ -1406,35 +1406,37 @@ void Jogo::vaiPara(string idNavio, string idPorto){
     comp2 = porto->getPosXTerra() - navio->getPosicaoAtualX();
     
     if(abs(comp1) < abs(comp2)){
-        difLin = abs(comp1);
+        difLin = comp1;
     }else if(abs(comp1) > abs(comp2)){
-        difLin = abs(comp2);
+        difLin = comp2;
     }else{
-        difLin = abs(comp1);
+        difLin = comp1;
     }
     
-    cout << endl << comp1 << endl;
-    cout << endl << comp2 << endl;
+    cout << endl << "DIF MAR: " << comp1;
+    cout << endl << "DIF TERRA: " << comp2;
+    cout << endl << "Resultado: " << difLin;
     
     //Saber qual das duas células que o Porto tem fica mais perto
     comp1 = porto->getPosYMar() - navio->getPosicaoAtualY();
     comp2 = porto->getPosYTerra() - navio->getPosicaoAtualY();
     
     if(abs(comp1) < abs(comp2)){
-        difCol = abs(comp1);
+        difCol = comp1;
     }else if(abs(comp1) > abs(comp2)){
-        difCol = abs(comp2);
+        difCol = comp2;
     }else{
-        difCol = abs(comp1);
+        difCol = comp1;
     }
     
-    cout << endl << abs(comp1) << endl;
-    cout << endl << abs(comp2) << endl;
+    cout << endl << "DIF MAR: " << comp1;
+    cout << endl << "DIF TERRA: " << comp2;
+    cout << endl << "Resultado: " << difCol;
     
-    /*for(int i=navio->getPosicaoAtualX(); i<difLin; i++){
-        
-        moveNavio(navio,)
-    }*/
+    // Caso (-4, 0) -> C *4
+    // Caso (-4, -1) -> CD *1 + C*3
+    // ...
+    
     
     
     
