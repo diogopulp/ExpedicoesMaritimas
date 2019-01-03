@@ -225,11 +225,8 @@ void Navio::navega(Porto* porto){
     
     // Quando chega à porta do Porto
     if(difLin==0 && difCol == 0){
-        for(int i=0; i<jogo->getPortos().size(); i++){
-            if(jogo->getPortos()[i]->getPortoID() == porto->getPortoID()){
-                jogo->getPortos()[i]->adicionarNavio(this);
-            }
-        }
+   
+        porto->adicionarNavio(this);
         jogo->desocuparMarDeNavio(this->getPosicaoAtualX(), this->getPosicaoAtualY());
     }
     
@@ -349,9 +346,12 @@ void Navio::setJogo(Jogo* jogo){
 }
 
 void Navio::vaiPara(int x, int y){
+   
     
     jogo->desocuparMarDeNavio(getPosicaoAtualX(),getPosicaoAtualY());
     static_cast<Mar*>(jogo->getMapa()[x][y])->colocarNavio(this);
+    setPosicaoAtualX(x);
+    setPosicaoAtualY(y);
     
     
 }
