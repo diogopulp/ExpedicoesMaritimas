@@ -19,6 +19,7 @@
 #include "Porto.h"
 #include "Jogo.h"
 #include "BarcoRemos.h"
+#include "global_vars.cpp"
 
 #include <math.h>
 
@@ -307,22 +308,45 @@ void Navio::moveNavio(string dir){
             break;
 
     }
+    
+    cout << endl  << "NOVALINHA: " << novaLinha << " NOVA COLUNA: " << novaColuna;
             
-    if( (novaLinha <= jogo->getLinhas() || novaColuna <= jogo->getColunas()) 
-            && jogo->getMapa()[novaLinha][novaColuna]->getCaratere()[0] == '~'){
+    if( (novaLinha < NUMLINHAS && novaColuna < NUMCOLUNAS && novaLinha >= 0 && novaColuna >= 0) 
+            && jogo->getMapa()[novaLinha][novaColuna]->getCaratere()[0] == MAR){
    
-
         setPosicaoAtualX(novaLinha);
         setPosicaoAtualY(novaColuna);
 
         jogo->colocarNavioEmPosicaoAtualizada(this);
         jogo->desocuparMarDeNavio(antigaLinha, antigaColuna);
 
+    }else{
+        
+        if(novaColuna == NUMCOLUNAS && moverN == D){
+            vaiPara(novaLinha,0);
+        }else if(novaColuna == 0 && moverN == E){
+            vaiPara(novaLinha,NUMCOLUNAS-1);
+        }else if(novaLinha == NUMLINHAS && moverN == B){
+            vaiPara(0,novaColuna);
+        }else if(novaLinha == 0 && moverN == C){
+            vaiPara(NUMLINHAS-1,novaColuna);
+        }else if(novaLinha == NUMLINHAS && novaColuna == NUMCOLUNAS && moverN == BD){
+            vaiPara(0,0);
+        }else if(novaLinha == 0 && novaColuna == 0 && moverN == CE){
+            vaiPara(NUMLINHAS-1,NUMCOLUNAS-1);
+        }else if(novaLinha == 0 && novaColuna == NUMCOLUNAS && moverN == CD){
+            vaiPara(NUMLINHAS-1,0);
+        }else if(novaLinha == NUMLINHAS && novaColuna == 0 && moverN == BE){
+            vaiPara(0,NUMCOLUNAS-1);
+        }
+        
+            
     }
         
 }
 
 void Navio::moveNavioAutoGestao(){
+    
     
     int dir;
     int novaLinha = 0, novaColuna = 0;
@@ -394,8 +418,8 @@ void Navio::moveNavioAutoGestao(){
 
     }
             
-    if( (novaLinha <= jogo->getLinhas() || novaColuna <= jogo->getColunas()) 
-            && jogo->getMapa()[novaLinha][novaColuna]->getCaratere()[0] == '~'){
+    if( (novaLinha < NUMLINHAS && novaColuna < NUMCOLUNAS && novaLinha >= 0 && novaColuna >= 0) 
+            && jogo->getMapa()[novaLinha][novaColuna]->getCaratere()[0] == MAR){
    
 
         setPosicaoAtualX(novaLinha);
@@ -404,6 +428,26 @@ void Navio::moveNavioAutoGestao(){
         jogo->colocarNavioEmPosicaoAtualizada(this);
         jogo->desocuparMarDeNavio(antigaLinha, antigaColuna);
 
+    }else{
+        if(novaColuna == NUMCOLUNAS && dir == 0){
+            vaiPara(novaLinha,0);
+        }else if(novaColuna == 0 && dir == 5){
+            vaiPara(novaLinha,NUMCOLUNAS-1);
+        }else if(novaLinha == NUMLINHAS && dir == 3){
+            vaiPara(0,novaColuna);
+        }else if(novaLinha == 0 && dir == 4){
+            vaiPara(NUMLINHAS-1,novaColuna);
+        }else if(novaLinha == NUMLINHAS && novaColuna == NUMCOLUNAS && dir == 1){
+            vaiPara(0,0);
+        }else if(novaLinha == 0 && novaColuna == 0 && dir == 7){
+            vaiPara(NUMLINHAS-1,NUMCOLUNAS-1);
+        }else if(novaLinha == 0 && novaColuna == NUMCOLUNAS && dir == 2){
+            vaiPara(NUMLINHAS-1,0);
+        }else if(novaLinha == NUMLINHAS && novaColuna == 0 && dir == 6){
+            vaiPara(0,NUMCOLUNAS-1);
+        }
+        
+            
     }
         
 }
@@ -436,12 +480,13 @@ void Navio::setJogo(Jogo* jogo){
 }
 
 void Navio::vaiPara(int x, int y){
-   
-    
-    jogo->desocuparMarDeNavio(getPosicaoAtualX(),getPosicaoAtualY());
-    static_cast<Mar*>(jogo->getMapa()[x][y])->colocarNavio(this);
-    setPosicaoAtualX(x);
-    setPosicaoAtualY(y);
+ 
+    if(jogo->getMapa()[x][y]->getCaratere()[0]==MAR){
+        jogo->desocuparMarDeNavio(getPosicaoAtualX(),getPosicaoAtualY());
+        static_cast<Mar*>(jogo->getMapa()[x][y])->colocarNavio(this);
+        setPosicaoAtualX(x);
+        setPosicaoAtualY(y);
+    }
     
     
 }

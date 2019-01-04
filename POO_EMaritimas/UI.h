@@ -19,28 +19,14 @@
 #include <sstream>
 #include <string>
 
+#include "global_vars.cpp"
+
 #include "Celula.h"
 #include "Navio.h"
 
-enum valoresFicheiro {
-    LINHAS = 1,
-    COLUNAS,
-    MOEDAS,
-    PROB_PIRATA,
-    PRECO_NAVIO,
-    PRECO_SOLDADO,
-    PRECO_VENDA_PEIXE,
-    PRECO_COMPRA_MERCADO,
-    PRECO_VENDA_MERCADO,
-    SOLDADOS_PORTO,
-    PROB_VENTO,
-    PROB_TEMPESTADE,
-    PROB_SEREIAS,
-    PROB_CALMARIA,
-    PROB_MOTIM
-};
-
 using namespace std;
+
+
 
 class UI {
 private:

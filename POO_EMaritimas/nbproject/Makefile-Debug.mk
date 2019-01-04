@@ -48,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Terra.o \
 	${OBJECTDIR}/UI.o \
 	${OBJECTDIR}/Veleiro.o \
+	${OBJECTDIR}/global_vars.o \
 	${OBJECTDIR}/main.o
 
 
@@ -139,6 +140,11 @@ ${OBJECTDIR}/Veleiro.o: Veleiro.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Veleiro.o Veleiro.cpp
+
+${OBJECTDIR}/global_vars.o: global_vars.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/global_vars.o global_vars.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

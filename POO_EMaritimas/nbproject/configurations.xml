@@ -62,6 +62,7 @@
       </logicalFolder>
       <itemPath>Jogo.cpp</itemPath>
       <itemPath>Jogo.h</itemPath>
+      <itemPath>global_vars.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -177,6 +178,8 @@
       </item>
       <item path="Veleiro.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="global_vars.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -251,6 +254,8 @@
       <item path="Veleiro.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Veleiro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="global_vars.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

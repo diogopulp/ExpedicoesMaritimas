@@ -18,7 +18,6 @@
 #include "Escuna.h"
 #include "Jogador.h"
 
-
 Jogo & Jogo::operator=(const Jogo& orig){
     if(this == &orig){
         return *this;
@@ -238,7 +237,7 @@ void Jogo::moverNavioAutomaticamente(int id){
                 break;
         }
         
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCaratere()[0] != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCaratere()[0] != MAR);
     
     //mapa[novaLinha][novaColuna]->setCarater(navio->getTipoNavio());
     navio->setPosicaoAtualX(novaLinha);
@@ -256,7 +255,7 @@ void Jogo::colocarNavioEmPosicao(Navio *navio) {
         novaLinha = rand() % getLinhas();
         novaColuna = rand() % getColunas();
 
-    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCaratere()[0] != '~');
+    }while((novaLinha > getLinhas() || novaColuna > getColunas()) && mapa[novaLinha][novaColuna]->getCaratere()[0] != MAR);
     
     
     //DownCasting
@@ -278,7 +277,6 @@ void Jogo::colocarNavioEmPosicaoAtualizada(Navio *navio) {
 
 void Jogo::desocuparMarDeNavio(int lin, int col){
     
-    cout << endl << "LIN: " << lin << " COL: " << col << endl;
     static_cast<Mar*>(mapa[lin][col])->removerNavio();
     
 }
@@ -567,7 +565,7 @@ void Jogo::startNewGame(){
     
     // A interface é responsável por receber os comandos inseridos pelo utilizador
     jogador->setNumeroDeMoedas(textUI.moedasIniciais());
-    setDimensoesMapa(10,20);
+    setDimensoesMapa(NUMLINHAS,NUMCOLUNAS);
     constroiMapa(getLinhas(),getColunas());
     colocarPortoEmPosicao(porto);
     adicionaNovoPorto(porto);
@@ -1041,7 +1039,7 @@ Celula * Jogo::getCelula(int x, int y) const{
 void Jogo::escunasPescam(){
     for(int i = 0; i < navios.size(); i++){
         
-        if(navios[i]->getCaractereNavio()[0] == 'E'){
+        if(navios[i]->getCaractereNavio()[0] == ESCUNA){
             Escuna *e = dynamic_cast<Escuna *>(navios[i]);
             Celula *mar = getCelula(e->getPosicaoAtualX(), e->getPosicaoAtualY());
             int peixeSobra = e->pescar(((Mar *)mar)->getQuantidadeDePeixeNaCelulaMar());
@@ -1062,7 +1060,7 @@ void Jogo::ocorreSereias(){
     do{
         linha = rand() % getLinhas();
         coluna = rand() % getColunas();
-    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCaratere()[0] == 'E' || mapa[linha][coluna]->getCaratere()[0] == 'V' || mapa[linha][coluna]->getCaratere()[0] == 'G' || mapa[linha][coluna]->getCaratere()[0] == 'F'));
+    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCaratere()[0] == ESCUNA || mapa[linha][coluna]->getCaratere()[0] == VELEIRO || mapa[linha][coluna]->getCaratere()[0] == GALEAO || mapa[linha][coluna]->getCaratere()[0] == FRAGATA));
 }
 
 void Jogo::sereiasMatamSoldados(){
@@ -1079,7 +1077,7 @@ void Jogo::ocorreCalmaria(){
 
 void Jogo::ocorreMotim() {
     int navioRand = rand() % navios.size();
-    if(navios[navioRand]->getCaractereNavio()[0] == 'E' || navios[navioRand]->getCaractereNavio()[0] == 'F'){
+    if(navios[navioRand]->getCaractereNavio()[0] == ESCUNA || navios[navioRand]->getCaractereNavio()[0] == FRAGATA){
         navios[navioRand]->setAliancaDoNavio(false);
     }else{
         delete navios[navioRand];
@@ -1093,7 +1091,7 @@ void Jogo::apareceNavioPirata(){
     do{
         linha = rand() % getLinhas();
         coluna = rand() % getColunas();
-    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCaratere()[0] == '~'));
+    }while((linha > getLinhas() || coluna > getColunas()) && (mapa[linha][coluna]->getCaratere()[0] == MAR));
     
     int tipoDeNavioPirata = rand() % 2;
     if(tipoDeNavioPirata <= 50){
@@ -1113,7 +1111,7 @@ void Jogo::apareceNavioPirata(){
 void Jogo::danificaNavio(Navio *navio, int posicaoArray){
     int probabilidade = rand() % 101;
     
-    if(navio->getCaractereNavio()[0] == 'E'){
+    if(navio->getCaractereNavio()[0] == ESCUNA){
         if(probabilidade <= 20){
             Escuna escuna;
             navio = &escuna;
@@ -1129,7 +1127,7 @@ void Jogo::danificaNavio(Navio *navio, int posicaoArray){
             navio = &escuna;
             escuna.setQuantidadeDeAgua(100);
         }
-    }else if(navio->getCaractereNavio()[0] == 'V'){
+    }else if(navio->getCaractereNavio()[0] == VELEIRO){
         Veleiro veleiro;
         navio = &veleiro;
         int cargaDoVeleiro = veleiro.getQuantidadeDePeixe() + veleiro.getQuantidadeDeMercadorias();
@@ -1148,7 +1146,7 @@ void Jogo::danificaNavio(Navio *navio, int posicaoArray){
             navio = &veleiro;
             veleiro.setQuantidadeDeAgua(200);
         }
-    }else if(navio->getCaractereNavio()[0] == 'G'){
+    }else if(navio->getCaractereNavio()[0] == GALEAO){
         Galeao galeao;
         navio = &galeao;
         galeao.setQuantidadeDeSoldados(galeao.getNumeroDeSoldados() * 0.9);
@@ -1162,7 +1160,7 @@ void Jogo::danificaNavio(Navio *navio, int posicaoArray){
             navio = &galeao;
             galeao.setQuantidadeDeAgua(400);
         }
-    }else if(navio->getCaractereNavio()[0] == 'F'){
+    }else if(navio->getCaractereNavio()[0] == FRAGATA){
         Fragata fragata;
         navio = &fragata;
         int perdeSoldados = fragata.getNumeroDeSoldados() * 0.85;
@@ -1259,14 +1257,14 @@ Escuna * Jogo::procuraEscuna(int x, int y){
 
 void Jogo::verificaTransfernciaDePeixe(){
     for(int i = 0; i < navios.size(); i++){
-        if(navios[i]->getCaractereNavio()[0] == 'G'){
+        if(navios[i]->getCaractereNavio()[0] == GALEAO){
             Escuna *e = this->procuraEscuna(navios[i]->getPosicaoAtualX(),navios[i]->getPosicaoAtualY());
             if(e != nullptr){
                 Galeao galeao;
                 navios[i] = &galeao;
                 galeao.transferePeixe(e);
             }
-        }else if(navios[i]->getCaractereNavio()[0] == 'V' && navios[i]->getAliancaDoNavio() == true){
+        }else if(navios[i]->getCaractereNavio()[0] == VELEIRO && navios[i]->getAliancaDoNavio() == true){
             Escuna *e = this->procuraEscuna(navios[i]->getPosicaoAtualX(), navios[i]->getPosicaoAtualY());
             if(e != nullptr){
                 Veleiro veleiro;
