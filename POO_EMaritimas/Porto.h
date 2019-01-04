@@ -26,6 +26,9 @@ class Porto {
     
 private:
     
+    static const int precoSoldado = 1;
+    static const int precoMercadoria = 2;
+    
     static int identificador;
     string car;
     vector<Navio *> navios;
@@ -73,6 +76,13 @@ public:
     int getNumNavios();
     
     int vendeSoldados(int nSoldados);
+    int vendeMercadorias(int toneladas);
+    
+    int getPrecoSoldado();
+    int getPrecoMercadoria();
+    
+    int compraPeixe(int nPeixe);
+    int compraMercadoria(int nMercadoria);
 
 
 };

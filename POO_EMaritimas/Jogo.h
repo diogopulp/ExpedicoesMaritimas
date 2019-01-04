@@ -193,6 +193,16 @@ public:
     void vaiPara(string idNavio, string x, string y);
     
     void compraSoldados(string nSold, string idNav);
+    void compraMercadorias(string idNav, string mTon);
+    
+    Jogador* getJogador();
+    void decrementaNumMoedas(int custo);
+    void vendeCargaEMercadoria(string idNav);
+    
+    void autoNav(string idNav);
+    void stopAutoNav(string idNav);
+    
+    void proximoTurno();
    
 };
 

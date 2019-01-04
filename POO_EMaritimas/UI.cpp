@@ -6,6 +6,7 @@
  */
 
 #include "UI.h"
+#include "Porto.h"
 
 UI::UI() {
 }
@@ -209,6 +210,11 @@ int UI::leInteiroInserido(){
     
 }
 
+void UI::mensagemComamdoInexistente(string comando){
+    
+    cout << endl << "ATENCAO! - O comando '" << comando << "' não existe." << endl;
+}
+
 void UI::imprimeOpcoes(){
     
     cout << "Opcoes do jogo:\n"
@@ -216,6 +222,23 @@ void UI::imprimeOpcoes(){
             "o ficheiro.\nPara esta funcionalidade tem que usar o comando config <nomeFicheiro>\n"
             "Na segunda fase vai ser o desenrolar do jogo e vai ter que escolher os seus commandos para interagir com o jogo";
     
+}
+
+void UI::imprimeListaDePrecosNosPortos(vector <Porto*> portos){
+    
+    for(int i=0; i<portos.size(); i++){
+        cout << endl << "Preco Soldado: " << portos[i]->getPrecoSoldado();
+        cout << endl << "Preco Mercadoria: " << portos[i]->getPrecoMercadoria() << endl;
+    }
+ }
+
+void UI::mostraNumSoldadosNavio(Navio* navio){
+    
+    cout << endl << "Número de soldados no navio #" << navio->getIdentificador() << ": " << navio->getNumeroDeSoldados() << endl;
+}
+
+void UI::mensagemNavioNaoEstaNumPorto(){
+    cout << endl << "Este navio não está num porto" << endl;
 }
 
 void UI::mensagemErroComando(){

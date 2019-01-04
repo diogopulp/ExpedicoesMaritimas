@@ -122,3 +122,25 @@ int Porto::vendeSoldados(int nSoldados){
         return nSoldados;
     return 0;
 }
+
+int Porto::vendeMercadorias(int toneladas){
+    if(toneladas > 0)
+        return toneladas;
+    return 0;
+}
+
+int Porto::getPrecoSoldado(){
+    return precoSoldado;
+}
+
+int Porto::getPrecoMercadoria(){
+    return precoMercadoria;
+}
+
+int Porto::compraPeixe(int nPeixe){
+    return nPeixe * precoMercadoria;
+ }
+ 
+int Porto::compraMercadoria(int nMercadoria){
+    return nMercadoria * precoMercadoria;
+}

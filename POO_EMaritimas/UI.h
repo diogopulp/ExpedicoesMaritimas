@@ -94,6 +94,10 @@ public:
     void mostraPontuacao(int pontuacao);
     void imprimeListaNavios(vector <Navio*> navios);
     void mostraNaviosPorto(int nNavios, int idPorto);
+    void mostraNumSoldadosNavio(Navio* navio);
+    void mensagemNavioNaoEstaNumPorto();
+    void mensagemComamdoInexistente(string comando);
+    void imprimeListaDePrecosNosPortos(vector <Porto*> portos);
     
    
 };

@@ -581,7 +581,6 @@ void Jogo::startNewGame(){
         
             
         cmd = textUI.escutaComandos();
-        cout << cmd;
         
         istringstream iss(cmd);
   
@@ -603,12 +602,13 @@ void Jogo::startNewGame(){
                         textUI.infoComandos();
                         break;
                     case prox:
-                        // Implementar comportamento
+                        proximoTurno();
                         break;
                     case lista:
-                        textUI.listaInfo(jogador->getNumeroDeMoedas(), getNumNavios());
+                        textUI.imprimeListaDePrecosNosPortos(jogador->getPortos());
                         break;
                     default:
+                        textUI.mensagemComamdoInexistente(cmd);
                         break;
                 }       
             }else if(tokens.size() == 2)
@@ -624,13 +624,14 @@ void Jogo::startNewGame(){
                         vendeNavio(tokens[1]);
                         break;
                     case vende:
-                        // Implementar comportamento
+                        vendeCargaEMercadoria(tokens[1]);
                         break;
                     case automov:
-                        moverNavioAutomaticamente(tokens[1].at(0));
+                        //moverNavioAutomaticamente(tokens[1].at(0));
+                        autoNav(tokens[1]);
                         break;
                     case stop:
-                        // Implementar comportamento
+                        stopAutoNav(tokens[1]);
                         break;
                     case moedas:
                         acrescentaMoedas(tokens[1]);
@@ -645,6 +646,7 @@ void Jogo::startNewGame(){
                         // Implementar comportamento
                         break;
                     default:
+                        textUI.mensagemComamdoInexistente(cmd);
                         break;
                 }       
             }else if(tokens.size() == 3)
@@ -666,6 +668,7 @@ void Jogo::startNewGame(){
                         compraSoldados(tokens[1],tokens[2]);
                         break;
                     default:
+                        textUI.mensagemComamdoInexistente(cmd);
                         break;
                 }     
             }else if(tokens.size() == 4)
@@ -681,6 +684,7 @@ void Jogo::startNewGame(){
                         vaiPara(tokens[1],tokens[2],tokens[3]);
                         break;
                     default:
+                        textUI.mensagemComamdoInexistente(cmd);
                         break;
                 }     
             }
@@ -1426,12 +1430,126 @@ void Jogo::compraSoldados(string nSold, string idNav){
     
     for(int i=0; i<navios.size(); i++){
         if(navios[i]->getIdentificador() == nav){
+            
             if(navios[i]->getPorto() == nullptr){
+                textUI.mensagemNavioNaoEstaNumPorto();
                 return;
             }else{
+                
                 navios[i]->compraSoldados(sold);
+                textUI.mostraNumSoldadosNavio(navios[i]);
             }
         }
     }
     
 }
+
+void Jogo::compraMercadorias(string idNav, string mTon){
+    
+    int nav, ton; 
+    
+    // Converte para inteiro
+    std::istringstream iss (idNav);
+    iss >> nav;
+    
+    std::istringstream oss(mTon);
+    oss >> ton;
+    
+    for(int i=0; i<navios.size(); i++){
+        if(navios[i]->getIdentificador() == nav){
+            if(navios[i]->getPorto() == nullptr){
+                return;
+            }else{
+                navios[i]->compraMercadorias(ton);
+            }
+        }
+    }
+    
+    
+}
+
+Jogador* Jogo::getJogador(){
+    return jogador;
+}
+
+void Jogo::decrementaNumMoedas(int custo){
+    
+    int numMoedasJogador = jogador->getNumeroDeMoedas();
+    
+    jogador->setNumeroDeMoedas(numMoedasJogador-custo);
+    
+}
+
+ void Jogo::vendeCargaEMercadoria(string idNav){
+     
+    int id; 
+    
+    // Converte para inteiro
+    std::istringstream iss (idNav);
+    iss >> id;
+    
+    for(int i=0; i<navios.size(); i++){
+        if(navios[i]->getIdentificador() == id){
+            
+            if(navios[i]->getPorto() == nullptr){
+                textUI.mensagemNavioNaoEstaNumPorto();
+                return;
+                
+            }else{
+                navios[i]->vendeCargaEMercadoria();
+            }
+        }
+    }
+    
+     
+ }
+ 
+ void Jogo::autoNav(string idNav){
+     
+    int id; 
+    
+    // Converte para inteiro
+    std::istringstream iss (idNav);
+    iss >> id;
+    
+    for(int i=0; i<navios.size(); i++){
+        if(navios[i]->getIdentificador() == id){
+            
+            if(navios[i]->getAutoGestao() == false)
+                navios[i]->switchAutoGestao();
+            
+        }
+    }
+     
+ }
+ 
+  void Jogo::stopAutoNav(string idNav){
+     
+    int id; 
+    
+    // Converte para inteiro
+    std::istringstream iss (idNav);
+    iss >> id;
+    
+    for(int i=0; i<navios.size(); i++){
+        if(navios[i]->getIdentificador() == id){
+            
+            if(navios[i]->getAutoGestao() == true)
+                navios[i]->switchAutoGestao();
+            
+        }
+    }
+     
+ }
+  
+  void Jogo::proximoTurno(){
+      
+    for(int i=0; i<navios.size(); i++){
+
+      if(navios[i]->getAutoGestao() == true)
+          navios[i]->moveNavioAutoGestao();
+
+    }
+  }
+
+

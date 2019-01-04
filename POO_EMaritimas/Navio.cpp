@@ -49,6 +49,7 @@ Navio::Navio(Jogo *jogo, string car, int posX, int posY, bool alianca, int numSo
     this->toneladasDeMercadoria = quantMercadorias;
     this->cargaTotal = quantTotal;
     identificador++;
+    autoGestao = false;
 }
 //construtor por copia
 
@@ -57,6 +58,7 @@ Navio::Navio(const Navio& orig):
             posicaoAtualX(orig.posicaoAtualX), 
             posicaoAtualY(orig.posicaoAtualY){
     identificador++;
+    autoGestao = false;
 }
 
 Navio::Navio(string car, int numSoldados, int quantAgua, int cargaMax):caractere(car),numeroDeSoldados(numSoldados),litosDeAgua(quantAgua){
@@ -65,6 +67,7 @@ Navio::Navio(string car, int numSoldados, int quantAgua, int cargaMax):caractere
     this->toneladasDeMercadoria=0;
     this->cargaTotal = cargaMax;
     identificador++;
+    autoGestao = false;
 }
 
 int Navio::getIdentificador(){
@@ -319,6 +322,92 @@ void Navio::moveNavio(string dir){
         
 }
 
+void Navio::moveNavioAutoGestao(){
+    
+    int dir;
+    int novaLinha = 0, novaColuna = 0;
+    int antigaLinha = 0, antigaColuna = 0;
+   
+    dir = rand() % 8;
+              
+    if(getEstadoDeCalmaria() == true || getAliancaDoNavio() == false){
+        return;
+    }
+    
+    antigaLinha = getPosicaoAtualX();
+    antigaColuna = getPosicaoAtualY();
+    
+    int distancia = getVelocidade();
+    
+    switch(dir){
+        case 0:
+        {
+            novaLinha = getPosicaoAtualX();
+            novaColuna = getPosicaoAtualY() + distancia;
+        }
+            break;
+        case 1:
+        {
+            novaLinha = getPosicaoAtualX() + distancia;
+            novaColuna = getPosicaoAtualY() + distancia;
+        }
+            break;
+        case 2:
+        {
+            novaLinha = getPosicaoAtualX() - distancia;
+            novaColuna = getPosicaoAtualY() + distancia;
+        }
+            break;
+        case 3:
+        {
+            novaLinha = getPosicaoAtualX() + distancia;
+            novaColuna = getPosicaoAtualY();
+        }
+            break;
+        case 4:
+        {
+
+            novaLinha = getPosicaoAtualX() - distancia;
+            novaColuna = getPosicaoAtualY();
+        }
+            break;
+        case 5:
+        {
+            novaLinha = getPosicaoAtualX();
+            novaColuna = getPosicaoAtualY() - distancia;
+        }
+            break;
+        case 6:
+        {
+            novaLinha = getPosicaoAtualX() + distancia;
+            novaColuna = getPosicaoAtualY() - distancia;
+        }
+            break;
+        case 7:
+        {
+            novaLinha = getPosicaoAtualX() - distancia;
+            novaColuna = getPosicaoAtualY() - distancia;
+        }
+            break;
+        default:
+            break;
+
+    }
+            
+    if( (novaLinha <= jogo->getLinhas() || novaColuna <= jogo->getColunas()) 
+            && jogo->getMapa()[novaLinha][novaColuna]->getCaratere()[0] == '~'){
+   
+
+        setPosicaoAtualX(novaLinha);
+        setPosicaoAtualY(novaColuna);
+
+        jogo->colocarNavioEmPosicaoAtualizada(this);
+        jogo->desocuparMarDeNavio(antigaLinha, antigaColuna);
+
+    }
+        
+}
+
 DIRECAO Navio::converteStringParaDirecao(string dir){
     
     if (dir == "C"){
@@ -359,7 +448,13 @@ void Navio::vaiPara(int x, int y){
 
 void Navio::compraSoldados(int nSoldados){
     
-    if(porto->vendeSoldados(nSoldados)>0){
+    int custo = nSoldados*porto->getPrecoSoldado();
+    int moedasJogador = jogo->getJogador()->getNumeroDeMoedas();
+    
+    if(custo > moedasJogador){
+        return;
+    }else if(porto->vendeSoldados(nSoldados)>0){
+        jogo->decrementaNumMoedas(custo);
         adicionaSoldados(porto->vendeSoldados(nSoldados));
     }
     
@@ -392,3 +487,38 @@ void Navio::setPorto(Porto* porto){
 Porto* Navio::getPorto(){
     return porto;
 }
+
+void Navio::compraMercadorias(int toneladas){
+    
+    if(porto->vendeMercadorias(toneladas)>0){
+        //adicionaSoldados(porto->vendeSoldados(nSoldados));
+    }
+    
+}
+
+void Navio::vendeCargaEMercadoria(){
+    
+    if(porto == nullptr)
+        return;
+    
+    if(toneladasDePeixe > 0)
+        jogo->getJogador()->addMaisMoedas(porto->compraPeixe(toneladasDePeixe));
+        
+    if(toneladasDeMercadoria > 0)
+        jogo->getJogador()->addMaisMoedas(porto->compraMercadoria(toneladasDeMercadoria));
+}
+
+void Navio::switchAutoGestao(){
+
+    if(autoGestao == false){
+        autoGestao = true;
+    }else if(autoGestao == true){
+        autoGestao = false;
+    }
+    
+}
+ 
+bool Navio::getAutoGestao(){
+    return autoGestao;
+}
+  

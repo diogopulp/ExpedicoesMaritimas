@@ -45,6 +45,7 @@ private:
     string caractere;
     int posicaoAtualX, posicaoAtualY;
     static int identificador;
+    bool autoGestao;
     
 protected:
     Jogo* jogo;
@@ -100,6 +101,8 @@ public:
     
     void navega(Porto* porto);
     void moveNavio(string dir);
+    void moveNavioAutoGestao();
+    
     void vaiPara(int x, int y);
     
     void setPorto(Porto* porto);
@@ -111,7 +114,14 @@ public:
     
     void compraSoldados(int nSoldados);
     
+    void compraMercadorias(int toneladas);
+    
     DIRECAO converteStringParaDirecao(string dir);
+    
+    void vendeCargaEMercadoria();
+    
+    void switchAutoGestao();
+    bool getAutoGestao();
     
     /*
     int moverNavio(int direcao);

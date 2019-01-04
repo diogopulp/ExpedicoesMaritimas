@@ -39,8 +39,10 @@ public:
     void adicionaNavio(Navio* navio);
     
     vector<Porto*> getPortos();
+    
     void setNumeroDeMoedas(int moedas);
     int getNumeroDeMoedas();
+    
     void addMaisMoedas(int moedas);
     void dimNumMoedas(int custo);
     Jogador();
@@ -48,6 +50,8 @@ public:
     virtual ~Jogador();
     vector<Navio*> getNavios();
     void venderNavio(int idNav);
+    
+
    
 
 };
